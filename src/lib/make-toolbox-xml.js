@@ -949,9 +949,11 @@ const comments = function (colors) {
 };
 
 // eslint-disable-next-line max-len
-const extraTurboWarpBlocks = `
-<block type="argument_reporter_boolean"><field name="VALUE">is compiled?</field></block>
-<block type="argument_reporter_boolean"><field name="VALUE">is TurboWarp?</field></block>
+const nbBlocksColours = `colourmutprimary="#ff5726" colourmutsecondary="#f34b1a" colourmuttertiary="#e63e0d" colourmutquaternary="#e63e0d"`;
+// eslint-disable-next-line max-len
+const extraNitroBoltBlocks = `
+<block type="argument_reporter_boolean"><field name="VALUE">is compiled?</field><mutation ${nbBlocksColours}></mutation></block>
+<block type="argument_reporter_boolean"><field name="VALUE">is NitroBolt?</field><mutation ${nbBlocksColours}></mutation></block>
 `;
 /* eslint-enable no-unused-vars */
 
@@ -959,6 +961,7 @@ const xmlOpen = '<xml style="display: none">';
 const xmlClose = '</xml>';
 
 /**
+ * @param {?VirtualMachine} vm - Virtual machine instance.
  * @param {!boolean} isInitialSetup - Whether the toolbox is for initial setup. If the mode is "initial setup",
  * blocks with localized default parameters (e.g. ask and wait) should not be loaded. (LLK/scratch-gui#5445)
  * @param {?boolean} isStage - Whether the toolbox is for a stage-type target. This is always set to true
@@ -974,7 +977,7 @@ const xmlClose = '</xml>';
  * @param {?object} colors - The colors for the theme.
  * @returns {string} - a ScratchBlocks-style XML document for the contents of the toolbox.
  */
-const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categoriesXML = [],
+const makeToolboxXML = function (vm, isInitialSetup, isStage = true, targetId, categoriesXML = [],
     costumeName = '', backdropName = '', soundName = '', colors = defaultBlockColors) {
     isStage = isInitialSetup || isStage;
     const gap = [categorySeparator];
@@ -1006,11 +1009,11 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
     const myBlocksXML = moveCategory('procedures') || myBlocks(isInitialSetup, isStage, targetId, colors.more);
     const commentsXML = moveCategory('comments') || comments(colors.comments);
 
-    // Always display TurboWarp blocks as the first extension, if it exists,
+    // Always display NitroBolt blocks as the first extension, if it exists,
     // and also add an "is compiled?" block to the top.
-    let turbowarpXML = moveCategory('tw');
-    if (turbowarpXML && !turbowarpXML.includes(extraTurboWarpBlocks)) {
-        turbowarpXML = turbowarpXML.replace('<block', `${extraTurboWarpBlocks}<block`);
+    let nitroboltXML = moveCategory('tw'); // legacy id
+    if (nitroboltXML && !nitroboltXML.includes(extraNitroBoltBlocks)) {
+        nitroboltXML = nitroboltXML.replace('<block', `${extraNitroBoltBlocks}<block`);
     }
 
     const everything = [
@@ -1028,8 +1031,8 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
         commentsXML
     ];
 
-    if (turbowarpXML) {
-        everything.push(gap, turbowarpXML);
+    if (nitroboltXML) {
+        everything.push(gap, nitroboltXML);
     }
 
     for (const extensionCategory of categoriesXML) {
@@ -1037,7 +1040,36 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
     }
 
     everything.push(xmlClose);
+    if (vm) vm.emit(
+      'MAKE_TOOLBOX_XML', makeToolboxXML.exports, everything,
+      isInitialSetup, isStage, targetId, categoriesXML,
+      costumeName, backdropName, soundName, colors
+    );
     return everything.join('\n');
+};
+makeToolboxXML.exports = {
+  make: (...args) => makeToolboxXML(...args),
+  translate,
+  xmlEscape,
+
+  categorySeparator,
+  blockSeparator,
+  xmlOpen,
+  xmlClose,
+  nbBlocksColours,
+  extraNitroBoltBlocks,
+
+  motion,
+  looks,
+  sound,
+  events,
+  control,
+  sensing,
+  operators,
+  variables,
+  json,
+  myBlocks,
+  comments
 };
 
 export default makeToolboxXML;

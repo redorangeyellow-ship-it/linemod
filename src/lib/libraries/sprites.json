@@ -2028,6 +2028,41 @@
         "blocks": {}
     },
     {
+        "name": "Cat 2",
+        "tags": [
+            "cat",
+            "kitty",
+            "kitten",
+            "animals",
+            "mammal"
+        ],
+        "isStage": false,
+        "variables": {},
+        "costumes": [
+            {
+                "assetId": "7499cf6ec438d0c7af6f896bc6adc294",
+                "name": "cat 2",
+                "bitmapResolution": 1,
+                "md5ext": "7499cf6ec438d0c7af6f896bc6adc294.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 87,
+                "rotationCenterY": 39
+            }
+        ],
+        "sounds": [
+            {
+                "assetId": "cf51a0c4088942d95bcc20af13202710",
+                "name": "meow2",
+                "dataFormat": "wav",
+                "format": "",
+                "rate": 44100,
+                "sampleCount": 26048,
+                "md5ext": "cf51a0c4088942d95bcc20af13202710.wav"
+            }
+        ],
+        "blocks": {}
+    },
+    {
         "name": "Catcher",
         "tags": [
             "baseball",
@@ -9094,10 +9129,10 @@
         "variables": {},
         "costumes": [
             {
-                "assetId": "5c4e7a086a712d6f4b4c575bc0704e5e",
+                "assetId": "4d45a484633a5369e85831f9cb9c7a4e",
                 "name": "nitro canister",
                 "bitmapResolution": 1,
-                "md5ext": "5c4e7a086a712d6f4b4c575bc0704e5e.svg",
+                "md5ext": "4d45a484633a5369e85831f9cb9c7a4e.svg",
                 "dataFormat": "svg",
                 "rotationCenterX": 22.654550552368164,
                 "rotationCenterY": 57.45331954956055

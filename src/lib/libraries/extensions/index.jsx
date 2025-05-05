@@ -336,32 +336,10 @@ export default [
         helpLink: 'https://scratch.mit.edu/vernier'
     },
     {
-        // not really an extension, but it's easiest to present it as one
-        name: (
-            <FormattedMessage
-                defaultMessage="Custom Reporters"
-                description="Name of custom reporters extension"
-                id="tw.customReporters.name"
-            />
-        ),
-        extensionId: 'procedures_enable_return',
-        iconURL: returnIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="Allow custom blocks to output values and be used as inputs."
-                description="Description of custom reporters extension"
-                id="tw.customReporters.description"
-            />
-        ),
-        tags: ['tw'],
-        incompatibleWithScratch: true,
-        featured: true
-    },
-    {
         name: (
             <FormattedMessage
                 defaultMessage="{APP_NAME} Blocks"
-                description="Name of the strange 'TurboWarp Blocks' extension"
+                description="Name of the strange 'NitroBolt Blocks' extension"
                 id="tw.twExtension.name"
                 values={{
                     APP_NAME
@@ -373,12 +351,12 @@ export default [
         description: (
             <FormattedMessage
                 defaultMessage="Weird new blocks."
-                description="Description of the strange 'TurboWarp Blocks' extension"
+                description="Description of the strange 'NitroBolt Blocks' extension"
                 id="tw.twExtension.description"
             />
         ),
         incompatibleWithScratch: true,
-        tags: ['tw'],
+        tags: ['nb'],
         featured: true
     },
     {
@@ -398,7 +376,7 @@ export default [
                 id="tw.customExtension.description"
             />
         ),
-        tags: ['tw'],
+        tags: ['nb', 'tw'],
         featured: true
         // Not marked as incompatible with Scratch so that clicking on it doesn't show a prompt
     }
