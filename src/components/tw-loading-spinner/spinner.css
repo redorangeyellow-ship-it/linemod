@@ -12,12 +12,14 @@
     height: 64px;
     border-radius: 50%;
     border: 6px solid;
-    border-color: $motion-primary transparent $motion-primary transparent;
+    border-color: hsla(28, 97%, 58%, 1) transparent hsla(28, 97%, 58%, 1) transparent;
     animation: spinner 1.2s linear infinite;
 }
+
 [theme="dark"] .spinner {
-    border-color: #fff transparent #fff transparent;
+    border-color: hsla(28, 97%, 40%, 1) transparent hsla(28, 97%, 40%, 1) transparent;
 }
+
 @keyframes spinner {
     0% {
         transform: rotate(0deg);
