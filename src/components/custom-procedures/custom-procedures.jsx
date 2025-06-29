@@ -270,7 +270,44 @@ const CustomProcedures = props => (
                 </div>
             </div>
             {!props.editing && <div className={styles.optionsRow} style={{ marginTop: '1em' }}>
-                {!props.returns && <>
+                {props.returns ? <>
+                    <div
+                        className={styles.optionCard}
+                        role="button"
+                        tabIndex="0"
+                        onClick={() => props.onOutputTypeChanged('string')}
+                    >
+                        <img
+                            className={styles.optionIcon}
+                            src={reporterBlockIcon}
+                        />
+                        <div className={styles.optionTitle}>
+                            <FormattedMessage
+                                defaultMessage="Return Text or Number"
+                                description="Label for block to return text"
+                                id="gui.customProcedures.returnText"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        className={styles.optionCard}
+                        role="button"
+                        tabIndex="0"
+                        onClick={() => props.onOutputTypeChanged('boolean')}
+                    >
+                        <img
+                            className={styles.optionIcon}
+                            src={booleanBlockIcon}
+                        />
+                        <div className={styles.optionTitle}>
+                            <FormattedMessage
+                                defaultMessage="Return a Boolean"
+                                description="Label for block to return a boolean"
+                                id="gui.customProcedures.returnABoolean"
+                            />
+                        </div>
+                    </div>
+                </> : <>
                     <div
                         className={styles.optionCard}
                         role="button"
