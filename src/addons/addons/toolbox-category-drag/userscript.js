@@ -1,6 +1,9 @@
 // Toolbox Category Drag
 // By: SharkPool
-export default async function () {
+export default async function ({ addon }) {
+    // wait for scratchblocks to be defined
+    await addon.tab.traps.getBlockly();
+
     const COMMENT_TRAPPER_ID = "--Category_Order_ADDON-config";
     const soup = "!#%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     
