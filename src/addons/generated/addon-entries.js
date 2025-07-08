@@ -61,6 +61,7 @@ export default {
   "block-duplicate": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/block-duplicate/_runtime_entry.js"),
   "swap-local-global": () => import(/* webpackChunkName: "addon-entry-swap-local-global" */ "../addons/swap-local-global/_runtime_entry.js"),
   "toolbox-full-blocks-on-hover": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/toolbox-full-blocks-on-hover/_runtime_entry.js"),
+  "toolbox-category-drag": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/toolbox-category-drag/_runtime_entry.js"),
   "editor-comment-previews": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-comment-previews/_runtime_entry.js"),
   "columns": () => import(/* webpackChunkName: "addon-entry-columns" */ "../addons/columns/_runtime_entry.js"),
   "number-pad": () => import(/* webpackChunkName: "addon-entry-number-pad" */ "../addons/number-pad/_runtime_entry.js"),
