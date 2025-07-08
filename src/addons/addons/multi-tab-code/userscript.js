@@ -482,8 +482,8 @@ export default async function ({ addon, msg, console }) {
     selectStartScroll = scroll;
     selectStartX = e.x;
   }
-  document.onmouseup = () => scrollSelected = false;
-  document.onmousemove = e => {
+  document.addEventListener('mouseup', () => scrollSelected = false);
+  document.addEventListener('mousemove', e => {
     if (!scrollSelected) return;
     const bodySize = tabScroller.getBoundingClientRect();
     const wrapperSize = tabWrapper.getBoundingClientRect();
@@ -491,7 +491,7 @@ export default async function ({ addon, msg, console }) {
     scroll = Math.max(Math.min((e.x - selectStartX) + selectStartScroll, diff), 0);
     scrollBar.style.left = `${scroll}px`;
     tabScroller.style.left = `-${scroll}px`;
-  }
+  });
   function loadTabs() {
     for (const comment of Object.values(tabTarget.comments))
       if (comment.text.startsWith(commentId))
