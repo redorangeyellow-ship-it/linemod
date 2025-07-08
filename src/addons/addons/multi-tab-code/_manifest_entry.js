@@ -30,7 +30,7 @@ const manifest = {
       "description": "If we should keep blocks from deleted tabs, moving them into the new selected tab, or if we should delete blocks inside a deleted tab."
     }
   ],
-  "tags": [],
+  "tags": ["new"],
   "enabledByDefault": false
 };
 export default manifest;
