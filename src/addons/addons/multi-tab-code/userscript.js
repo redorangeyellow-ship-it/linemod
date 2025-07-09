@@ -5,8 +5,6 @@ export default async function ({ addon, msg, console }) {
   let hoveredTab = -1;
   let dragging = false;
   const tabs = [];
-  const synchQueue = [];
-  let queueTab = -1;
   window.tabs = tabs;
   let tabTarget = null;
   const commentId = '// multi-tab configuration entry\n';
@@ -14,6 +12,7 @@ export default async function ({ addon, msg, console }) {
   let scrollSelected = false;
   let selectStartX = 0;
   let selectStartScroll = 0;
+  let lastLoaded = '';
   const soup_ = '!#%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   function uid() {
     const length = 20;
@@ -32,7 +31,9 @@ export default async function ({ addon, msg, console }) {
   const { Blocks, Variable, RenderedTarget, Comment } = vm.exports;
   const ogEmitUpdate = vm.emitWorkspaceUpdate;
   vm.emitWorkspaceUpdate = function() {
-    if (!tabs[selectedTab]) return ogEmitUpdate.call(this, []);
+    if (!tabs[selectedTab]) return `<xml xmlns="http://www.w3.org/1999/xhtml">
+                                      <variables></variables>
+                                    </xml>`;
     // Create a list of broadcast message Ids according to the stage variables
     const stageVariables = this.runtime.getTargetForStage().variables;
     let messageIds = [];
@@ -67,17 +68,6 @@ export default async function ({ addon, msg, console }) {
       Object.create(null) :
       Object.assign({}, this.editingTarget.variables);
 
-    // ensure that all scripts appear to belong to some tab
-    let otherBlocks = '';
-    for (const script of vm.editingTarget.blocks._scripts) {
-      if (!tabs.some(tab => tab.blocks._scripts.includes(script))) {
-        if (synchQueue.includes(script) && queueTab !== selectedTab) continue;
-        otherBlocks += this.editingTarget.blocks.blockToXML(script, this.editingTarget.comments);
-        if (!synchQueue.includes(script)) synchQueue.push(script);
-        queueTab = selectedTab;
-      }
-    }
-
     const globalVariables = Object.keys(globalVarMap).map(k => globalVarMap[k]);
     const localVariables = Object.keys(localVarMap).map(k => localVarMap[k]);
     const workspaceComments = Object.keys(this.editingTarget.comments)
@@ -90,8 +80,7 @@ export default async function ({ addon, msg, console }) {
                           ${localVariables.map(v => v.toXML(true)).join()}
                         </variables>
                         ${workspaceComments.map(c => c.toXML()).join()}
-                        ${tabs[selectedTab].blocks.toXML(this.editingTarget.comments)}
-                        ${otherBlocks}
+                        ${tabs[selectedTab].scripts.map(script => vm.editingTarget.blocks.blockToXML(script, this.editingTarget.comments))}
                       </xml>`;
 
     this.emit('workspaceUpdate', {xml: xmlString});
@@ -101,32 +90,51 @@ export default async function ({ addon, msg, console }) {
     // skip operations on comments that arnt real
     if (e.type === 'comment_delete' && tabTarget.comments[e.commentId]?.tab !== selectedTab) return;
     // do not delete blocks from other tabs, the main sprite must be a pool of all tabs
-    if (e.type === 'delete' && !tabs[selectedTab].blocks._blocks[e.blockId]) return;
-    if (selectedTab !== -1 && e.type !== 'ui' && !e.varId)
-      tabs[selectedTab].blocks.blocklyListen(e);
+    if (e.type === 'delete' && !scriptsHasBlock(tabs[selectedTab].scripts, e.blockId)) return;
+    if (e.type === 'create' && !tabs[selectedTab].scripts.includes(e.blockId))
+      tabs[selectedTab].scripts.push(e.blockId);
+    if (e.type === 'move' && !e.newParentId && !tabs[selectedTab].scripts.includes(e.blockId))
+      tabs[selectedTab].scripts.push(e.blockId);
+    if (e.type === 'move' && e.newParentId && tabs[selectedTab].scripts.includes(e.blockId)) {
+      const idx = tabs[selectedTab].scripts.indexOf(e.blockId);
+      tabs[selectedTab].scripts.splice(idx, 1);
+    }
+    if (e.type === 'delete' && tabs[selectedTab].scripts.includes(e.blockId)) {
+      const idx = tabs[selectedTab].scripts.indexOf(e.blockId);
+      tabs[selectedTab].scripts.splice(idx, 1);
+    }
     ogBlockListener(e);
-    if (!e.isOutside) {
-      switch (e.type) {
-      case 'endDrag': 
-        dragging = false;
-        if (hoveredTab === -1) break;
-        const blocks = vm.editingTarget.blocks.XMLToBlock(e);
-        for (const block of blocks) {
-          const oldId = block.id;
-          const newId = block.id = uid();
-          // replace all instances of the old id with the new one
-          blocks.forEach(block => {
-            if (block.next === oldId) block.next = newId;
-            if (block.parent === oldId) block.parent = newId;
-            for (const name in block.inputs) {
-              const input = block.inputs[name];
-              if (input.block === oldId) input.block = newId;
-              if (input.shadow === oldId) input.shadow = newId;
-            }
-          });
-          tabs[hoveredTab].blocks.createBlock(block);
+
+    switch (e.type) {
+    case 'endDrag': 
+      dragging = false;
+      if (hoveredTab === -1) break;
+      const blocks = vm.editingTarget.blocks.XMLToBlock(e);
+      const moveNotCopy = addon.settings.get('moveOnDrag');
+      for (const block of blocks) {
+        const oldId = block.id;
+        const newId = block.id = uid();
+        // replace all instances of the old id with the new one
+        blocks.forEach(block => {
+          if (block.next === oldId) block.next = newId;
+          if (block.parent === oldId) block.parent = newId;
+          for (const name in block.inputs) {
+            const input = block.inputs[name];
+            if (input.block === oldId) input.block = newId;
+            if (input.shadow === oldId) input.shadow = newId;
+          }
+        });
+        tabTarget.blocks.createBlock(block);
+        if (moveNotCopy) {
+          tabTarget.blocks.deleteBlock(oldId, true);
+          if (tabs[selectedTab].scripts.includes(oldId)) {
+            const idx = tabs[selectedTab].scripts.indexOf(oldId);
+            tabs[selectedTab].scripts.splice(idx, 1);
+          }
         }
+        if (block.topLevel) tabs[hoveredTab].scripts.push(newId);
       }
+      if (moveNotCopy) selectTab(hoveredTab);
     }
   }
   const workspace = Blockly.getMainWorkspace();
@@ -136,9 +144,6 @@ export default async function ({ addon, msg, console }) {
   const vmSaveJSON = vm.toJSON;
   vm.toJSON = function(optTargetId, serializationOptions) {
     saveTabs();
-    serializationOptions ??= {};
-    // id compression breaks comment loading
-    serializationOptions.allowOptimization = false;
     return vmSaveJSON.call(this, optTargetId, serializationOptions);
   }
   vm.runtime._updateGlows = function(optExtraThreads) {
@@ -158,8 +163,8 @@ export default async function ({ addon, msg, console }) {
       if (target === this._editingTarget) {
         const blockForThread = thread.blockGlowInFrame;
         if (thread.requestScriptGlowInFrame || thread.stackClick) {
-          let script = tabs[selectedTab].blocks.getTopLevelScript(blockForThread);
-          if (!script) {
+          let script = this._editingTarget.blocks.getTopLevelScript(blockForThread);
+          if (!tabs[selectedTab].scripts.includes(script)) {
             // Attempt to find in flyout blocks.
             script = this.flyoutBlocks.getTopLevelScript(
               blockForThread
@@ -191,6 +196,12 @@ export default async function ({ addon, msg, console }) {
     }
     this._scriptGlowsPreviousFrame = finalScriptGlows;
   }
+  const oldDuplicate = RenderedTarget.prototype.duplicate;
+  RenderedTarget.prototype.duplicate = function() {
+    // !!! this may have issues in the future as duplication creates new ids
+    saveTabs();
+    return oldDuplicate.call(this);
+  }
   RenderedTarget.prototype.createComment = function(id, blockId, text, x, y, width, height, minimized) {
     if (!this.comments.hasOwnProperty(id)) {
       const newComment = new Comment(id, text, x, y, width, height, minimized);
@@ -200,7 +211,6 @@ export default async function ({ addon, msg, console }) {
         const blockWithComment = this.blocks.getBlock(blockId);
         if (blockWithComment) {
           blockWithComment.comment = id;
-          tabs[selectedTab].blocks._blocks[blockId].comment = id;
         } else {
           log.warn(`Could not find block with id ${blockId} associated with commentId: ${id}`);
         }
@@ -230,11 +240,6 @@ export default async function ({ addon, msg, console }) {
       this.mutation = blocks.XMLToMutation(dom);
       // event isnt ever fired for whatever reason????????
       blocks._blocks[this.blockId].mutation = this.mutation;
-      for (const tab of tabs) {
-        const block = tab.blocks._blocks[this.blockId];
-        if (block)
-          block.mutation = this.mutation;
-      }
     }
   }
   // Make procedures get sourced from the target, rather then the workspace
@@ -354,21 +359,9 @@ export default async function ({ addon, msg, console }) {
   addButton.classList.add('tab-adder-button');
   tabScroller.appendChild(addButton);
 
-  function copyScript(id, blocks) {
-    let block;
-    do {
-      block = vm.editingTarget.blocks.getBlock(id);
-      if (!block) break;
-      blocks._blocks[id] = block;
-      if (block.topLevel && !blocks._scripts.includes(id))
-        blocks._scripts.push(id);
-      for (const name in block.inputs) {
-        copyScript(block.inputs[name].block, blocks);
-        copyScript(block.inputs[name].shadow, blocks);
-      }
-      id = block.next;
-    } while (block.next);
-    vm.emitWorkspaceUpdate();
+  function scriptsHasBlock(scripts, block) {
+    const top = vm.editingTarget.blocks.getTopLevelScript(block);
+    return scripts.includes(top);
   }
   function selectTab(idx) {
     const { element: tab } = tabs[idx];
@@ -388,12 +381,9 @@ export default async function ({ addon, msg, console }) {
     vm.runtime._updateGlows();
   }
   function addTab(enabled, name, scripts) {
-    const meta = { name: name, element: null, idx: -1, blocks: new Blocks(vm.runtime) };
-    if (scripts) {
-      meta.blocks._scripts = [...scripts];
-      for (const scriptId of scripts)
-        copyScript(scriptId, meta.blocks);
-    }
+    const meta = { name: name, element: null, idx: -1, scripts: [] };
+    if (scripts)
+      meta.scripts = [...scripts];
     meta.idx = tabs.push(meta) -1;
     meta.name ??= `Tab ${meta.idx +1}`;
     const tabOuter = document.createElement('div');
@@ -441,9 +431,11 @@ export default async function ({ addon, msg, console }) {
     tabs.splice(idx, 1);
     if (!tabs[selectedTab]) selectedTab--;
     const shouldntDelete = addon.settings.get('shouldDelete');
-    for (const script of tab.blocks._scripts) {
-      if (shouldntDelete == 'true')
-        copyScript(script, tabs[selectedTab].blocks);
+    for (const script of tab.scripts) {
+      if (shouldntDelete == 'true') {
+        tabs[selectedTab].scripts.push(script);
+        continue;
+      }
       tabTarget.blocks.deleteBlock(script);
     }
     // offset indecies
@@ -493,58 +485,105 @@ export default async function ({ addon, msg, console }) {
     tabScroller.style.left = `-${scroll}px`;
   });
   function loadTabs() {
-    for (const comment of Object.values(tabTarget.comments))
-      if (comment.text.startsWith(commentId))
-        return JSON.parse(comment.text.slice(commentId.length));
+    for (const comment of Object.values(tabTarget.comments)) {
+      if (comment.text.startsWith(commentId)) {
+        lastLoaded = comment.text;
+        const savedTabs = JSON.parse(comment.text.slice(commentId.length));
+        if (!savedTabs?.length) throw new Error('No saved tabs');
+        const scripts = [...tabTarget.blocks._scripts];
+        // despite this normally acting on script heads, still made this to handle any case where there are parents
+        for (const blockId in tabTarget.blocks._blocks) {
+          const block = tabTarget.blocks._blocks[blockId];
+          if (!block.mutation?.blockId) continue;
+          const oldId = block.id;
+          const newId = block.id = block.mutation.blockId;
+          const scriptIdx = tabTarget.blocks._scripts.indexOf(oldId);
+          if (scriptIdx !== -1) tabTarget.blocks._scripts[scriptIdx] = newId;
+          delete tabTarget.blocks._blocks[blockId];
+          tabTarget.blocks._blocks[newId] = block;
+          const next = tabTarget.blocks.getBlock(block.next);
+          if (next) next.parent = newId;
+          const parent = tabTarget.blocks.getBlock(block.parent);
+          if (parent) {
+            if (parent.next === oldId) parent.next = newId;
+            else {
+              for (const name in parent.inputs) {
+                const input = parent.inputs[name];
+                if (input.block === oldId) input.block = newId;
+                if (input.shadow === oldId) input.shadow = newId;
+              }
+            }
+          }
+          for (const name in block.inputs) {
+            const input = block.inputs[name];
+            const oblock = tabTarget.blocks.getBlock(input.block);
+            if (oblock) oblock.parent = newId;
+            const shadow = tabTarget.blocks.getBlock(input.shadow);
+            if (shadow) shadow.parent = newId;
+          }
+        }
+        for (const tabIdx in savedTabs) {
+          const tab = savedTabs[tabIdx];
+          for (const cid of tab.comments)
+            tabTarget.comments[cid].tab = tabIdx;
+          for (const script of tab.scripts) {
+            const idx = scripts.indexOf(script);
+            scripts.splice(idx, 1);
+          }
+          addTab(tab.selected, tab.name, tab.scripts);
+        }
+        for (const script of scripts)
+          tabs[selectedTab].scripts.push(script);
+        return;
+      }
+    }
+    throw new Error('No tab comment could be found');
   }
   function saveTabs() {
     const serial = tabs
-      .filter(tab => tab.blocks._scripts.length > 0)
-      .map((tab, idx) => ({
-        name: tab.name,
-        scripts: tab.blocks._scripts.concat(queueTab === idx ? synchQueue : []),
-        selected: selectedTab === idx,
-        comments: Object.values(tabTarget.comments)
-          .filter(c => !c.text.startsWith(commentId) && c.tab == idx)
-          .map(c => c.id)
-      }));
+      .filter(tab => tab.scripts.length > 0)
+      .map((tab, idx) => {
+        for (const script of tab.scripts) {
+          tabTarget.blocks._blocks[script].mutation ??= { children: [] };
+          tabTarget.blocks._blocks[script].mutation.blockId = script;
+        }
+        return {
+          name: tab.name,
+          scripts: tab.scripts,
+          selected: selectedTab === idx,
+          comments: Object.values(tabTarget.comments)
+            .filter(c => !c.text.startsWith(commentId) && c.tab == idx)
+            .map(c => c.id)
+        }
+      });
     for (const comment of Object.values(tabTarget.comments))
       if (comment.text.startsWith(commentId))
         return comment.text = commentId + JSON.stringify(serial);
-    tabTarget.createComment(null, null, commentId + JSON.stringify(serial), 10,10, -100000,-100000, true);
+    tabTarget.createComment(undefined, undefined, commentId + JSON.stringify(serial), 10,10, -100000,-100000, true);
+  }
+  function hasCommentChanged() {
+    for (const comment of Object.values(tabTarget.comments)) {
+      if (comment.text === lastLoaded) return false;
+    }
+    return true;
   }
 
   vm.on('targetsUpdate', () => {
     // if editingTarget doesnt exist, tabTarget cant either
     if (!vm.editingTarget) return tabTarget = null;
-    if (tabTarget && vm.editingTarget.id === tabTarget.id) return;
+    if (tabTarget && vm.editingTarget.id === tabTarget.id && !hasCommentChanged()) return;
     if (tabTarget) saveTabs();
     while (tabs.length) tabs.shift();
     while (tabScroller.children.length > 1) 
       tabScroller.children[0].remove();
     tabTarget = vm.editingTarget;
     try {
-      const savedTabs = loadTabs();
-      if (!savedTabs?.length) throw new Error('No saved tabs');
-      const scripts = tabTarget.blocks._scripts;
-      for (const tabIdx in savedTabs) {
-        const tab = savedTabs[tabIdx];
-        for (const cid of tab.comments)
-          tabTarget.comments[cid].tab = tabIdx;
-        for (const script of tab.scripts) {
-          const idx = scripts.indexOf(script);
-          scripts.splice(idx, 1);
-        }
-        addTab(tab.selected, tab.name, tab.scripts);
-      }
-      for (const script of scripts)
-        copyScript(script, tabs[selectedTab].blocks);
+      loadTabs();
     } catch (err) {
-      console.warn('Couldnt read the serialized tabs', err);
+      if (err.message !== 'No saved tabs' && err.message !== 'No tab comment could be found')
+        console.warn('Couldnt read the serialized tabs', err);
       addTab(true, null, vm.editingTarget.blocks._scripts);
     }
-    // queue may have filled up with requests while we where loading
-    synchQueue.splice(0, synchQueue.length);
   });
 
   const keysPressed = {};
