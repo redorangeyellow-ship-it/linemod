@@ -573,6 +573,7 @@ export default async function ({ addon, msg, console }) {
     if (!vm.editingTarget) return tabTarget = null;
     if (tabTarget && vm.editingTarget.id === tabTarget.id && !hasCommentChanged()) return;
     if (tabTarget) saveTabs();
+    selectedTab = -1;
     while (tabs.length) tabs.shift();
     while (tabScroller.children.length > 1) 
       tabScroller.children[0].remove();
