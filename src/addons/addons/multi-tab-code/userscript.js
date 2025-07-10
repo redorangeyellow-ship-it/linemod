@@ -584,6 +584,7 @@ export default async function ({ addon, msg, console }) {
         console.warn('Couldnt read the serialized tabs', err);
       addTab(true, null, vm.editingTarget.blocks._scripts);
     }
+    if (selectedTab < 0 || selectedTab >= tabs.length) selectTab(0);
   });
 
   const keysPressed = {};
