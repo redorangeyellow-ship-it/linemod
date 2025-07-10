@@ -2,7 +2,7 @@
 const manifest = {
   "editorOnly": true,
   "name": "Code Editor Tabbing",
-  "description": "Adds tabs to the code editor, allowing you to devide many scripts from inside one sprite in to seperate parts.",
+  "description": "Adds tabs to the code editor, allowing you to divide many scripts from inside one sprite in to seperate parts.",
   "info": [],
   "credits": [
     {
@@ -26,8 +26,15 @@ const manifest = {
       "type": "boolean",
       "id": "shouldDelete",
       "name": "Merge tabs on delete",
-      "default": "true",
+      "default": true,
       "description": "If we should keep blocks from deleted tabs, moving them into the new selected tab, or if we should delete blocks inside a deleted tab."
+    },
+    {
+      "type": "boolean",
+      "id": "moveOnDrag",
+      "name": "Move blocks into tabs",
+      "default": false,
+      "description": "If, when blocks are dragged over a tab, we should copy blocks into the tab or move the selected blocks into the tab."
     }
   ],
   "tags": [],
