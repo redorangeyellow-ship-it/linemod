@@ -544,6 +544,10 @@ export default async function ({ addon, msg, console }) {
       .filter(tab => tab.scripts.length > 0)
       .map((tab, idx) => {
         for (const script of tab.scripts) {
+          if (!tabTarget.blocks._blocks[script]) {
+            console.warn('Ignoring none existent block', script, 'while saving for tab', selectedTab);
+            continue;
+          }
           tabTarget.blocks._blocks[script].mutation ??= { children: [] };
           tabTarget.blocks._blocks[script].mutation.blockId = script;
         }
