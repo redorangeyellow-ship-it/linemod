@@ -10,7 +10,8 @@ const manifest = {
       "link": "https://github.com/RedMan13"
     }
   ],
-  "dynamicDisable": true,
+  "dynamicEnable": false,
+  "dynamicDisable": false,
   "userscripts": [
     {
       "url": "userscript.js"
