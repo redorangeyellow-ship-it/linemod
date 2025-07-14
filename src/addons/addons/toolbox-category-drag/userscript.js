@@ -89,11 +89,14 @@ export default async function ({ addon }) {
             }
         }
         
-        if (optParse && configComment) {
+        if (configComment) {
+            if (!optParse) return true;
+
             const dataLine = configComment.split("\n").find(i => i.endsWith(COMMENT_TRAPPER_ID));
             if (!dataLine) return undefined;
             return dataLine.substr(0, dataLine.length - COMMENT_TRAPPER_ID.length);
         }
+        return optParse ? unefined : false;
     }
     
     function saveOrdering() {
