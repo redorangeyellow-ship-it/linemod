@@ -96,7 +96,7 @@ export default async function ({ addon }) {
             if (!dataLine) return undefined;
             return dataLine.substr(0, dataLine.length - COMMENT_TRAPPER_ID.length);
         }
-        return optParse ? unefined : false;
+        return optParse ? undefined : false;
     }
     
     function saveOrdering() {
