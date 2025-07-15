@@ -320,6 +320,7 @@ const SBFileUploaderHOC = function (WrappedComponent) {
         async readFolderHandleRecursively (folderHandle, zip, path = "") {
             for await (const handle of folderHandle.values()) {
                 const handlePath = `${path}${handle.name}`;
+                console.debug(handlePath)
 
                 if (handle.kind === "file") {
                     const file = await handle.getFile();
