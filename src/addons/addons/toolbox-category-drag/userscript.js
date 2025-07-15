@@ -62,7 +62,7 @@ export default async function ({ addon }) {
     
     const ogSaveJSON = vm.toJSON;
     vm.toJSON = function (...args) {
-        saveOrdering();
+        if (categoryOrdering !== undefined) saveOrdering();
         return ogSaveJSON.call(this, ...args);
     }
     
