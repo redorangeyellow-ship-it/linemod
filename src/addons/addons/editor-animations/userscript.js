@@ -11,7 +11,6 @@ export default async function({ addon }) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const addonKey = "addonAnimations-";
   const cubicAnimation = "cubic-bezier(0.63, 0.32, 0.08, 0.95)";
-  const getAnim = (time) => { return `${time}s ${cubicAnimation}` };
 
   const styles = `
 /* Top Bar Items */
@@ -110,14 +109,20 @@ export default async function({ addon }) {
     animationEnabled = !e.matches;
   });
 
-  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true;
+  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true, animationSpeed = 1;
   let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
   function requestAddonState() {
     animateModals = addon.settings.get("animateModals");
     animateLibraries = addon.settings.get("animateLibraries");
     animateButtons = addon.settings.get("animateButtons");
+    animationSpeed = Number(addon.settings.get("animateSpeed")) / 100;
   }
+
+  function getAnim(time) {
+    time *= animationSpeed;
+    return `${time}s ${cubicAnimation}`;
+  };
 
   function observeMenuScalers(element, observerSub, observerAtt) {
     if (!animateModals) return;
