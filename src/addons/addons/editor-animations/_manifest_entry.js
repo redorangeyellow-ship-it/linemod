@@ -37,6 +37,14 @@ const manifest = {
       "name": "Animate Modals (create variable/list, custom block, etc)",
       "default": true,
       "type": "boolean"
+    },
+    {
+      "id": "animateSpeed",
+      "name": "Animation Speed (1-500%)",
+      "type": "integer",
+      "min": 1,
+      "default": 100,
+      "max": 500
     }
   ],
   "userscripts": [
