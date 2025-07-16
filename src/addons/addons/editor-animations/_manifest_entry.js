@@ -24,24 +24,28 @@ const manifest = {
       "id": "animateButtons",
       "name": "Animate Buttons",
       "default": true,
+      "dynamic": true,
       "type": "boolean"
     },
     {
       "id": "animateLibraries",
       "name": "Animate Libraries (costumes, sprites, sounds, etc)",
       "default": true,
+      "dynamic": true,
       "type": "boolean"
     },
     {
       "id": "animateModals",
       "name": "Animate Modals (create variable/list, custom block, etc)",
       "default": true,
+      "dynamic": true,
       "type": "boolean"
     },
     {
       "id": "animateSpeed",
       "name": "Animation Speed (1-500%)",
       "type": "integer",
+      "dynamic": true,
       "min": 1,
       "default": 100,
       "max": 500
