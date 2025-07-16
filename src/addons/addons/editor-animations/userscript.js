@@ -10,9 +10,32 @@
 export default async function({ addon }) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const addonKey = "addonAnimations-";
-  const cubicAnimation = "cubic-bezier(0.63, 0.32, 0.08, 0.95)";
+  const animationTypes = {
+    "default": "cubic-bezier(0.63, 0.32, 0.08, 0.95)",
+    "easeIn": "cubic-bezier(0.42, 0, 1.0, 1.0)",
+    "easeOut": "cubic-bezier(0, 0, 0.58, 1.0)",
+    "easeInOut": "cubic-bezier(0.42, 0, 0.58, 1.0)",
+    "smoothStep": "cubic-bezier(0.25, 0.1, 0.25, 1.0)",
+    "fastInSlowOut": "cubic-bezier(0.4, 0.0, 0.2, 1.0)",
+    "sineIn": "cubic-bezier(0.47, 0, 0.745, 0.715)",
+    "sineOut": "cubic-bezier(0.39, 0.575, 0.565, 1)",
+    "sineInOut": "cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+    "quadIn": "cubic-bezier(0.55, 0.085, 0.68, 0.53)",
+    "quadOut": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "quadInOut": "cubic-bezier(0.455, 0.03, 0.515, 0.955)",
+    "cubicIn": "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
+    "cubicOut": "cubic-bezier(0.215, 0.61, 0.355, 1)",
+    "cubicInOut": "cubic-bezier(0.645, 0.045, 0.355, 1)",
+    "quartIn": "cubic-bezier(0.895, 0.03, 0.685, 0.22)",
+    "quartOut": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+    "quartInOut": "cubic-bezier(0.77, 0, 0.175, 1)",
+    "quintIn": "cubic-bezier(0.755, 0.05, 0.855, 0.06)",
+    "quintOut": "cubic-bezier(0.23, 1, 0.32, 1)",
+    "quintInOut": "cubic-bezier(0.86, 0, 0.07, 1)"
+  };
 
-  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true, animationSpeed = 1;
+  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true,
+    animationSpeed = 1, animationType = "default";
   let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
   const genStyles = () => `
@@ -116,15 +139,20 @@ export default async function({ addon }) {
     animateModals = addon.settings.get("animateModals");
     animateLibraries = addon.settings.get("animateLibraries");
     animateButtons = addon.settings.get("animateButtons");
+    animationType = addon.settings.get("animationType");
 
     const oldSpeed = animationSpeed;
     animationSpeed = 1 / (Number(addon.settings.get("animateSpeed")) / 100);
     if (oldSpeed !== animationSpeed) styleElement.textContent = genStyles();
   }
 
+  function getEasing() {
+    return animationTypes[animationType];
+  }
+
   function getAnim(time) {
     time *= animationSpeed;
-    return `${time}s ${cubicAnimation}`;
+    return `${time}s ${getEasing()}`;
   };
 
   function observeMenuScalers(element, observerSub, observerAtt) {
@@ -189,7 +217,7 @@ export default async function({ addon }) {
 
       const animation = element.animate(
         [{ height: "0px", opacity: 0 }, { height: `${ogHeight}px`, opacity: 1 }],
-        { duration: animTime * animationSpeed, easing: cubicAnimation }
+        { duration: animTime * animationSpeed, easing: getEasing() }
       );
       animation.onfinish = () => {
         element.style.overflow = "hidden";
@@ -207,7 +235,7 @@ export default async function({ addon }) {
 
     element.animate(
       [{ transform: "scale(0)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
-      { duration: animTime * animationSpeed, easing: cubicAnimation }
+      { duration: animTime * animationSpeed, easing: getEasing() }
     );
   }
 
@@ -244,11 +272,11 @@ export default async function({ addon }) {
 
           animClone.animate(
             [{ opacity: 1 }, { opacity: 0 }],
-            { duration: animTime * animationSpeed, easing: cubicAnimation }
+            { duration: animTime * animationSpeed, easing: getEasing() }
           );
           const animation = animClone.firstChild.animate(
             [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(0)", opacity: 0 }],
-            { duration: animTime * animationSpeed, easing: cubicAnimation }
+            { duration: animTime * animationSpeed, easing: getEasing() }
           );
           animation.onfinish = () => {
             animClone.remove();
@@ -280,13 +308,13 @@ export default async function({ addon }) {
           filterDiv.style.display = "";
           filterDiv.animate(
             [{ width: "0px", opacity: 0 }, { width: "342px", opacity: 1 }],
-            { duration: 300, easing: cubicAnimation }
+            { duration: 300, easing: getEasing() }
           );
         } else {
           collapser.style.transform = "rotateY(0deg)";
           const animation = filterDiv.animate(
             [{ width: "342px", opacity: 1 }, { width: "0px", opacity: 0 }],
-            { duration: 300, easing: cubicAnimation }
+            { duration: 300, easing: getEasing() }
           );
           animation.onfinish = () => {
               collapser.setAttribute("closed", "true");
