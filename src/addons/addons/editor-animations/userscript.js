@@ -12,6 +12,9 @@ export default async function({ addon }) {
   const addonKey = "addonAnimations-";
   const cubicAnimation = "cubic-bezier(0.63, 0.32, 0.08, 0.95)";
 
+  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true, animationSpeed = 1;
+  let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
+
   const styles = `
 /* Top Bar Items */
 .${addonKey}top-bar-scaler {
@@ -108,9 +111,6 @@ export default async function({ addon }) {
   mediaQuery.addEventListener("change", (e) => {
     animationEnabled = !e.matches;
   });
-
-  let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true, animationSpeed = 1;
-  let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
   function requestAddonState() {
     animateModals = addon.settings.get("animateModals");
