@@ -118,12 +118,12 @@ export default async function({ addon }) {
     animateButtons = addon.settings.get("animateButtons");
 
     const oldSpeed = animationSpeed;
-    animationSpeed =  5 - (Number(addon.settings.get("animateSpeed")) / 100);
+    animationSpeed = 1 / (Number(addon.settings.get("animateSpeed")) / 100);
     if (oldSpeed !== animationSpeed) styleElement.textContent = genStyles();
   }
 
   function getAnim(time) {
-    time *= animationSpeed;
+    time /= animationSpeed;
     return `${time}s ${cubicAnimation}`;
   };
 
@@ -189,7 +189,7 @@ export default async function({ addon }) {
 
       const animation = element.animate(
         [{ height: "0px", opacity: 0 }, { height: `${ogHeight}px`, opacity: 1 }],
-        { duration: animTime * animationSpeed, easing: cubicAnimation }
+        { duration: animTime / animationSpeed, easing: cubicAnimation }
       );
       animation.onfinish = () => {
         element.style.overflow = "hidden";
@@ -207,7 +207,7 @@ export default async function({ addon }) {
 
     element.animate(
       [{ transform: "scale(0)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
-      { duration: animTime * animationSpeed, easing: cubicAnimation }
+      { duration: animTime / animationSpeed, easing: cubicAnimation }
     );
   }
 
@@ -244,11 +244,11 @@ export default async function({ addon }) {
 
           animClone.animate(
             [{ opacity: 1 }, { opacity: 0 }],
-            { duration: animTime * animationSpeed, easing: cubicAnimation }
+            { duration: animTime / animationSpeed, easing: cubicAnimation }
           );
           const animation = animClone.firstChild.animate(
             [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(0)", opacity: 0 }],
-            { duration: animTime * animationSpeed, easing: cubicAnimation }
+            { duration: animTime / animationSpeed, easing: cubicAnimation }
           );
           animation.onfinish = () => {
             animClone.remove();
