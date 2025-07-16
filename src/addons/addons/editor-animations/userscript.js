@@ -118,7 +118,7 @@ export default async function({ addon }) {
     animateButtons = addon.settings.get("animateButtons");
 
     const oldSpeed = animationSpeed;
-    animationSpeed = Number(addon.settings.get("animateSpeed")) / 100;
+    animationSpeed =  5 - (Number(addon.settings.get("animateSpeed")) / 100);
     if (oldSpeed !== animationSpeed) styleElement.textContent = genStyles();
   }
 
@@ -158,7 +158,6 @@ export default async function({ addon }) {
   }
 
   function handleOpenAnimation(elementName) {
-    requestAddonState();
     const type = elementName.endsWith("Library") ? "library" : elementName.endsWith("Menu") ? "menu" : "modal";
 
     if (!animateLibraries && type === "library") return;
@@ -190,7 +189,7 @@ export default async function({ addon }) {
 
       const animation = element.animate(
         [{ height: "0px", opacity: 0 }, { height: `${ogHeight}px`, opacity: 1 }],
-        { duration: animTime, easing: cubicAnimation }
+        { duration: animTime * animationSpeed, easing: cubicAnimation }
       );
       animation.onfinish = () => {
         element.style.overflow = "hidden";
@@ -208,12 +207,11 @@ export default async function({ addon }) {
 
     element.animate(
       [{ transform: "scale(0)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
-      { duration: animTime, easing: cubicAnimation }
+      { duration: animTime * animationSpeed, easing: cubicAnimation }
     );
   }
 
   function attachCloseHijack(elementName) {
-    requestAddonState();
     const type = elementName.endsWith("Library") ? "library" : elementName.endsWith("Menu") ? "menu" : "modal";
     if (type === "menu" || patchedBody) return;
 
@@ -228,7 +226,6 @@ export default async function({ addon }) {
 
       let animTime = 200;
       patchedBody = true;
-
       if (child === element) {
         const child = element.firstChild;
         if (child) {
@@ -247,11 +244,11 @@ export default async function({ addon }) {
 
           animClone.animate(
             [{ opacity: 1 }, { opacity: 0 }],
-            { duration: animTime, easing: cubicAnimation }
+            { duration: animTime * animationSpeed, easing: cubicAnimation }
           );
           const animation = animClone.firstChild.animate(
             [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(0)", opacity: 0 }],
-            { duration: animTime, easing: cubicAnimation }
+            { duration: animTime * animationSpeed, easing: cubicAnimation }
           );
           animation.onfinish = () => {
             animClone.remove();
@@ -267,7 +264,6 @@ export default async function({ addon }) {
   }
 
   function compileClasses(optLibrary) {
-    requestAddonState();
     if (!animateButtons) return;
     const classMapper = new Map();
 
@@ -458,4 +454,16 @@ export default async function({ addon }) {
   }
 
   if (typeof scaffolding === "undefined") startListenerWorker();
+
+  addon.settings.addEventListener("change", requestAddonState);
+  addon.self.addEventListener("disabled", () => {
+    animateModals = false;
+    animateLibraries = false;
+    animateButtons = false;
+  });
+  addon.self.addEventListener("reenabled", () => {
+    animateModals = true;
+    animateLibraries = true;
+    animateButtons = true;
+  });
 }
