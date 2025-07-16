@@ -15,7 +15,7 @@ export default async function({ addon }) {
   let needsInit = true, animateModals = true, animateLibraries = true, animateButtons = true, animationSpeed = 1;
   let patchedBody = false, sbPatched = false, sbEverPatched = false, listenerAttached = false;
 
-  const styles = `
+  const genStyles = () => `
 /* Top Bar Items */
 .${addonKey}top-bar-scaler {
     transition: transform ${getAnim(.1)};
@@ -104,7 +104,7 @@ export default async function({ addon }) {
 
   const styleElement = document.createElement("style");
   styleElement.classList.add("addon-editorAnimations");
-  styleElement.textContent = styles;
+  styleElement.textContent = genStyles();
   document.head.appendChild(styleElement);
   
   let animationEnabled = !mediaQuery.matches;
@@ -116,7 +116,10 @@ export default async function({ addon }) {
     animateModals = addon.settings.get("animateModals");
     animateLibraries = addon.settings.get("animateLibraries");
     animateButtons = addon.settings.get("animateButtons");
+
+    const oldSpeed = animationSpeed;
     animationSpeed = Number(addon.settings.get("animateSpeed")) / 100;
+    if (oldSpeed !== animationSpeed) styleElement.textContent = genStyles();
   }
 
   function getAnim(time) {
