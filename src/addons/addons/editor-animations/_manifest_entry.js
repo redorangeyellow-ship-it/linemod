@@ -49,7 +49,37 @@ const manifest = {
       "min": 1,
       "default": 100,
       "max": 500
-    }
+    },
+    {
+      "id": "animationType",
+      "name": "Animation Type",
+      "type": "select",
+      "dynamic": true,
+      "default": "default",
+      "potentialValues": [
+        { "id": "default", "name": "Default" },
+        { "id": "easeIn", "name": "Ease In" },
+        { "id": "easeOut", "name": "Ease Out" },
+        { "id": "easeInOut", "name": "Ease In Out" },
+        { "id": "smoothStep", "name": "Smooth Step" },
+        { "id": "fastInSlowOut", "name": "Fast In Slow Out" },
+        { "id": "sineIn", "name": "Sine In" },
+        { "id": "sineOut", "name": "Sine Out" },
+        { "id": "sineInOut", "name": "Sine In Out" },
+        { "id": "quadIn", "name": "Quadratic In" },
+        { "id": "quadOut", "name": "Quadratic Out" },
+        { "id": "quadInOut", "name": "Quadratic In Out" },
+        { "id": "cubicIn", "name": "Cubic In" },
+        { "id": "cubicOut", "name": "Cubic Out" },
+        { "id": "cubicInOut", "name": "Cubic In Out" },
+        { "id": "quartIn", "name": "Quartic In" },
+        { "id": "quartOut", "name": "Quartic Out" },
+        { "id": "quartInOut", "name": "Quartic In Out" },
+        { "id": "quintIn", "name": "Quintic In" },
+        { "id": "quintOut", "name": "Quintic Out" },
+        { "id": "quintInOut", "name": "Quintic In Out" }
+      ]
+    },
   ],
   "userscripts": [
     {
