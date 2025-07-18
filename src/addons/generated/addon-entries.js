@@ -76,4 +76,5 @@ export default {
   "waveform-chunk-size": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/waveform-chunk-size/_runtime_entry.js"),
   "multi-tab-code": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/multi-tab-code/_runtime_entry.js"),
   "editor-animations": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/editor-animations/_runtime_entry.js"),
+  "reorder-custom-inputs": () => import(/* webpackChunkName: "addon-default-entry" */ "../addons/reorder-custom-inputs/_runtime_entry.js"),
 };
