@@ -114,6 +114,11 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             this.props.vm.clear();
             this.props.vm.stop();
 
+            // pm: clear url params when fetching if the project ID is 'default'
+            if (projectId == 0 || projectId === null) {
+                const path = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, path);
+            }
             let assetPromise;
             // In case running in node...
             let projectUrl = typeof URLSearchParams === 'undefined' ?
