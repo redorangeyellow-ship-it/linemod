@@ -118,8 +118,6 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             if (
                 (loadingState === "FETCHING_NEW_DEFAULT") && (projectId == 0 || projectId === null)
             ) {
-                const path = window.location.pathname + window.location.hash;
-                window.history.replaceState({}, document.title, path);
                 this.props.vm.setFramerate(30);
                 this.props.vm.setRuntimeOptions({
                     dangerousOptimizations: false,
