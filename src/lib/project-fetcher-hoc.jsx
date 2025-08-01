@@ -118,6 +118,13 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             if (projectId == 0 || projectId === null) {
                 const path = window.location.pathname + window.location.hash;
                 window.history.replaceState({}, document.title, path);
+                this.props.vm.setRuntimeOptions({
+                    dangerousOptimizations: false,
+                    disableOffscreenRendering: false,
+                    fencing: true,
+                    maxClones: 300,
+                    miscLimits: true
+                });
             }
             let assetPromise;
             // In case running in node...
