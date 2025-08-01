@@ -115,7 +115,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             this.props.vm.stop();
 
             // pm: clear url params when fetching if the project ID is 'default'
-            if (loadingState === LoadingStates.LOADING_VM_NEW_DEFAULT && (projectId == 0 || projectId === null)) {
+            if (loadingState === LoadingStates.FETCHING_NEW_DEFAULT && (projectId == 0 || projectId === null)) {
                 const path = window.location.pathname + window.location.hash;
                 window.history.replaceState({}, document.title, path);
                 this.props.vm.setFramerate(30);
