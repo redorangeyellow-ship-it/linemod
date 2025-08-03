@@ -5,7 +5,7 @@
   "main": "./dist/scratch-gui.js",
   "scripts": {
     "buildall": "npm run build && npm run deploy",
-    "build": "webpack --colors --bail",
+    "build": "cross-env NODE_OPTIONS=\"--openssl-legacy-provider\" webpack --colors --bail",
     "clean": "rimraf ./build && mkdirp build && rimraf ./dist && mkdirp dist",
     "deploy": "npm uni gh-pages && npm i gh-pages -g && gh-pages -d src",
     "prune": "./prune-gh-pages.sh",
@@ -17,7 +17,8 @@
     "test:lint": "eslint . --ext .js,.jsx",
     "test:unit": "jest test[\\\\/]unit",
     "test:smoke": "jest --runInBand test[\\\\/]smoke",
-    "watch": "webpack --colors --watch"
+    "watch": "webpack --colors --watch",
+    "install-slow": "rimraf ./node_modules && rimraf ./package-lock.json && npm i --force"
   },
   "author": "Massachusetts Institute of Technology",
   "license": "GPL-3.0",
