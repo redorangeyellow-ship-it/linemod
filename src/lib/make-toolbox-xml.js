@@ -700,7 +700,7 @@ const control = function (isInitialSetup, isStage) {
         </block>
         <block type="control_if_return_else_return">
             <value name="boolean">
-                <shadow type="checkbox />
+                <shadow type="checkbox" />
             </value>
             <value name="TEXT1">
                 <shadow type="text">
