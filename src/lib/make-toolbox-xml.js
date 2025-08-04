@@ -575,7 +575,9 @@ const events = function (isInitialSetup, isStage) {
         ${blockSeparator}
         <block type="event_always"></block>
         <block type="event_whenanything">
-            <value name="ANYTHING"></value>
+            <value name="ANYTHING">
+                <shadow type="checkbox" />
+            </value>
         </block>
         ${blockSeparator}
         <block type="event_whenkeypressed"></block>
@@ -630,6 +632,9 @@ const control = function (isInitialSetup, isStage) {
                     <field name="NUM">1</field>
                 </shadow>
             </value>
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
         </block>
         ${blockSeparator}
         <block type="control_repeat">
@@ -668,13 +673,35 @@ const control = function (isInitialSetup, isStage) {
             </value>
         </block>
         ${blockSeparator}
-        <block type="control_if"/>
-        <block type="control_if_else"/>
-        <block id="wait_until" type="control_wait_until"/>
-        <block id="repeat_until" type="control_repeat_until"/>
-        <block id="while" type="control_while"/>
+        <block type="control_if">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="control_if_else">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="wait_until" type="control_wait_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="repeat_until" type="control_repeat_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="while" type="control_while">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
         <block type="control_if_return_else_return">
-            <value name="boolean"></value>
+            <value name="boolean">
+                <shadow type="checkbox />
+            </value>
             <value name="TEXT1">
                 <shadow type="text">
                     <field name="TEXT">foo</field>
@@ -1166,9 +1193,27 @@ const operators = function (isInitialSetup) {
         <block type="operator_trueBoolean"></block>
         <block type="operator_falseBoolean"></block>
         ${blockSeparator}
-        <block type="operator_and"/>
-        <block type="operator_or"/>
-        <block type="operator_not"/>
+        <block type="operator_and">
+            <value name="OPERAND1">
+                <shadow type="checkbox" />
+            </value>
+            <value name="OPERAND2">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="operator_or">
+            <value name="OPERAND1">
+                <shadow type="checkbox" />
+            </value>
+            <value name="OPERAND2">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block type="operator_not">
+            <value name="OPERAND">
+                <shadow type="checkbox" />
+            </value>
+        </block>
         ${blockSeparator}
         ${isInitialSetup ? '' : `
             <block type="operator_newLine"></block>
