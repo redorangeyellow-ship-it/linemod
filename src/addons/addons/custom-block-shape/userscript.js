@@ -97,8 +97,14 @@ export default async function ({ addon, console }) {
       BlockSvg.CUSTOM_NOTCHES.forEach((notch) => {
         if (!notch.ogLeft) notch.ogLeft = notch.left;
         if (!notch.ogRight) notch.ogRight = notch.right;
+        if (window.test) {
+            console.log(notchSize, multiplier, cornerSize);
+        notch.left = scalePathXY(notch.ogLeft, window.test[0], window.test[1]);
+        notch.right = scalePathXY(notch.ogRight, window.test[0], window.test[1]);
+        } else {
         notch.left = scalePathXY(notch.ogLeft, adjustedNotchSize, notchSize);
         notch.right = scalePathXY(notch.ogRight, adjustedNotchSize, notchSize);
+        }
       });
 
       /* Custom Shape API Support */
