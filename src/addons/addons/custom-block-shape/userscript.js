@@ -92,19 +92,13 @@ export default async function ({ addon, console }) {
         `c -1 ${-1 * notchSize} -2 ${-2 * notchSize} -4 ${-2 * notchSize} `
 
       /* Custom Notch API Support */
-      const adjustedNotchSize = cornerSize * notchSize * (multiplier - 0.28);
+      const adjustedNotchSize = (paddingSize > 1 ? paddingSize - 0.05 :
+          paddingSize < 1 ? paddingSize + 0.05 : paddingSize) + ((cornerSize - 1) / 10);
       BlockSvg.CUSTOM_NOTCHES.forEach((notch) => {
         if (!notch.ogLeft) notch.ogLeft = notch.left;
         if (!notch.ogRight) notch.ogRight = notch.right;
-        if (window.test) {
-            window.test2 = applyChanges;
-            console.log("N", notchSize, "M", multiplier, "C", cornerSize);
-        notch.left = scalePathXY(notch.ogLeft, window.test[0], window.test[1]);
-        notch.right = scalePathXY(notch.ogRight, window.test[0], window.test[1]);
-        } else {
-        notch.left = scalePathXY(notch.ogLeft, adjustedNotchSize, notchSize * multiplier);
-        notch.right = scalePathXY(notch.ogRight, adjustedNotchSize, notchSize * multiplier);
-        }
+        notch.left = scalePathXY(notch.ogLeft, adjustedNotchSize, notchSize);
+        notch.right = scalePathXY(notch.ogRight, adjustedNotchSize, notchSize);
       });
 
       /* Custom Shape API Support */
