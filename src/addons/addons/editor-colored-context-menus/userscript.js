@@ -17,7 +17,7 @@ export default async function ({ addon, console }) {
     widgetDiv.classList.add("sa-contextmenu-colored");
     widgetDiv.style.setProperty("--sa-contextmenu-bg", fill);
     widgetDiv.style.setProperty("--sa-contextmenu-border", border);
-    if (block.textColour) widgetDiv.style.setProperty("--sa-contextmenu-text", block.textColour);
+    widgetDiv.style.setProperty("--sa-contextmenu-text", block.textColour ?? "#fff");
   };
 
   const originalHandleRightClick = ScratchBlocks.Gesture.prototype.handleRightClick;
