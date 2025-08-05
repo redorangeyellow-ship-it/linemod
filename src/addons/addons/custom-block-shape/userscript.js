@@ -92,8 +92,8 @@ export default async function ({ addon, console }) {
         `c -1 ${-1 * notchSize} -2 ${-2 * notchSize} -4 ${-2 * notchSize} `
 
       /* Custom Notch API Support */
-      const adjustedNotchSize = (paddingSize > 1 ? paddingSize - 0.05 :
-          paddingSize < 1 ? paddingSize + 0.05 : paddingSize) + ((cornerSize - 1) / 10);
+      const adjustedNotchSize = (multiplier > 1 ? multiplier - 0.05 :
+          multiplier < 1 ? multiplier + 0.05 : multiplier) + ((cornerSize - 1) / 10);
       BlockSvg.CUSTOM_NOTCHES.forEach((notch) => {
         if (!notch.ogLeft) notch.ogLeft = notch.left;
         if (!notch.ogRight) notch.ogRight = notch.right;
