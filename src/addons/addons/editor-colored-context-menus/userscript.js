@@ -8,7 +8,7 @@ export default async function ({ addon, console }) {
     if (color.startsWith(`url(#`)) {
       const gradientID = color.substring(5, color.length - 1);
       const gradientCode = document.querySelector(`svg [id="${gradientID}"]`);
-      if (!gradientCode || gradientCode.tagName !== "linearGradient") return [0, "#000000"];
+      if (!gradientCode || gradientCode.tagName !== "linearGradient") return "#000000";
 
       const parseCoord = v => parseFloat(v.replace("%", ""));
       const x1 = parseCoord(gradientCode.getAttribute("x1") || "0");
@@ -26,9 +26,9 @@ export default async function ({ addon, console }) {
         else if (!offset.endsWith("%")) offset = parseFloat(offset) * 100 + "%";
         return `${color} ${offset}`;
       });
-      return [1, `linear-gradient(${angleDeg.toFixed(2)}deg, ${stops.join(", ")})`];
+      return `linear-gradient(${angleDeg.toFixed(2)}deg, ${stops.join(", ")})`;
     } else {
-      return [0, removeAlpha(color)];
+      return removeAlpha(color);
     }
   };
 
