@@ -9,7 +9,7 @@ export default async function ({ addon, console }) {
 
     function scalePathXY(path, scaleX, scaleY) {
       const util = BlockSvg.CUSTOM_NOTCH_UTIL;
-      const tokens = util.path2TokenList(pathStr);
+      const tokens = util.path2TokenList(path);
       const result = [];
       let i = 0;
       while (i < tokens.length) {
