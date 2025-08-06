@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import Color from './custom-procedures-util/color.js';
 
 function createHeavyColorFromHex(hex, percentage) {
+    console.log(ScratchBlocks);
     const rgb = Color.hexToRgb(hex);
     const hsv = Color.rgbToHsv(rgb);
 
