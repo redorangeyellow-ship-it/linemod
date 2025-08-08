@@ -459,7 +459,7 @@ class SoundEditor extends React.Component {
 
     handleModifyMenu() {
         const playURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OSIgaGVpZ2h0PSI1MiIgdmlld0JveD0iLTUgMCA0OSA0OCI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTM1LjUwOCAxOS4zNzRjNC4yNTkgMi41NTYgNC4yNTIgNi43MDIgMCA5LjI1NEwxMi43MTIgNDIuMzA1Yy00LjI1OCAyLjU1NS03LjcxLjU5Ny03LjcxLTQuMzhWMTAuMDc3YzAtNC45NzMgMy40NTgtNi45MyA3LjcxLTQuMzh6Ii8+PC9zdmc+`;
-        const stopURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIj48cmVjdCBmaWxsPSIjRkZGIiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIi8+PC9zdmc+`;
+        const stopURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIj48cmVjdCBmaWxsPSIjRkZGIiB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4LjUgOC41KSIvPjwvc3ZnPg==`;
 
         const genSliderDiv = (title, params, scalar) => {
             const div = document.createElement("div");
@@ -587,75 +587,83 @@ class SoundEditor extends React.Component {
         vNumber.oninput = vNumber.onchange;
     }
     handleFormatMenu() {
+        const genTitle = (text) => {
+            const label = document.createElement("div");
+            label.style = "font-weight: 500;font-size: 14px;margin-bottom: 5px;";
+            const inner = document.createElement("span");
+            inner.textContent = text;
+            label.appendChild(inner);
+            return label;
+        };
+        const genCheckableLabel = (text, id, isChecked) => {
+            const div = document.createElement("div");
+            div.classList.add("check-outer");
+            div.id = id;
+            div.style = "margin-top: 3px;";
+            const check = document.createElement("input");
+            check.style = "margin-right: 8px;";
+            check.type = "radio";
+            check.checked = isChecked ?? false;
+            const label = document.createElement("span");
+            label.textContent = text;
+            div.append(check, label);
+            return div;
+        };
+
         const sampleRates = [
             3000, 4000, 8000, 11025, 16000, 22050, 32000, 44100,
             48000, 88200, 96000, 176400, 192000, 352800, 384000,
         ];
         let selectedSampleRate = this.props.sampleRate;
         let selectedForceRate = false;
-        const menu = this.displayPopup("Format Sound", 580, 300, "Apply", "Cancel", () => {
+        const menu = this.displayPopup("Format Sound", 350, 275, "Apply", "Cancel", () => {
             // accepted
-            const edits = {
-                sampleRate: selectedSampleRate,
-            };
-            if (selectedForceRate) {
-                edits.sampleRateEnforced = selectedSampleRate;
-            }
+            const edits = { sampleRate: selectedSampleRate };
+            if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
             this.handleEffect(edits);
         });
 
-        menu.textarea.style = "padding:8px;";
+        menu.textarea.style = "padding: 10px 20px;";
+        const rateTitle = genTitle("New Sample Rate:");
 
-        const labelSampleRate = document.createElement("p");
-        labelSampleRate.innerHTML = "Sample Rate";
-        labelSampleRate.style = "font-size:14px;";
-        menu.textarea.append(labelSampleRate);
-        const inputSampleRate = document.createElement("select");
-        inputSampleRate.style = "width:50%;"
-        menu.textarea.append(inputSampleRate);
+        const rateSelector = document.createElement("select");
+        rateSelector.style = "border-radius: 5px;text-align: center;margin-left: 10px;width: 50%;";
         for (const rate of sampleRates) {
             const option = document.createElement("option");
             option.value = rate;
-            option.innerHTML = `${rate}`;
-            inputSampleRate.append(option);
+            option.textContent = rate;
+            rateSelector.append(option);
         }
-        inputSampleRate.selectedIndex = sampleRates.indexOf(this.props.sampleRate);
-        const labelSampleRateWarning = document.createElement("p");
-        labelSampleRateWarning.innerHTML = "Choosing a higher sample rate than the current rate will not make the existing audio higher quality.";
-        labelSampleRateWarning.style = "font-size:13px;opacity:0.5;";
-        menu.textarea.append(labelSampleRateWarning);
-        inputSampleRate.onchange = () => {
-            selectedSampleRate = inputSampleRate.value;
+        rateSelector.selectedIndex = sampleRates.indexOf(this.props.sampleRate);
+        rateSelector.onchange = () => {
+            selectedSampleRate = rateSelector.value;
         };
+        rateTitle.appendChild(rateSelector);
 
-        const labelResampleAudio = document.createElement("label");
-        labelResampleAudio.innerHTML = "Enforce New Sample Rate";
-        menu.textarea.append(labelResampleAudio);
-        const inputResampleAudio = document.createElement("input");
-        inputResampleAudio.type = "checkbox";
-        inputResampleAudio.style = "margin-right:8px;";
-        labelResampleAudio.prepend(inputResampleAudio);
-        const labelResampleAudioWarning = document.createElement("p");
-        labelResampleAudioWarning.innerHTML = "This changes the properties of the entire sound, "
-            + "making lower sample rates use less file size. "
-            + "However, audio added to this sound will only be able to use the new sample rate.";
-        labelResampleAudioWarning.style = "font-size:13px;opacity:0.5;";
-        menu.textarea.append(labelResampleAudioWarning);
+        const warningDiv = document.createElement("div");
+        warningDiv.style.marginBottom = "15px";
+        const warning = document.createElement("i");
+        warning.textContent = "Choosing a higher sample rate than the current rate will not make the existing audio higher quality";
+        warning.style = "font-size:13px;opacity:0.5;";
+        warningDiv.appendChild(warning);
 
-        const warning = document.createElement("p");
-        warning.innerHTML = "Applying these changes will cause the entire sound to change, not just the selected area.";
-        warning.style = "font-size:14px;";
-        warning.style.display = "none";
-        menu.textarea.append(warning);
+        const applicatorDiv = document.createElement("div");
+        applicatorDiv.append(
+          genCheckableLabel("this selection", "0", true),
+          genCheckableLabel("whole sound", "1", false)
+        );
+        applicatorDiv.addEventListener("click", (e) => {
+            const div = e.target.closest(`div[class="check-outer"]`);
+            if (!div) return;
 
-        inputResampleAudio.onchange = () => {
-            selectedForceRate = inputResampleAudio.checked;
-            if (selectedForceRate) {
-                warning.style.display = "";
-            } else {
-                warning.style.display = "none";
+            for (const checkable of Array.from(div.parentNode.children)) {
+              checkable.firstChild.checked = false;
             }
-        };
+            div.firstChild.checked = true;
+            if (div.id === 0) selectedForceRate = div.id === 0;
+            e.stopPropagation();
+        });
+        menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv);
     }
 
     // TODO: use actual scratch-gui menus instead of this
