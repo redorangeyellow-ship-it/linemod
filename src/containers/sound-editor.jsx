@@ -660,7 +660,7 @@ class SoundEditor extends React.Component {
               checkable.firstChild.checked = false;
             }
             div.firstChild.checked = true;
-            if (div.id === 0) selectedForceRate = div.id === 0;
+            selectedForceRate = div.id == "0";
             e.stopPropagation();
         });
         menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv);
