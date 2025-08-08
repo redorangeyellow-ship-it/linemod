@@ -458,6 +458,37 @@ class SoundEditor extends React.Component {
     }
 
     handleModifyMenu() {
+        const playURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OSIgaGVpZ2h0PSI1MiIgdmlld0JveD0iLTUgMCA0OSA0OCI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTM1LjUwOCAxOS4zNzRjNC4yNTkgMi41NTYgNC4yNTIgNi43MDIgMCA5LjI1NEwxMi43MTIgNDIuMzA1Yy00LjI1OCAyLjU1NS03LjcxLjU5Ny03LjcxLTQuMzhWMTAuMDc3YzAtNC45NzMgMy40NTgtNi45MyA3LjcxLTQuMzh6Ii8+PC9zdmc+`;
+        const stopURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIj48cmVjdCBmaWxsPSIjRkZGIiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIi8+PC9zdmc+`;
+
+        const genSliderDiv = (title, params) => {
+            const div = document.createElement("div");
+            div.style = "margin: 0 10px 0 5px;width: 40px;display: flex;flex-direction: column;align-items: center;";
+
+            const label = document.createElement("div");
+            label.style = "text-align: center;width: 40px;font-size: 12px;font-weight: bold;";
+            label.textContent = title;
+
+            const slider = document.createElement("input");
+            slider.style = "transform: rotate(270deg);height: 40px;width: 120px;margin: 45px 10px;";
+            slider.type = "range";
+            slider.min = params.min;
+            slider.max = params.max;
+            slider.step = params.step;
+            slider.value = params.value;
+
+            const input = document.createElement("input");
+            input.style = "text-align: center;width: 40px;border: solid 1px gray;border-radius: 10px;";
+            input.type = "number";{ min: -360, max: 360, step: 1, value: 0 }
+            input.min = params.min;
+            input.max = params.max;
+            input.step = params.step;
+            input.value = params.value;
+
+            div.append(label, slider, input);
+            return div;
+        };
+
         // get selected audio
         const bufferSelection = this.getSelectionBuffer();
         // for preview
@@ -465,14 +496,22 @@ class SoundEditor extends React.Component {
         const gainNode = audio.createGain();
         gainNode.gain.value = 1;
         gainNode.connect(audio.destination);
+
         // create inputs before menu so we can get the value easier
-        const pitch = document.createElement("input");
-        const volume = document.createElement("input");
+        const pitchDiv = genSliderDiv(
+            "pitch", { min: -360, max: 360, step: 1, value: 0 }
+        );
+        const volumeDiv = genSliderDiv(
+            "volume", { min: 0, max: 2, step: 0.01, value: 1 }
+        );
+        const pitchParts = pitchDiv.children;
+        const volumeParts = volumeDiv.children;
         const menu = this.displayPopup("Modify Sound", 200, 280, "Apply", "Cancel", () => {
             // accepted
             audio.close();
-            const truePitch = isNaN(Number(pitch.value)) ? 0 : Number(pitch.value);
-            const trueVolume = isNaN(Number(volume.value)) ? 0 : Number(volume.value);
+            const pitch = pitchParts[1].value, volume = volumeParts[2].value;
+            const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
+            const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
             this.handleEffect({
                 pitch: truePitch * 10,
                 volume: trueVolume
@@ -482,110 +521,70 @@ class SoundEditor extends React.Component {
             audio.close();
             // we dont need to do anything else
         });
-        menu.textarea.style = "position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
-        // set pitch stuff
-        pitch.type = "range";
-        pitch.classList.add(confirmStyles.verticalSlider);
-        pitch.style = "position: absolute;left: -40px;top: 80px;";
-        pitch.value = 0;
-        pitch.min = -360;
-        pitch.max = 360;
-        pitch.step = 1;
-        // set volume stuff
-        volume.type = "range";
-        volume.classList.add(confirmStyles.verticalSlider);
-        volume.style = "position: absolute;left: 0px;top: 80px;";
-        volume.value = 1;
-        volume.min = 0;
-        volume.max = 2;
-        volume.step = 0.01;
-        menu.textarea.append(pitch);
-        menu.textarea.append(volume);
-        const labelPitch = document.createElement("p");
-        const labelVolume = document.createElement("p");
-        labelPitch.style = "text-align: center;width: 35px;font-size: 12px;position: absolute;left: 7.5px;top: 3.5px;";
-        labelVolume.style = "text-align: center;width: 35px;font-size: 12px;position: absolute;left: 47.5px;top: 3.5px;";
-        labelPitch.innerHTML = "Pitch";
-        labelVolume.innerHTML = "Volume";
-        menu.textarea.append(labelPitch);
-        menu.textarea.append(labelVolume);
-        const valuePitch = document.createElement("input");
-        const valueVolume = document.createElement("input");
-        valuePitch.style = "text-align: center;width: 35px;font-size: 12px;position: absolute;left: 4px;top: 152.5px;";
-        valueVolume.style = "text-align: center;width: 35px;font-size: 12px;position: absolute;left: 44px;top: 152.5px;";
-        valuePitch.value = 0;
-        valueVolume.value = 100;
-        valuePitch.min = -360;
-        valuePitch.max = 360;
-        valuePitch.step = 1;
-        valueVolume.min = 0;
-        valueVolume.max = 200;
-        valueVolume.step = 1;
-        valuePitch.type = "number";
-        valueVolume.type = "number";
-        menu.textarea.append(valuePitch);
-        menu.textarea.append(valueVolume);
+
+        menu.textarea.style = "margin: 0 10px 0 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
+        menu.textarea.append(pitchDiv, volumeDiv);
+
         const previewButton = document.createElement("button");
-        previewButton.style = "font-weight: bold;color: white;border-radius: 1000px;width: 46px;margin-right: 28px;height: 46px;border-style: none;background: #00c3ff;";
-        previewButton.innerHTML = "Play";
+        previewButton.style = "border-radius: 100%;padding: 5px;width: 46px;margin-right: 28px;height: 46px;border-style: none;background: #00c3ff;";
+        previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${playURI}">`;
         menu.textarea.append(previewButton);
-        // playing audio
+
+        // preview functionality
         // create an audio buffer using the selection
         const properBuffer = audio.createBuffer(1, bufferSelection.samples.length, bufferSelection.sampleRate);
         properBuffer.getChannelData(0).set(bufferSelection.samples);
-        // button functionality
-        let bufferSource;
-        let audioPlaying = false;
+
+        let bufferSource, audioPlaying = false;
         function play() {
             bufferSource = audio.createBufferSource();
             bufferSource.connect(gainNode);
             bufferSource.buffer = properBuffer;
             bufferSource.start(0);
             bufferSource.detune.value = pitch.value * 10;
-            previewButton.innerHTML = "Stop";
+            previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${stopURI}">`;
             audioPlaying = true;
             bufferSource.onended = () => {
-                previewButton.innerHTML = "Play";
+                previewButton.firstChild.src = playURI;
                 audioPlaying = false;
             }
         }
         function stop() {
             bufferSource.stop();
-            previewButton.innerHTML = "Play";
+            previewButton.firstChild.src = stopURI;
             audioPlaying = false;
         }
         previewButton.onclick = () => {
-            if (audioPlaying) {
-                return stop();
-            }
-            play();
+            if (audioPlaying) stop();
+            else play();
         }
-        // updates
-        pitch.onchange = (updateValue) => {
-            if (updateValue !== false) {
-                valuePitch.value = Number(pitch.value);
-            };
-            if (!bufferSource) return;
-            bufferSource.detune.value = pitch.value * 10;
+
+        // slider/number updates
+        const pSlider = pitchParts[1];
+        const pNumber = pitchParts[2];
+        pSlider.onchange = (updateValue) => {
+            if (updateValue !== false) pNumber.value = Number(pSlider.value);
+            if (bufferSource) bufferSource.detune.value = pSlider.value * 10;
         }
-        pitch.oninput = pitch.onchange;
-        volume.onchange = (updateValue) => {
-            gainNode.gain.value = volume.value;
-            if (updateValue === false) return;
-            valueVolume.value = Number(volume.value) * 100;
-        }
-        volume.oninput = volume.onchange;
-        // value changes
-        valuePitch.onchange = () => {
-            pitch.value = valuePitch.value;
-            pitch.onchange(false);
+        pSlider.oninput = pSlider.onchange;
+        pNumber.onchange = () => {
+            pSlider.value = pNumber.value;
+            pSlider.onchange(false);
         };
-        valuePitch.oninput = valuePitch.onchange;
-        valueVolume.onchange = () => {
-            volume.value = valueVolume.value / 100;
-            volume.onchange(false);
+        pNumber.oninput = pNumber.onchange;
+
+        const vSlider = volumeParts[1];
+        const vNumber = volumeParts[2];
+        vSlider.onchange = (updateValue) => {
+            gainNode.gain.value = vSlider.value;
+            if (updateValue !== false) vNumber.value = Number(vSlider.value) * 100;
+        }
+        vSlider.oninput = vSlider.onchange;
+        vNumber.onchange = () => {
+            vSlider.value = vNumber.value / 100;
+            vSlider.onchange(false);
         };
-        valueVolume.oninput = valueVolume.onchange;
+        vNumber.oninput = vNumber.onchange;
     }
     handleFormatMenu() {
         const sampleRates = [
