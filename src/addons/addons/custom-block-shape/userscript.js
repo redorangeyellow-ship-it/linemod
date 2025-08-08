@@ -22,7 +22,13 @@ export default async function ({ addon, console }) {
         while (i + expected <= tokens.length && !/^[a-z]$/i.test(tokens[i])) {
           for (let j = 0; j < expected; j++) {
             let val = parseFloat(tokens[i + j]);
-            if (isNaN(val)) throw new Error(`Invalid number '${tokens[i + j]}'`);
+            if (isNaN(val)) {
+                if (tokens[i + j] === "z") {
+                    result.push("z");
+                    break;
+                }
+                continue;
+            }
 
             if (xIndexes.includes(j)) val *= scaleX;
             else val *= scaleY;
@@ -31,7 +37,7 @@ export default async function ({ addon, console }) {
           i += expected;
         }
       }
-      return result.join(' ');
+      return result.join(" ");
     }
 
     function updateAllBlocks() {
