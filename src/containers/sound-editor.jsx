@@ -461,7 +461,7 @@ class SoundEditor extends React.Component {
         const playURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OSIgaGVpZ2h0PSI1MiIgdmlld0JveD0iLTUgMCA0OSA0OCI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTM1LjUwOCAxOS4zNzRjNC4yNTkgMi41NTYgNC4yNTIgNi43MDIgMCA5LjI1NEwxMi43MTIgNDIuMzA1Yy00LjI1OCAyLjU1NS03LjcxLjU5Ny03LjcxLTQuMzhWMTAuMDc3YzAtNC45NzMgMy40NTgtNi45MyA3LjcxLTQuMzh6Ii8+PC9zdmc+`;
         const stopURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIj48cmVjdCBmaWxsPSIjRkZGIiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIi8+PC9zdmc+`;
 
-        const genSliderDiv = (title, params) => {
+        const genSliderDiv = (title, params, scalar) => {
             const div = document.createElement("div");
             div.style = "margin: 0 10px 0 5px;width: 40px;display: flex;flex-direction: column;align-items: center;";
 
@@ -480,10 +480,10 @@ class SoundEditor extends React.Component {
             const input = document.createElement("input");
             input.style = "text-align: center;width: 40px;border: solid 1px gray;border-radius: 10px;";
             input.type = "number";
-            input.min = params.min;
-            input.max = params.max;
-            input.step = params.step;
-            input.value = params.value;
+            input.min = params.min * scalar;
+            input.max = params.max * scalar;
+            input.step = params.step * scalar;
+            input.value = params.value * scalar;
 
             div.append(label, slider, input);
             return div;
@@ -499,10 +499,10 @@ class SoundEditor extends React.Component {
 
         // create inputs before menu so we can get the value easier
         const pitchDiv = genSliderDiv(
-            "pitch", { min: -360, max: 360, step: 1, value: 0 }
+            "Pitch", { min: -360, max: 360, step: 1, value: 0 }, 0
         );
         const volumeDiv = genSliderDiv(
-            "volume", { min: 0, max: 2, step: 0.01, value: 1 }
+            "Volume", { min: 0, max: 2, step: 0.01, value: 1 }, 100
         );
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
