@@ -7,37 +7,54 @@ export default async function ({ addon, console }) {
 
     const { GRID_UNIT } = BlockSvg;
 
-    function scalePathXY(path, scaleX, scaleY) {
-      const util = BlockSvg.CUSTOM_NOTCH_UTIL;
-      const tokens = util.path2TokenList(path);
-      const result = [];
-      let i = 0;
-      while (i < tokens.length) {
-        const cmd = tokens[i++];
-        result.push(cmd);
+    function path2SegmentList(path) {
+      const cmds = structuredClone(BlockSvg.CUSTOM_NOTCH_UTIL.supportedCommands);
+      cmds.z = 0;
+      const segment = /([astvzqmhlc])([^astvzqmhlc]*)/ig;
+    	const data = [];
+    	path.replace(segment, (_, command, args) => {
+    		let type = command.toLowerCase();
+    		const numbers = args.match(/-?[0-9]*\.?[0-9]+(?:e[-+]?\d+)?/ig);
+    		args = numbers ? numbers.map(Number) : [];
+		    if (type == "m" && args.length > 2) {
+		    	data.push([command].concat(args.splice(0, 2)));
+		    	type = "l";
+		    	command = command == "m" ? "l" : "L";
+		    }
 
-        const expected = util.supportedCommands[cmd];
-        const xIndexes = util.commandXpos[cmd] || [];
-
-        while (i + expected <= tokens.length && !/^[a-z]$/i.test(tokens[i])) {
-          for (let j = 0; j < expected; j++) {
-            let val = parseFloat(tokens[i + j]);
-            if (isNaN(val)) {
-                if (tokens[i + j] === "z") {
-                    result.push("z");
-                    break;
-                }
-                continue;
-            }
-
-            if (xIndexes.includes(j)) val *= scaleX;
-            else val *= scaleY;
-            result.push(+val.toFixed(6));
+        while (true) {
+          if (args.length == cmds[type]) {
+            args.unshift(command);
+            return data.push(args);
           }
-          i += expected;
+          if (args.length < cmds[type]) throw new Error("malformed path data");
+          data.push([command].concat(args.splice(0, cmds[type])));
         }
-      }
-      return result.join(" ");
+      });
+      return data;
+    }
+
+    function scalePathXY (path, scaleX, scaleY) {
+      const segments = path2SegmentList(path);
+      return segments.map((segment) => {
+        const name = segment[0].toLowerCase();
+        if (name === "v") {
+          segment[1] *= scaleY;
+          return segment;
+        }
+        if (name === "a") {
+          segment[1] *= scaleX;
+          segment[2] *= scaleY;
+          segment[6] *= scaleX;
+          segment[7] *= scaleY;
+          return segment;
+        }
+
+        return segment.map((val, i) => {
+          if (!i) return val;
+          return val *= i % 2 ? scaleX : scaleY;
+        });
+      }).flat().join(" ");
     }
 
     function updateAllBlocks() {
