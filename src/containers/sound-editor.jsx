@@ -617,7 +617,7 @@ class SoundEditor extends React.Component {
         ];
         let selectedSampleRate = this.props.sampleRate;
         let selectedForceRate = false;
-        const menu = this.displayPopup("Format Sound", 350, 275, "Apply", "Cancel", () => {
+        const menu = this.displayPopup("Format Sound", 350, 300, "Apply", "Cancel", () => {
             // accepted
             const edits = { sampleRate: selectedSampleRate };
             if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
