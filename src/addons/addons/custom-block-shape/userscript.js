@@ -117,6 +117,9 @@ export default async function ({ addon, console }) {
         }
         shape.emptyInputWidth = shape.ogEmptySize * multiplier;
         shape.emptyInputPath = scalePathXY(shape.ogEmptyPath, multiplier, multiplier);
+        if (shape.emptyInputPath[0] !== "M" && shape.emptyInputPath[0] !== "m") {
+            shape.emptyInputPath = "M" + shape.emptyInputPath;
+        }
       });
 
       BlockSvg.INPUT_SHAPE_HEXAGONAL_WIDTH = 12 * GRID_UNIT * multiplier;
