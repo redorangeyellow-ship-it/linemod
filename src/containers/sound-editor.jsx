@@ -586,7 +586,8 @@ class SoundEditor extends React.Component {
         };
         vNumber.oninput = vNumber.onchange;
     }
-    handleFormatMenu() {
+
+    function handleFormatMenu() {
         const genTitle = (text) => {
             const label = document.createElement("div");
             label.style = "font-weight: 500;font-size: 14px;margin-bottom: 5px;";
@@ -647,6 +648,9 @@ class SoundEditor extends React.Component {
         warning.style = "font-size:13px;opacity:0.5;";
         warningDiv.appendChild(warning);
 
+        const warningDiv2 = warning.cloneNode(true);
+        warningDiv2.textContent = "If 'whole sound' is selected, all added audio will use the new sample rate";
+
         const applicatorDiv = document.createElement("div");
         applicatorDiv.append(
           genCheckableLabel("this selection", "0", true),
@@ -660,10 +664,10 @@ class SoundEditor extends React.Component {
               checkable.firstChild.checked = false;
             }
             div.firstChild.checked = true;
-            selectedForceRate = div.id == "0";
+            selectedForceRate = div.id === "1";
             e.stopPropagation();
         });
-        menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv);
+        menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv, warningDiv2);
     }
 
     // TODO: use actual scratch-gui menus instead of this
