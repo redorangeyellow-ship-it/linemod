@@ -526,7 +526,7 @@ class SoundEditor extends React.Component {
         menu.textarea.append(pitchDiv, volumeDiv);
 
         const previewButton = document.createElement("button");
-        previewButton.style = "border-radius: 100%;padding: 5px;width: 46px;margin-right: 28px;height: 46px;border-style: none;background: #00c3ff;";
+        previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;margin-right: 10px;border-style: none;background: #00c3ff;";
         previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${playURI}">`;
         menu.textarea.append(previewButton);
 
@@ -541,7 +541,7 @@ class SoundEditor extends React.Component {
             bufferSource.connect(gainNode);
             bufferSource.buffer = properBuffer;
             bufferSource.start(0);
-            bufferSource.detune.value = pitch.value * 10;
+            bufferSource.detune.value = pitchParts[1].value * 10;
             previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${stopURI}">`;
             audioPlaying = true;
             bufferSource.onended = () => {
