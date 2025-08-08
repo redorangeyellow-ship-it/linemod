@@ -479,7 +479,7 @@ class SoundEditor extends React.Component {
 
             const input = document.createElement("input");
             input.style = "text-align: center;width: 40px;border: solid 1px gray;border-radius: 10px;";
-            input.type = "number";{ min: -360, max: 360, step: 1, value: 0 }
+            input.type = "number";
             input.min = params.min;
             input.max = params.max;
             input.step = params.step;
