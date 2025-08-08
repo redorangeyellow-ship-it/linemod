@@ -587,7 +587,7 @@ class SoundEditor extends React.Component {
         vNumber.oninput = vNumber.onchange;
     }
 
-    function handleFormatMenu() {
+    handleFormatMenu() {
         const genTitle = (text) => {
             const label = document.createElement("div");
             label.style = "font-weight: 500;font-size: 14px;margin-bottom: 5px;";
@@ -664,7 +664,7 @@ class SoundEditor extends React.Component {
               checkable.firstChild.checked = false;
             }
             div.firstChild.checked = true;
-            selectedForceRate = div.id === "1";
+            selectedForceRate = div.id == "1";
             e.stopPropagation();
         });
         menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv, warningDiv2);
