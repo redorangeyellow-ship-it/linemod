@@ -509,7 +509,7 @@ class SoundEditor extends React.Component {
         const menu = this.displayPopup("Modify Sound", 200, 280, "Apply", "Cancel", () => {
             // accepted
             audio.close();
-            const pitch = pitchParts[1].value, volume = volumeParts[2].value;
+            const pitch = pitchParts[1].value, volume = volumeParts[1].value;
             const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
             const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
             this.handleEffect({
