@@ -231,7 +231,8 @@ export default async function({ addon }) {
       return;
     }
 
-    element = document.querySelector(`div[class="ReactModalPortal"] div[class*="ReactModal__Overlay"]`)?.firstChild;
+    element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"] div[class*="modal_modal-content"]`);
+        : document.querySelector(`div[class="ReactModalPortal"] div[class*="ReactModal__Overlay"]`)?.firstChild;
     if (!element) return;
     if (type === "library") {
       animTime = 500;
@@ -255,7 +256,8 @@ export default async function({ addon }) {
     // Monkey Patch
     const ogRemoveChild = document.body.constructor.prototype.removeChild;
     document.body.constructor.prototype.removeChild = function(child) {
-      const element = document.querySelector(`div[class="ReactModalPortal"]`);
+      const element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"]`);
+        : document.querySelector(`div[class="ReactModalPortal"]`);
       if (!element) return ogRemoveChild.call(this, child);
 
       let animTime = 200;
@@ -430,9 +432,9 @@ export default async function({ addon }) {
       }
 
       /* addon modal API */
-      addon.traps.vm.on("ADDON_WORKER_MODAL", () => {
-        handleOpenAnimation("modal");
-        attachCloseHijack("modal");
+      window.vm.on("ADDON_WORKER_MODAL", () => {
+        handleOpenAnimation("addonModal");
+        attachCloseHijack("addonModal");
       });
     });
   }
@@ -461,7 +463,7 @@ export default async function({ addon }) {
   function startListenerWorker() {
     const checkInEditor = () => !ReduxStore.getState().scratchGui.mode.isPlayerOnly;
 
-    addon.traps.vm.on("workspaceUpdate", () => {
+    window.vm.on("workspaceUpdate", () => {
       queueMicrotask(() => compileClasses());
     });
 
