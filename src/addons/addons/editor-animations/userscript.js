@@ -231,7 +231,7 @@ export default async function({ addon }) {
       return;
     }
 
-    element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"] div[class*="modal_modal-content"]`);
+    element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"] div[class*="modal_modal-content"]`)
         : document.querySelector(`div[class="ReactModalPortal"] div[class*="ReactModal__Overlay"]`)?.firstChild;
     if (!element) return;
     if (type === "library") {
@@ -256,7 +256,7 @@ export default async function({ addon }) {
     // Monkey Patch
     const ogRemoveChild = document.body.constructor.prototype.removeChild;
     document.body.constructor.prototype.removeChild = function(child) {
-      const element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"]`);
+      const element = elementName === "addonModal" ? document.querySelector(`div[class^="modal_modal-overlay"]`)
         : document.querySelector(`div[class="ReactModalPortal"]`);
       if (!element) return ogRemoveChild.call(this, child);
 
