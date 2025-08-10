@@ -451,15 +451,6 @@ export default async function({ addon }) {
         attachCloseHijack("modal");
         return modal;
       }
-    }
-
-    confirm (...args) {
-        return modal.confirm(this, ...args);
-    }
-
-    prompt (...args) {
-        return modal.prompt(this, ...args);
-    }
     });
   }
 
