@@ -388,7 +388,7 @@ export default async function({ addon }) {
         attachCloseHijack("modal");
       }
 
-      const ogSBCustomPrompt = ScratchBlocks.prompt;
+      const ogSBCustomPrompt = ScratchBlocks.customPrompt;
       ScratchBlocks.customPrompt = function(...args) {
         ogSBCustomPrompt.call(this, ...args);
 
