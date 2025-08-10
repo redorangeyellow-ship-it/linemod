@@ -522,13 +522,13 @@ class SoundEditor extends React.Component {
             { name: "Cancel", callback: () => audio.close() },
         );
 
-        menu.textarea.style = "margin: 0 10px 0 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
-        menu.textarea.append(pitchDiv, volumeDiv);
+        menu.style = "margin: 0 10px 0 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
+        menu.append(pitchDiv, volumeDiv);
 
         const previewButton = document.createElement("button");
         previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;margin-right: 10px;border-style: none;background: #00c3ff;";
         previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${playURI}">`;
-        menu.textarea.append(previewButton);
+        menu.append(previewButton);
 
         // preview functionality
         // create an audio buffer using the selection
@@ -629,7 +629,7 @@ class SoundEditor extends React.Component {
             { name: "Cancel", callback: () => {} },
         );
 
-        menu.textarea.style = "padding: 10px 20px;";
+        menu.style = "padding: 10px 20px;";
         const rateTitle = genTitle("New Sample Rate:");
 
         const rateSelector = document.createElement("select");
@@ -672,7 +672,7 @@ class SoundEditor extends React.Component {
             selectedForceRate = div.id == "1";
             e.stopPropagation();
         });
-        menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv, warningDiv2);
+        menu.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv, warningDiv2);
     }
     render() {
         const { effectTypes } = AudioEffects;
