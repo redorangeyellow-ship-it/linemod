@@ -660,15 +660,21 @@ class Tab extends EventTargetShim {
     }
 
     createModal (title, {isOpen = false} = {}) {
-        return modal.createEditorModal(this, title, {isOpen});
+        const modal = modal.createEditorModal(this, title, {isOpen});
+        this.traps.vm.emit("ADDON_WORKER_MODAL", modal);
+        return modal;
     }
 
     confirm (...args) {
-        return modal.confirm(this, ...args);
+        const modal = modal.confirm(this, ...args);
+        this.traps.vm.emit("ADDON_WORKER_MODAL", modal);
+        return modal;
     }
 
     prompt (...args) {
-        return modal.prompt(this, ...args);
+        const modal = modal.prompt(this, ...args);
+        this.traps.vm.emit("ADDON_WORKER_MODAL", modal);
+        return modal;
     }
 }
 
@@ -714,8 +720,7 @@ class AddonRunner {
             addon: {
                 tab: new Tab(id),
                 settings: new Settings(id, manifest),
-                self: new Self(id, this.getResource.bind(this)),
-                tabClass: id === "editor-animations" ? Tab : "access denied"
+                self: new Self(id, this.getResource.bind(this))
             },
             msg: this.msg.bind(this),
             safeMsg: this.safeMsg.bind(this)
