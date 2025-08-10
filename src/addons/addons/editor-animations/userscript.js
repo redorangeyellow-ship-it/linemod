@@ -430,22 +430,22 @@ export default async function({ addon }) {
       }
 
       /* addon modal API */
-      const ogAddonPrompt = addon.tab.constructor.prompt;
-      addon.tab.constructor.prompt = function(...args) {
+      const ogAddonPrompt = addon.tab.constructor.prototype.prompt;
+      addon.tab.constructor.prototype.prompt = function(...args) {
         const modal = ogAddonPrompt.call(this, ...args);
         handleOpenAnimation("modal");
         attachCloseHijack("modal");
         return modal;
       }
-      const ogAddonConfirm = addon.tab.constructor.confirm;
-      addon.tab.constructor.confirm = function(...args) {
+      const ogAddonConfirm = addon.tab.constructor.prototype.confirm;
+      addon.tab.constructor.prototype.confirm = function(...args) {
         const modal = ogAddonConfirm.call(this, ...args);
         handleOpenAnimation("modal");
         attachCloseHijack("modal");
         return modal;
       }
-      const ogAddonCreateModal = addon.tab.constructor.createModal;
-      addon.tab.constructor.createModal = function(...args) {
+      const ogAddonCreateModal = addon.tab.constructor.prototype.createModal;
+      addon.tab.constructor.prototype.createModal = function(...args) {
         const modal = ogAddonCreateModal.call(this, ...args);
         handleOpenAnimation("modal");
         attachCloseHijack("modal");
