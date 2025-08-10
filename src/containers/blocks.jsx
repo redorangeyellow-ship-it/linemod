@@ -625,14 +625,14 @@ class Blocks extends React.Component {
             exitFunc("Custom Modal -- Param 2 must be a object with 'width' and 'height' number properties");
         }
         if (isObject(enterInfo)) {
-            if (!scale.name || !scale.callback) exitFunc("Custom Modal -- Missing name/callback property in Param 3");
-            if (scale.callback && typeof scale.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 3 must be a function");
+            if (!enterInfo.name || !enterInfo.callback) exitFunc("Custom Modal -- Missing name/callback property in Param 3");
+            if (enterInfo.callback && typeof enterInfo.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 3 must be a function");
         } else {
             exitFunc("Custom Modal -- Param 3 must be a object with properties: 'name' (string) and 'callback' (function)");
         }
         if (isObject(closeInfo)) {
-            if (!scale.name || !scale.callback) exitFunc("Custom Modal -- Missing name/callback property in Param 4");
-            if (scale.callback && typeof scale.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 4 must be a function");
+            if (!closeInfo.name || !closeInfo.callback) exitFunc("Custom Modal -- Missing name/callback property in Param 4");
+            if (closeInfo.callback && typeof closeInfo.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 4 must be a function");
         } else {
             exitFunc("Custom Modal -- Param 4 must be a object with properties: 'name' (string) and 'callback' (function)");
         }
