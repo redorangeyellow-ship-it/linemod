@@ -428,6 +428,38 @@ export default async function({ addon }) {
         ogInitButton.call(this, ...args);
         queueMicrotask(() => compileClasses());
       }
+
+      /* addon modal API */
+      const ogAddonPrompt = addon.tab.prompt;
+      addon.tab.prompt = function(...args) {
+        const modal = ogAddonPrompt.call(this, ...args);
+        handleOpenAnimation("modal");
+        attachCloseHijack("modal");
+        return modal;
+      }
+      const ogAddonConfirm = addon.tab.confirm;
+      addon.tab.confirm = function(...args) {
+        const modal = ogAddonConfirm.call(this, ...args);
+        handleOpenAnimation("modal");
+        attachCloseHijack("modal");
+        return modal;
+      }
+      const ogAddonCreateModal = addon.tab.createModal;
+      addon.tab.createModal = function(...args) {
+        const modal = ogAddonCreateModal.call(this, ...args);
+        handleOpenAnimation("modal");
+        attachCloseHijack("modal");
+        return modal;
+      }
+    }
+
+    confirm (...args) {
+        return modal.confirm(this, ...args);
+    }
+
+    prompt (...args) {
+        return modal.prompt(this, ...args);
+    }
     });
   }
 
