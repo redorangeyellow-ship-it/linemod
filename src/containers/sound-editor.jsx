@@ -507,7 +507,7 @@ class SoundEditor extends React.Component {
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
         const menu = window.ScratchBlocks.customPrompt(
-            "Modify Sound", { width: 200, height: 280 },
+            "Modify Sound", { width: 200, height: "auto" },
             {
                 name: "Apply", callback: () => {
                     audio.close();
@@ -522,7 +522,7 @@ class SoundEditor extends React.Component {
             { name: "Cancel", callback: () => audio.close() },
         );
 
-        menu.style = "margin: 0 10px 0 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
+        menu.setAttribute("style", "margin: 0 10px 15px 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;");
         menu.append(pitchDiv, volumeDiv);
 
         const previewButton = document.createElement("button");
@@ -618,7 +618,7 @@ class SoundEditor extends React.Component {
         let selectedSampleRate = this.props.sampleRate;
         let selectedForceRate = false;
         const menu = window.ScratchBlocks.customPrompt(
-            "Format Sound", { width: 350, height: 300 },
+            "Format Sound", { width: 350, height: "auto" },
             {
                 name: "Apply", callback: () => {
                     const edits = { sampleRate: selectedSampleRate };
@@ -629,7 +629,7 @@ class SoundEditor extends React.Component {
             { name: "Cancel", callback: () => {} },
         );
 
-        menu.style = "padding: 10px 20px;";
+        menu.style.marginBottom = "15px";
         const rateTitle = genTitle("New Sample Rate:");
 
         const rateSelector = document.createElement("select");
