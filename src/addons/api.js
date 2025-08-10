@@ -660,21 +660,21 @@ class Tab extends EventTargetShim {
     }
 
     createModal (title, {isOpen = false} = {}) {
-        const modal = modal.createEditorModal(this, title, {isOpen});
-        window.vm.emit("ADDON_WORKER_MODAL", modal);
-        return modal;
+        const createdModal = modal.createEditorModal(this, title, {isOpen});
+        this.traps.vm.emit("ADDON_WORKER_MODAL", createdModal);
+        return createdModal;
     }
 
     confirm (...args) {
-        const modal = modal.confirm(this, ...args);
-        window.vm.emit("ADDON_WORKER_MODAL", modal);
-        return modal;
+        const createdModal = modal.confirm(this, ...args);
+        this.traps.vm.emit("ADDON_WORKER_MODAL", createdModal);
+        return createdModal;
     }
 
     prompt (...args) {
-        const modal = modal.prompt(this, ...args);
-        window.vm.emit("ADDON_WORKER_MODAL", modal);
-        return modal;
+        const createdModal = modal.prompt(this, ...args);
+        this.traps.vm.emit("ADDON_WORKER_MODAL", createdModal);
+        return createdModal;
     }
 }
 
