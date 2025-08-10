@@ -137,6 +137,7 @@ class Blocks extends React.Component {
             'handleEnableProcedureReturns'
         ]);
         this.ScratchBlocks.prompt = this.handlePromptStart;
+        this.ScratchBlocks.customPrompt = this.handleCustomPrompt;
         this.ScratchBlocks.statusButtonCallback = this.handleConnectionModalStart;
         this.ScratchBlocks.recordSoundCallback = this.handleOpenSoundRecorder;
 
@@ -609,6 +610,47 @@ class Blocks extends React.Component {
         p.prompt.showCloudOption = (optVarType === this.ScratchBlocks.SCALAR_VARIABLE_TYPE) && this.props.canUseCloud;
         this.setState(p);
     }
+    handleCustomPrompt (title, scale, enterInfo, closeInfo) {
+        const isObject = (value) => typeof value === 'object' && !Array.isArray(value);
+        let needsExit = false;
+        const exitFunc = (message) => {
+            needsExit = true;
+            console.error(message);
+        };
+
+        /* validate arguments */
+        if (isObject(scale)) {
+            if (!scale.width || !scale.height) exitFunc("Custom Modal -- Missing width/height number property in Param 2");
+        } else {
+            exitFunc("Custom Modal -- Param 2 must be a object with 'width' and 'height' number properties");
+        }
+        if (isObject(enterInfo)) {
+            if (!scale.name || !scale.callback) exitFunc("Custom Modal -- Missing width/height number property in Param 3");
+            if (scale.callback && typeof scale.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 3 must be a function");
+        } else {
+            exitFunc("Custom Modal -- Param 3 must be a object with properties: 'name' (string) and 'callback' (function)");
+        }
+        if (isObject(closeInfo)) {
+            if (!scale.name || !scale.callback) exitFunc("Custom Modal -- Missing width/height number property in Param 4");
+            if (scale.callback && typeof scale.callback !== 'function') exitFunc("Custom Modal -- callback property in Param 4 must be a function");
+        } else {
+            exitFunc("Custom Modal -- Param 4 must be a object with properties: 'name' (string) and 'callback' (function)");
+        }
+        if (needsExit) return;
+
+        this.setState({prompt: {
+            isCustom: true,
+            title, enterInfo, closeInfo
+        }});
+
+        const modal = document.querySelector(`div[class="ReactModalPortal"]`);
+        if (modal) {
+            const inner = modal.firstChild.firstChild;
+            inner.style.width = `${scale.width}px`;
+            inner.style.height = `${scale.height}px`;
+            return inner.querySelector(`div[class*="prompt_body_"] div`);
+        }
+    }
     handleConnectionModalStart (extensionId) {
         this.props.onOpenConnectionModal(extensionId);
     }
@@ -625,6 +667,11 @@ class Blocks extends React.Component {
      * to the variable validation prompt callback used in scratch-blocks.
      */
     handlePromptCallback (input, variableOptions) {
+        if (this.state.prompt.isCustom) {
+            this.state.prompt.enterInfo.callback();
+            this.setState({prompt: null});
+            return;
+        }
         this.state.prompt.callback(
             input,
             this.props.vm.runtime.getAllVarNamesOfType(this.state.prompt.varType),
@@ -632,6 +679,7 @@ class Blocks extends React.Component {
         this.handlePromptClose();
     }
     handlePromptClose () {
+        if (this.state.prompt.isCustom) this.state.prompt.closeInfo.callback();
         this.setState({prompt: null});
     }
     handleCustomProceduresClose (data) {
@@ -687,7 +735,17 @@ class Blocks extends React.Component {
                     onDrop={this.handleDrop}
                     {...props}
                 />
-                {this.state.prompt ? (
+                {this.state.prompt ? this.state.prompt.isCustom ? (
+                    <Prompt
+                        isCustom={this.state.prompt.isCustom}
+                        title={this.state.prompt.title}
+                        enterTitle={this.state.prompt.enterInfo.name}
+                        closeTitle={this.state.prompt.closeInfo.name}
+                        vm={vm}
+                        onCancel={this.handlePromptClose}
+                        onOk={this.handlePromptCallback}
+                    />
+                ) : (
                     <Prompt
                         defaultValue={this.state.prompt.defaultValue}
                         isStage={vm.runtime.getEditingTarget().isStage}

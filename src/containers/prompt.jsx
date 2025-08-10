@@ -34,7 +34,8 @@ class Prompt extends React.Component {
         event.target.select();
     }
     handleOk () {
-        this.props.onOk(this.state.inputValue, {
+        if (this.props.isCustom) this.props.onOk();
+        else this.props.onOk(this.state.inputValue, {
             scope: this.state.globalSelected ? 'global' : 'local',
             isCloud: this.state.cloudSelected
         });
@@ -58,7 +59,18 @@ class Prompt extends React.Component {
         }
     }
     render () {
-        return (
+        if (this.props.isCustom) return (
+            <PromptComponent
+                isCustom={this.props.isCustom}
+                title={this.props.title}
+                enterTitle={this.props.enterTitle}
+                closeTitle={this.props.closeTitle}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                onKeyPress={this.handleKeyPress}
+            />
+        )
+        else return (
             <PromptComponent
                 isAddingCloudVariableScratchSafe={this.state.isAddingCloudVariableScratchSafe}
                 canAddCloudVariable={this.state.canAddCloudVariable}
@@ -84,16 +96,21 @@ class Prompt extends React.Component {
 }
 
 Prompt.propTypes = {
-    defaultValue: PropTypes.string,
-    isStage: PropTypes.bool.isRequired,
-    showListMessage: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     onCancel: PropTypes.func.isRequired,
     onOk: PropTypes.func.isRequired,
-    showCloudOption: PropTypes.bool.isRequired,
-    showVariableOptions: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    vm: PropTypes.instanceOf(VM)
+    defaultValue: PropTypes.string,
+    isStage: PropTypes.bool,
+    showListMessage: PropTypes.bool,
+    label: PropTypes.string,
+    showCloudOption: PropTypes.bool,
+    showVariableOptions: PropTypes.bool,
+    vm: PropTypes.instanceOf(VM),
+
+    /* custom modals */
+    isCustom: PropTypes.bool,
+    enterTitle: PropTypes.string,
+    closeTitle: PropTypes.string
 };
 
 export default Prompt;
