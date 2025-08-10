@@ -390,10 +390,11 @@ export default async function({ addon }) {
 
       const ogSBCustomPrompt = ScratchBlocks.customPrompt;
       ScratchBlocks.customPrompt = function(...args) {
-        ogSBCustomPrompt.call(this, ...args);
+        const modal = ogSBCustomPrompt.call(this, ...args);
 
         handleOpenAnimation("modal");
         attachCloseHijack("modal");
+        return modal;
       }
 
       if (sbEverPatched) return;
