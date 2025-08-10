@@ -647,8 +647,8 @@ class Blocks extends React.Component {
         const modal = document.querySelector(`div[class="ReactModalPortal"]`);
         if (modal) {
             const inner = modal.firstChild.firstChild;
-            inner.style.width = `${scale.width}px`;
-            inner.style.height = `${scale.height}px`;
+            inner.style.width = typeof scale.width === 'number' ? `${scale.width}px` : scale.width;
+            inner.style.height = typeof scale.height === 'number' ? `${scale.height}px` : scale.height;
             return inner.querySelector(`div[class*="prompt_body_"] div`);
         }
     }
