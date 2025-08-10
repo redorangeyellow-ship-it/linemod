@@ -430,6 +430,7 @@ export default async function({ addon }) {
       }
 
       /* addon modal API */
+      console.log(addon.tab)
       const ogAddonPrompt = addon.tab.prompt;
       addon.tab.prompt = function(...args) {
         const modal = ogAddonPrompt.call(this, ...args);
