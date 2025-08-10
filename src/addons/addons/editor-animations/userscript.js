@@ -392,8 +392,10 @@ export default async function({ addon }) {
       ScratchBlocks.customPrompt = function(...args) {
         const modal = ogSBCustomPrompt.call(this, ...args);
 
-        handleOpenAnimation("modal");
+        if (modal) handleOpenAnimation("modal");
+        else queueMicrotask(() => handleOpenAnimation("modal"));
         attachCloseHijack("modal");
+
         return modal;
       }
 
