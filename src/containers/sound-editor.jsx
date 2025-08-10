@@ -507,7 +507,7 @@ class SoundEditor extends React.Component {
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
         let menu = window.ScratchBlocks.customPrompt(
-            "Modify Sound", { width: 200, height: "auto" },
+            "Modify Sound", { width: 230, height: "auto" },
             {
                 name: "Apply", callback: () => {
                     audio.close();
@@ -523,11 +523,11 @@ class SoundEditor extends React.Component {
         );
 
         const modalHandler = () => {
-            menu.setAttribute("style", "margin: 0 10px 15px 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;");
+            menu.setAttribute("style", "margin-bottom: 15px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;");
             menu.append(pitchDiv, volumeDiv);
 
             const previewButton = document.createElement("button");
-            previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;margin-right: 10px;border-style: none;background: #00c3ff;";
+            previewButton.style = "border-radius: 1000px;padding: 5px;width: 45px;height: 45px;border-style: none;background: #00c3ff;";
             previewButton.innerHTML = `<img draggable="false" style="max-width: 100%;max-height: 100%" src="${playURI}">`;
             menu.append(previewButton);
 
@@ -592,7 +592,7 @@ class SoundEditor extends React.Component {
         if (menu) modalHandler();
         else queueMicrotask(() => {
           menu = document.querySelector(`div[class="ReactModalPortal"] div[class*="prompt_body_"] div`);
-          menu.parentNode.parentNode.parentNode.style.width = "200px";
+          menu.parentNode.parentNode.parentNode.style.width = "230px";
           modalHandler();
         });
     }
