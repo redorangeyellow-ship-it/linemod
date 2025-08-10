@@ -116,6 +116,7 @@ class Blocks extends React.Component {
             'handleStatusButtonUpdate',
             'handleOpenSoundRecorder',
             'handlePromptStart',
+            'handleCustomPrompt',
             'handlePromptCallback',
             'handlePromptClose',
             'handleCustomProceduresClose',
