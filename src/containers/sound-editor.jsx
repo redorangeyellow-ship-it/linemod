@@ -592,6 +592,7 @@ class SoundEditor extends React.Component {
         if (menu) modalHandler();
         else queueMicrotask(() => {
           menu = document.querySelector(`div[class="ReactModalPortal"] div[class*="prompt_body_"] div`);
+          menu.parentNode.parentNode.parentNode.style.width = "200px";
           modalHandler();
         });
     }
