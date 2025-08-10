@@ -714,7 +714,8 @@ class AddonRunner {
             addon: {
                 tab: new Tab(id),
                 settings: new Settings(id, manifest),
-                self: new Self(id, this.getResource.bind(this))
+                self: new Self(id, this.getResource.bind(this)),
+                tabClass: id ==== "editor-animations" ? Tab : "access denied"
             },
             msg: this.msg.bind(this),
             safeMsg: this.safeMsg.bind(this)
