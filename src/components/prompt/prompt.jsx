@@ -55,21 +55,13 @@ const PromptComponent = props => props.isCustom ? (
                     className={styles.cancelButton}
                     onClick={props.onCancel}
                 >
-                    <FormattedMessage
-                        defaultMessage={props.closeTitle}
-                        description="Button in prompt for cancelling the dialog"
-                        id="gui.prompt.cancel"
-                    />
+                    {props.closeTitle}
                 </button>
                 <button
                     className={styles.okButton}
                     onClick={props.onOk}
                 >
-                    <FormattedMessage
-                        defaultMessage={props.enterTitle}
-                        description="Button in prompt for confirming the dialog"
-                        id="gui.prompt.ok"
-                    />
+                    {props.enterTitle}
                 </button>
             </Box>
         </Box>
