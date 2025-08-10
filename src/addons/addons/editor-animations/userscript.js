@@ -430,28 +430,10 @@ export default async function({ addon }) {
       }
 
       /* addon modal API */
-      console.log([addon.tabClass]);
-      const ogAddonPrompt = addon.tabClass.constructor.prototype.prompt;
-      addon.tabClass.constructor.prototype.prompt = function(...args) {
-        const modal = ogAddonPrompt.call(this, ...args);
+      addon.traps.vm.on("ADDON_WORKER_MODAL", () => {
         handleOpenAnimation("modal");
         attachCloseHijack("modal");
-        return modal;
-      }
-      const ogAddonConfirm = addon.tabClass.constructor.prototype.confirm;
-      addon.tabClass.constructor.prototype.confirm = function(...args) {
-        const modal = ogAddonConfirm.call(this, ...args);
-        handleOpenAnimation("modal");
-        attachCloseHijack("modal");
-        return modal;
-      }
-      const ogAddonCreateModal = addon.tabClass.constructor.prototype.createModal;
-      addon.tabClass.constructor.prototype.createModal = function(...args) {
-        const modal = ogAddonCreateModal.call(this, ...args);
-        handleOpenAnimation("modal");
-        attachCloseHijack("modal");
-        return modal;
-      }
+      });
     });
   }
 
@@ -479,7 +461,7 @@ export default async function({ addon }) {
   function startListenerWorker() {
     const checkInEditor = () => !ReduxStore.getState().scratchGui.mode.isPlayerOnly;
 
-    window.vm.on("workspaceUpdate", () => {
+    addon.traps.vm.on("workspaceUpdate", () => {
       queueMicrotask(() => compileClasses());
     });
 
