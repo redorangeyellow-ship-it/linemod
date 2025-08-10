@@ -506,7 +506,7 @@ class SoundEditor extends React.Component {
         );
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
-        const menu = window.ScratchBlocks.customPrompt(
+        let menu = window.ScratchBlocks.customPrompt(
             "Modify Sound", { width: 200, height: "auto" },
             {
                 name: "Apply", callback: () => {
