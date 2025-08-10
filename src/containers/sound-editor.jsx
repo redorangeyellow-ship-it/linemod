@@ -506,21 +506,21 @@ class SoundEditor extends React.Component {
         );
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
-        const menu = this.displayPopup("Modify Sound", 200, 280, "Apply", "Cancel", () => {
-            // accepted
-            audio.close();
-            const pitch = pitchParts[1].value, volume = volumeParts[1].value;
-            const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
-            const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
-            this.handleEffect({
-                pitch: truePitch * 10,
-                volume: trueVolume
-            });
-        }, () => {
-            // denied
-            audio.close();
-            // we dont need to do anything else
-        });
+        const menu = window.ScratchBlocks.customPrompt(
+            "Modify Sound", { width: 200, height: 280 },
+            {
+                name: "Apply", callback: () => {
+                    audio.close();
+                    const pitch = pitchParts[1].value, volume = volumeParts[1].value;
+                    const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
+                    const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
+                    this.handleEffect({
+                        pitch: truePitch * 10, volume: trueVolume
+                    });
+                }
+            },
+            { name: "Cancel", callback: () => audio.close() },
+        );
 
         menu.textarea.style = "margin: 0 10px 0 10px;position: relative;display: flex;justify-content: flex-end;flex-direction: row;height: calc(100% - (3.125em + 2.125em + 16px));align-items: center;";
         menu.textarea.append(pitchDiv, volumeDiv);
@@ -617,12 +617,17 @@ class SoundEditor extends React.Component {
         ];
         let selectedSampleRate = this.props.sampleRate;
         let selectedForceRate = false;
-        const menu = this.displayPopup("Format Sound", 350, 300, "Apply", "Cancel", () => {
-            // accepted
-            const edits = { sampleRate: selectedSampleRate };
-            if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
-            this.handleEffect(edits);
-        });
+        const menu = window.ScratchBlocks.customPrompt(
+            "Format Sound", { width: 350, height: 300 },
+            {
+                name: "Apply", callback: () => {
+                    const edits = { sampleRate: selectedSampleRate };
+                    if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
+                    this.handleEffect(edits);
+                }
+            },
+            { name: "Cancel", callback: () => {} },
+        );
 
         menu.textarea.style = "padding: 10px 20px;";
         const rateTitle = genTitle("New Sample Rate:");
@@ -668,54 +673,6 @@ class SoundEditor extends React.Component {
             e.stopPropagation();
         });
         menu.textarea.append(rateTitle, warningDiv, genTitle("Apply to:"), applicatorDiv, warningDiv2);
-    }
-
-    // TODO: use actual scratch-gui menus instead of this
-    displayPopup(title, width, height, okname, denyname, accepted, cancelled) {
-        const div = document.createElement("div");
-        document.body.append(div);
-        div.classList.add(confirmStyles.base);
-        const box = document.createElement("div");
-        div.append(box);
-        box.classList.add(confirmStyles.promptBox);
-        box.style.width = `${width}px`;
-        box.style.height = `${height}px`;
-        const header = document.createElement("div");
-        box.append(header);
-        header.classList.add(confirmStyles.header);
-        header.innerText = title;
-        const textarea = document.createElement("div");
-        box.append(textarea);
-        const buttonRow = document.createElement("div");
-        box.append(buttonRow);
-        buttonRow.classList.add(confirmStyles.buttonRow);
-        const deny = document.createElement("button");
-        buttonRow.append(deny);
-        deny.classList.add(confirmStyles.promptButton);
-        deny.classList.add(confirmStyles.deny);
-        deny.innerHTML = denyname ? denyname : "Cancel";
-        const accept = document.createElement("button");
-        buttonRow.append(accept);
-        accept.classList.add(confirmStyles.promptButton);
-        accept.classList.add(confirmStyles.accept);
-        accept.innerHTML = okname ? okname : "OK";
-        accept.onclick = () => {
-            div.remove();
-            if (accepted) accepted();
-        }
-        deny.onclick = () => {
-            div.remove();
-            if (cancelled) cancelled();
-        }
-        return {
-            popup: div,
-            container: box,
-            header: header,
-            buttonRow: buttonRow,
-            textarea: textarea,
-            cancel: deny,
-            ok: accept
-        }
     }
     render() {
         const { effectTypes } = AudioEffects;
