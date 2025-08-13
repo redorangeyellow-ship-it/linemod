@@ -37,7 +37,7 @@ const MonitorComponent = props => (
         // TW: if export is defined, we always show it, even outside of the editor
         disable={!props.draggable && !props.onExport}
         holdToDisplay={props.mode === 'slider' ? -1 : 1000}
-        id={`monitor-${props.label}`}
+        id={`monitor-${props.id}`}
     >
         <Draggable
             bounds=".monitor-overlay" // Class for monitor container
