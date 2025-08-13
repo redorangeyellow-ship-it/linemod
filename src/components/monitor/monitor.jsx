@@ -66,7 +66,7 @@ const MonitorComponent = props => (
             // positioning conflicts between the monitors `transform: scale` and
             // the context menus `position: fixed`. For more details, see
             // http://meyerweb.com/eric/thoughts/2011/09/12/un-fixing-fixed-elements-with-css-transforms/
-            <ContextMenu id={`monitor-${props.label}`}>
+            <ContextMenu id={`monitor-${props.id}`}>
                 {props.draggable && props.onSetModeToDefault &&
                     <MenuItem onClick={props.onSetModeToDefault}>
                         <FormattedMessage
