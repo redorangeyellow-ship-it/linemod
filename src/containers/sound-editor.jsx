@@ -509,18 +509,20 @@ class SoundEditor extends React.Component {
         const volumeParts = volumeDiv.children;
         let menu = await window.ScratchBlocks.customPrompt(
             { title: "Modify Sound" }, { content: { width: "230px", height: "auto" } },
-            {
-                name: "Apply", callback: () => {
-                    audio.close();
-                    const pitch = pitchParts[1].value, volume = volumeParts[1].value;
-                    const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
-                    const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
-                    this.handleEffect({
-                        pitch: truePitch * 10, volume: trueVolume
-                    });
-                }
-            },
-            { name: "Cancel", callback: () => audio.close() },
+            [
+                {
+                    name: "Apply", role: "ok", callback: () => {
+                        audio.close();
+                        const pitch = pitchParts[1].value, volume = volumeParts[1].value;
+                        const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
+                        const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
+                        this.handleEffect({
+                            pitch: truePitch * 10, volume: trueVolume
+                        });
+                    }
+                },
+                { name: "Cancel", role: "close", callback: () => audio.close() },
+            ],
         );
 
         const modalHandler = () => {
@@ -631,14 +633,16 @@ class SoundEditor extends React.Component {
         let selectedForceRate = false;
         let menu = await window.ScratchBlocks.customPrompt(
             { title: "Format Sound" }, { content: { width: "350px", height: "auto" } },
-            {
-                name: "Apply", callback: () => {
-                    const edits = { sampleRate: selectedSampleRate };
-                    if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
-                    this.handleEffect(edits);
-                }
-            },
-            { name: "Cancel", callback: () => {} },
+            [
+                {
+                    name: "Apply", role: "ok", callback: () => {
+                        const edits = { sampleRate: selectedSampleRate };
+                        if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
+                        this.handleEffect(edits);
+                    }
+                },
+                { name: "Cancel", role: "close", callback: () => {} },
+            ],
         );
 
         const modalHandler = () => {

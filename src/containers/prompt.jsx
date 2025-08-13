@@ -12,6 +12,7 @@ class Prompt extends React.Component {
             'handleOk',
             'handleScopeOptionSelection',
             'handleCancel',
+            'handleCustomButton',
             'handleChange',
             'handleKeyPress',
             'handleCloudVariableOptionChange'
@@ -43,6 +44,9 @@ class Prompt extends React.Component {
     handleCancel () {
         this.props.onCancel();
     }
+    handleCustomButton(button) {
+        this.props.onCustomButton(button);
+    }
     handleChange (e) {
         this.setState({inputValue: e.target.value});
     }
@@ -64,14 +68,15 @@ class Prompt extends React.Component {
                 isCustom={this.props.isCustom}
                 componentRef={this.props.componentRef}
                 boxRef={this.props.boxRef}
-                styleContent={this.props.styleContent}
-                styleOverlay={this.props.styleOverlay}
-                title={this.props.title}
-                enterTitle={this.props.enterTitle}
-                closeTitle={this.props.closeTitle}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 onKeyPress={this.handleKeyPress}
+                styleContent={this.props.styleContent}
+                styleOverlay={this.props.styleOverlay}
+                title={this.props.title}
+                config={this.props.config}
+                customButtons={this.props.customButtons}
+                onCustomButton={this.handleCustomButton}
                 customRef={this.props.customRef}
             />
         )
@@ -128,8 +133,9 @@ Prompt.propTypes = {
 
     /* custom modals */
     isCustom: PropTypes.bool,
-    enterTitle: PropTypes.string,
-    closeTitle: PropTypes.string,
+    config: PropTypes.object,
+    onCustomButton: PropTypes.func,
+    customButtons: PropTypes.arrayOf(PropTypes.object),
     customRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({ current: PropTypes.instanceOf(Element) })

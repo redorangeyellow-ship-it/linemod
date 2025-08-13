@@ -39,6 +39,30 @@ const messages = defineMessages({
     }
 });
 
+const customButtonStyle = (button) => {
+    // if class is manually specified, dont try to guess the intended style
+    if (button.class) {
+        switch (button.class) {
+            case "ok":
+                return styles.okButton;
+            case "cancel":
+                return styles.cancelButton;
+            default:
+                return styles.cancelButton;
+        }
+    }
+
+    // assume intended style from role
+    if (button.role) {
+        switch (button.role) {
+            case "ok":
+                return styles.okButton;
+            case "close":
+                return styles.cancelButton;
+        }
+    }
+    return styles.cancelButton;
+};
 const PromptComponent = props => props.isCustom ? (
     <Modal
         className={styles.modalContent}
@@ -49,24 +73,23 @@ const PromptComponent = props => props.isCustom ? (
         boxRef={props.boxRef}
         styleContent={props.styleContent}
         styleOverlay={props.styleOverlay}
+        scrollable={props.config.scrollable}
     >
         <Box className={styles.body}>
             <Box componentRef={props.customRef}>
             </Box>
-            <Box className={styles.buttonRow}>
-                <button
-                    className={styles.cancelButton}
-                    onClick={props.onCancel}
-                >
-                    {props.closeTitle}
-                </button>
-                <button
-                    className={styles.okButton}
-                    onClick={props.onOk}
-                >
-                    {props.enterTitle}
-                </button>
-            </Box>
+            {(props.customButtons && props.customButtons.length > 0 ? <Box className={styles.buttonRow}>
+                {/* slice then reverse to avoid mutating the array. reversing cause scratch modals put OK on the right & usually you define OK button first */}
+                {props.customButtons.slice().reverse().map(button => (
+                    <button
+                        className={customButtonStyle(button)}
+                        style={button.style}
+                        onClick={() => props.onCustomButton(button)}
+                    >
+                        {button.name}
+                    </button>
+                ))}
+            </Box> : null)}
         </Box>
     </Modal>
 ) : (
@@ -252,8 +275,9 @@ PromptComponent.propTypes = {
 
     /* custom modals */
     isCustom: PropTypes.bool,
-    enterTitle: PropTypes.string,
-    closeTitle: PropTypes.string,
+    config: PropTypes.object,
+    onCustomButton: PropTypes.func,
+    customButtons: PropTypes.arrayOf(PropTypes.object),
     customRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({ current: PropTypes.instanceOf(Element) })

@@ -617,7 +617,21 @@ class Blocks extends React.Component {
         p.prompt.showCloudOption = (optVarType === this.ScratchBlocks.SCALAR_VARIABLE_TYPE) && this.props.canUseCloud;
         this.setState(p);
     }
-    handleCustomPrompt (config, styles, enterInfo, closeInfo) {
+
+    /**
+     * @param {{title:string, scrollable:boolean?}} config The config for the modal
+     * @param {{content:CSSStyleDeclaration?, overlay:CSSStyleDeclaration?}?} styles Sets styles on parts of the modal. If specified, at least one of the parts should have styles.
+     * @param {Array<{
+     *      name:string,
+     *      role:"ok"|"close"|null,
+     *      class:"ok"|"cancel"|null,
+     *      style:CSSStyleDeclaration?,
+     *      dontClose:boolean?,
+     *      callback:function():void
+     * }>?} buttons Buttons to place onto the modal. `role` makes the button callback run for other types of interactions.
+     * @returns {Promise<HTMLElement>}
+     */
+    handleCustomPrompt (config, styles, buttons) {
         return new Promise((resolve, reject) => {
             /* validate arguments */
             if (config && isObject(config)) {
@@ -630,18 +644,6 @@ class Blocks extends React.Component {
             }
             if (styles && (!styles.content && !styles.overlay)) {
                 return reject("Custom Modal -- If Param 2 is specified, specify CSS styles within either: 'content' or 'overlay'");
-            }
-            if (isObject(enterInfo)) {
-                if (!enterInfo.name || !enterInfo.callback) return reject("Custom Modal -- Missing name/callback property in Param 3");
-                if (enterInfo.callback && typeof enterInfo.callback !== 'function') return reject("Custom Modal -- callback property in Param 3 must be a function");
-            } else {
-                return reject("Custom Modal -- Param 3 must be a object with properties: 'name' (string) and 'callback' (function)");
-            }
-            if (isObject(closeInfo)) {
-                if (!closeInfo.name || !closeInfo.callback) return reject("Custom Modal -- Missing name/callback property in Param 4");
-                if (closeInfo.callback && typeof closeInfo.callback !== 'function') return reject("Custom Modal -- callback property in Param 4 must be a function");
-            } else {
-                return reject("Custom Modal -- Param 4 must be a object with properties: 'name' (string) and 'callback' (function)");
             }
 
             // create the callback for when the node is created. an HTML element (or modal) with ref={functionHere} will run the function with the HTMLElement as 1st arg
@@ -656,7 +658,7 @@ class Blocks extends React.Component {
             this.setState({
                 customPrompts: this.state.customPrompts.concat({
                     id: thisPromptId,
-                    config, styles, enterInfo, closeInfo
+                    config, styles, buttons
                 })
             });
         });
@@ -676,23 +678,36 @@ class Blocks extends React.Component {
      * and additional potentially conflicting variable names from the VM
      * to the variable validation prompt callback used in scratch-blocks.
      */
-    handlePromptCallback (input, variableOptions, customPrompt) {
-        if (customPrompt) {
-            customPrompt.enterInfo.callback();
-            return this.setState({
-                customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
-            });
-        }
-
+    handlePromptCallback (input, variableOptions) {
         this.state.prompt.callback(
             input,
             this.props.vm.runtime.getAllVarNamesOfType(this.state.prompt.varType),
             variableOptions);
         this.handlePromptClose();
     }
+    handleCustomPromptButton(button, customPrompt) {
+        button.callback();
+        if (button.dontClose) return;
+        this.setState({
+            customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
+        });
+    }
+    handleCustomPromptOk(customPrompt) {
+        const okButton = (customPrompt.buttons || []).find(button => button.role === "ok");
+        if (okButton) {
+            okButton.callback();
+            if (okButton.dontClose) return;
+            return this.setState({
+                customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
+            });
+        }
+    }
     handlePromptClose (customPrompt) {
         if (customPrompt) {
-            customPrompt.closeInfo.callback();
+            const closeButton = (customPrompt.buttons || []).find(button => button.role === "close");
+            if (closeButton) {
+                closeButton.callback();
+            }
             return this.setState({
                 customPrompts: this.state.customPrompts.filter(prompt => prompt !== customPrompt)
             });
@@ -772,13 +787,14 @@ class Blocks extends React.Component {
                         isCustom={true}
                         vm={vm}
                         customRef={this.customModalRefs.get(prompt.id)}
+                        onOk={() => this.handleCustomPromptOk(prompt)}
+                        onCancel={() => this.handlePromptClose(prompt)}
+                        config={prompt.config}
                         title={prompt.config.title}
                         styleContent={prompt.styles ? prompt.styles.content : null}
                         styleOverlay={prompt.styles ? prompt.styles.overlay : null}
-                        enterTitle={prompt.enterInfo.name}
-                        closeTitle={prompt.closeInfo.name}
-                        onCancel={() => this.handlePromptClose(prompt)}
-                        onOk={() => this.handlePromptCallback(null, null, prompt)}
+                        customButtons={prompt.buttons}
+                        onCustomButton={(button) => this.handleCustomPromptButton(button, prompt)}
                     />
                 ))}
                 {extensionLibraryVisible ? (
