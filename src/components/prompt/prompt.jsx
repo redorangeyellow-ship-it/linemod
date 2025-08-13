@@ -9,7 +9,6 @@ import Modal from '../../containers/modal.jsx';
 import styles from './prompt.css';
 import { SCRATCH_MAX_CLOUD_VARIABLES } from '../../lib/tw-cloud-limits.js';
 
-
 const messages = defineMessages({
     forAllSpritesMessage: {
         defaultMessage: 'For all sprites',
@@ -46,9 +45,13 @@ const PromptComponent = props => props.isCustom ? (
         contentLabel={props.title}
         id="customModal"
         onRequestClose={props.onCancel}
+        componentRef={props.ref}
+        boxRef={props.boxRef}
+        styleContent={props.styleContent}
+        styleOverlay={props.styleOverlay}
     >
         <Box className={styles.body}>
-            <Box>
+            <Box componentRef={props.customRef}>
             </Box>
             <Box className={styles.buttonRow}>
                 <button
@@ -72,6 +75,10 @@ const PromptComponent = props => props.isCustom ? (
         contentLabel={props.title}
         id="variableModal"
         onRequestClose={props.onCancel}
+        componentRef={props.componentRef}
+        boxRef={props.boxRef}
+        styleContent={props.styleContent}
+        styleOverlay={props.styleOverlay}
     >
         <Box className={styles.body}>
             <Box className={styles.label}>
@@ -232,11 +239,25 @@ PromptComponent.propTypes = {
     onScopeOptionSelection: PropTypes.func,
     showCloudOption: PropTypes.bool,
     showVariableOptions: PropTypes.bool,
+    componentRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    boxRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    styleContent: PropTypes.object,
+    styleOverlay: PropTypes.object,
 
     /* custom modals */
     isCustom: PropTypes.bool,
     enterTitle: PropTypes.string,
-    closeTitle: PropTypes.string
+    closeTitle: PropTypes.string,
+    customRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
 };
 
 export default PromptComponent;
