@@ -62,17 +62,12 @@ class Prompt extends React.Component {
         if (this.props.isCustom) return (
             <PromptComponent
                 isCustom={this.props.isCustom}
-                componentRef={this.props.componentRef}
-                boxRef={this.props.boxRef}
-                styleContent={this.props.styleContent}
-                styleOverlay={this.props.styleOverlay}
                 title={this.props.title}
                 enterTitle={this.props.enterTitle}
                 closeTitle={this.props.closeTitle}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 onKeyPress={this.handleKeyPress}
-                customRef={this.props.customRef}
             />
         )
         else return (
@@ -95,10 +90,6 @@ class Prompt extends React.Component {
                 onKeyPress={this.handleKeyPress}
                 onOk={this.handleOk}
                 onScopeOptionSelection={this.handleScopeOptionSelection}
-                componentRef={this.props.componentRef}
-                styleContent={this.props.styleContent}
-                styleOverlay={this.props.styleOverlay}
-                boxRef={this.props.boxRef}
             />
         );
     }
@@ -115,25 +106,11 @@ Prompt.propTypes = {
     showCloudOption: PropTypes.bool,
     showVariableOptions: PropTypes.bool,
     vm: PropTypes.instanceOf(VM),
-    componentRef: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    ]),
-    boxRef: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    ]),
-    styleContent: PropTypes.object,
-    styleOverlay: PropTypes.object,
 
     /* custom modals */
     isCustom: PropTypes.bool,
     enterTitle: PropTypes.string,
-    closeTitle: PropTypes.string,
-    customRef: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    ]),
+    closeTitle: PropTypes.string
 };
 
 export default Prompt;
