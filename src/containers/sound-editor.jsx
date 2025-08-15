@@ -457,7 +457,8 @@ class SoundEditor extends React.Component {
         }
     }
 
-    handleModifyMenu() {
+    // TODO: This should really just render components like the other modals at some point.
+    async handleModifyMenu() {
         const playURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OSIgaGVpZ2h0PSI1MiIgdmlld0JveD0iLTUgMCA0OSA0OCI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTM1LjUwOCAxOS4zNzRjNC4yNTkgMi41NTYgNC4yNTIgNi43MDIgMCA5LjI1NEwxMi43MTIgNDIuMzA1Yy00LjI1OCAyLjU1NS03LjcxLjU5Ny03LjcxLTQuMzhWMTAuMDc3YzAtNC45NzMgMy40NTgtNi45MyA3LjcxLTQuMzh6Ii8+PC9zdmc+`;
         const stopURI = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIj48cmVjdCBmaWxsPSIjRkZGIiB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4LjUgOC41KSIvPjwvc3ZnPg==`;
 
@@ -506,20 +507,22 @@ class SoundEditor extends React.Component {
         );
         const pitchParts = pitchDiv.children;
         const volumeParts = volumeDiv.children;
-        let menu = window.ScratchBlocks.customPrompt(
-            "Modify Sound", { width: 230, height: "auto" },
-            {
-                name: "Apply", callback: () => {
-                    audio.close();
-                    const pitch = pitchParts[1].value, volume = volumeParts[1].value;
-                    const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
-                    const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
-                    this.handleEffect({
-                        pitch: truePitch * 10, volume: trueVolume
-                    });
-                }
-            },
-            { name: "Cancel", callback: () => audio.close() },
+        let menu = await window.ScratchBlocks.customPrompt(
+            { title: "Modify Sound" }, { content: { width: "230px", height: "auto" } },
+            [
+                {
+                    name: "Apply", role: "ok", callback: () => {
+                        audio.close();
+                        const pitch = pitchParts[1].value, volume = volumeParts[1].value;
+                        const truePitch = isNaN(Number(pitch)) ? 0 : Number(pitch);
+                        const trueVolume = isNaN(Number(volume)) ? 0 : Number(volume);
+                        this.handleEffect({
+                            pitch: truePitch * 10, volume: trueVolume
+                        });
+                    }
+                },
+                { name: "Cancel", role: "close", callback: () => audio.close() },
+            ],
         );
 
         const modalHandler = () => {
@@ -597,7 +600,8 @@ class SoundEditor extends React.Component {
         });
     }
 
-    handleFormatMenu() {
+    // TODO: This should really just render components like the other modals at some point.
+    async handleFormatMenu() {
         const genTitle = (text) => {
             const label = document.createElement("div");
             label.style = "font-weight: 500;font-size: 14px;margin-bottom: 5px;";
@@ -627,16 +631,18 @@ class SoundEditor extends React.Component {
         ];
         let selectedSampleRate = this.props.sampleRate;
         let selectedForceRate = false;
-        let menu = window.ScratchBlocks.customPrompt(
-            "Format Sound", { width: 350, height: "auto" },
-            {
-                name: "Apply", callback: () => {
-                    const edits = { sampleRate: selectedSampleRate };
-                    if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
-                    this.handleEffect(edits);
-                }
-            },
-            { name: "Cancel", callback: () => {} },
+        let menu = await window.ScratchBlocks.customPrompt(
+            { title: "Format Sound" }, { content: { width: "350px", height: "auto" } },
+            [
+                {
+                    name: "Apply", role: "ok", callback: () => {
+                        const edits = { sampleRate: selectedSampleRate };
+                        if (selectedForceRate) edits.sampleRateEnforced = selectedSampleRate;
+                        this.handleEffect(edits);
+                    }
+                },
+                { name: "Cancel", role: "close", callback: () => {} },
+            ],
         );
 
         const modalHandler = () => {

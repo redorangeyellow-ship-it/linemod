@@ -12,6 +12,7 @@ class Prompt extends React.Component {
             'handleOk',
             'handleScopeOptionSelection',
             'handleCancel',
+            'handleCustomButton',
             'handleChange',
             'handleKeyPress',
             'handleCloudVariableOptionChange'
@@ -43,6 +44,9 @@ class Prompt extends React.Component {
     handleCancel () {
         this.props.onCancel();
     }
+    handleCustomButton(button) {
+        this.props.onCustomButton(button);
+    }
     handleChange (e) {
         this.setState({inputValue: e.target.value});
     }
@@ -62,12 +66,18 @@ class Prompt extends React.Component {
         if (this.props.isCustom) return (
             <PromptComponent
                 isCustom={this.props.isCustom}
-                title={this.props.title}
-                enterTitle={this.props.enterTitle}
-                closeTitle={this.props.closeTitle}
+                componentRef={this.props.componentRef}
+                boxRef={this.props.boxRef}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 onKeyPress={this.handleKeyPress}
+                styleContent={this.props.styleContent}
+                styleOverlay={this.props.styleOverlay}
+                title={this.props.title}
+                config={this.props.config}
+                customButtons={this.props.customButtons}
+                onCustomButton={this.handleCustomButton}
+                customRef={this.props.customRef}
             />
         )
         else return (
@@ -90,6 +100,10 @@ class Prompt extends React.Component {
                 onKeyPress={this.handleKeyPress}
                 onOk={this.handleOk}
                 onScopeOptionSelection={this.handleScopeOptionSelection}
+                componentRef={this.props.componentRef}
+                styleContent={this.props.styleContent}
+                styleOverlay={this.props.styleOverlay}
+                boxRef={this.props.boxRef}
             />
         );
     }
@@ -106,11 +120,26 @@ Prompt.propTypes = {
     showCloudOption: PropTypes.bool,
     showVariableOptions: PropTypes.bool,
     vm: PropTypes.instanceOf(VM),
+    componentRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    boxRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
+    styleContent: PropTypes.object,
+    styleOverlay: PropTypes.object,
 
     /* custom modals */
     isCustom: PropTypes.bool,
-    enterTitle: PropTypes.string,
-    closeTitle: PropTypes.string
+    config: PropTypes.object,
+    onCustomButton: PropTypes.func,
+    customButtons: PropTypes.arrayOf(PropTypes.object),
+    customRef: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ]),
 };
 
 export default Prompt;
