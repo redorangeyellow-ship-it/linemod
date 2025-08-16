@@ -65,6 +65,7 @@ export default async function ({ addon, console }) {
         // do not use HD uploads if we drop a GIF or Sprite
         const hasGif = [...files].some(f => f.type === "image/gif");
         const hasSprite = el.className.includes("sprite-selector") && [...files].some(f => f.type === "application/octet-stream");
+        console.log(el.className, [...files], !hasSprite && !hasGif);
         const hdFilter = !hasSprite && !hasGif && addon.settings.get("use-hd-upload") ? "" : ":not(.sa-better-img-uploads-input)";
         const fileInput = el.querySelector('input[class*="action-menu_file-input"]' + hdFilter);
         fileInput.files = files;
