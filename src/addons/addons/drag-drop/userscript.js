@@ -62,9 +62,10 @@ export default async function ({ addon, console }) {
       (el = e.target.closest('div[class*="selector_wrapper"]'))
     ) {
       callback = (files) => {
-        // do not use HD uploads if we drop a GIF, Scratch will split its frames individualy.
+        // do not use HD uploads if we drop a GIF or Sprite
         const hasGif = [...files].some(f => f.type === "image/gif");
-        const hdFilter = !hasGif && addon.settings.get("use-hd-upload") ? "" : ":not(.sa-better-img-uploads-input)";
+        const isSpriteSelector = el.className.includes("sprite-selector_sprite-selector");
+        const hdFilter = !isSpriteSelector && !hasGif && addon.settings.get("use-hd-upload") ? "" : ":not(.sa-better-img-uploads-input)";
         const fileInput = el.querySelector('input[class*="action-menu_file-input"]' + hdFilter);
         fileInput.files = files;
         fileInput.dispatchEvent(new Event("change", { bubbles: true }));
