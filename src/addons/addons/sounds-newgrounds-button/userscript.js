@@ -56,7 +56,7 @@ export default async function() {
   }
 
   async function openNewgroundsPopup() {
-    let url, name, songURL;
+    let url, name, author, songURL;
     let infoBox = undefined;
 
     /* ScratchBlocks is availiable when this is called */
