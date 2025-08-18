@@ -193,7 +193,7 @@ const downloadLogs = async () => {
 window.downloadLogs = downloadLogs;
 
 window.addEventListener('error', e =>
-    push('error', e.message, parseStack(e.error.stack, e.filename, e.lineno, e.colno)));
+    push('error', e.message, parseStack(`\n${e.error.stack}`, e.filename, e.lineno, e.colno)));
 window.addEventListener('unhandledrejection', e => push('promiseError', e.reason, []));
 class StackTrace extends Error {
     constructor() {
