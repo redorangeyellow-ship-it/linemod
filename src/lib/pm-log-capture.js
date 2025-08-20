@@ -221,6 +221,12 @@ if (!String(window.location.href).startsWith(`http://localhost:`)) {
             if (browserHasStack) stack = parseStack(new Error().stack);
             push(name, args, stack);
             item.apply(console, args);
+
+            const err = new Error();
+            if (Error.captureStackTrace) {
+                Error.captureStackTrace(err, window.console[name]);
+            }
+            item.apply(console, [...args, err]);
         };
     }
 }
