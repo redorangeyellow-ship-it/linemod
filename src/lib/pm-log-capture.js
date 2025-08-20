@@ -220,7 +220,7 @@ if (!String(window.location.href).startsWith(`http://localhost:`)) {
             let stack = [];
             if (browserHasStack) stack = parseStack(new Error().stack);
             push(name, args, stack);
-            item.call(console, ...args, new StackTrace());
+            item.apply(console, ...args, new StackTrace());
         };
     }
 }
