@@ -198,22 +198,22 @@ window.addEventListener('unhandledrejection', e => push('promiseError', e.reason
 class StackTrace extends Error {
     constructor() {
         super('');
-        if (this.stack.split('\n', 2)[0].includes('@'))
+        if (this.stack.split('\n', 2)[0].includes('@')) {
             this.stack = this.stack
                 .split('\n')
                 .slice(2, 3)
                 .join('\n');
-        else {
+        } else {
             // chrome is weird ngl
             const lines = this.stack
                 .split('\n')
                 .slice(0, 3);
-            lines.splice(1, 2);
+            lines.splice(1, 1);
             this.stack = lines.join('\n');
         }
     }
 }
-if (!String(window.location.href).startsWith(`http://localhost:`)) {
+if (!String(window.location.href).startsWith(`http://localhost:`) || new URLSearchParams(location.search).has('nolivetests')) {
     for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
         const item = window.console[name];
         window.console[name] = (...args) => {
