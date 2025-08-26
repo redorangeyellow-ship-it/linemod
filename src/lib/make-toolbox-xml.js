@@ -1479,33 +1479,9 @@ const liveTests = function () {
             <mutation proccode="tw:debugger;" argumentids="[]" warp="false" returns="null" edited="true" optype="null"></mutation>
         </block>
         ${blockSeparator}
-        <block type="looks_setVertTransform">
-            <value name="PERCENT">
-                <shadow type="math_number">
-                    <field name="NUM">0</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="looks_setHorizTransform">
-            <value name="PERCENT">
-                <shadow type="math_number">
-                    <field name="NUM">0</field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
         <block type="control_fieldbutton"></block>
         <block type="operators_expandablejoininputs"></block>
         <block type="motion_mutatorCheckboxTest"></block>
-        ${blockSeparator}
-        <block type="data_filterlist">
-            <value name="INDEX">
-                <shadow type="data_filterlistindex"></shadow>
-            </value>
-            <value name="ITEM">
-                <shadow type="data_filterlistitem"></shadow>
-            </value>
-        </block>
         ${blockSeparator}
         <block type="control_dualblock"></block>
     </category>
