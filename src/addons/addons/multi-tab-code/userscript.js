@@ -521,6 +521,7 @@ export default async function ({ addon, msg, console }) {
             const shadow = tabTarget.blocks.getBlock(input.shadow);
             if (shadow && shadow.parent && shadow.parent === oldId) shadow.parent = newId;
           }
+          if (block.topLevel) block.parent = null;
         }
         for (const tabIdx in savedTabs) {
           const tab = savedTabs[tabIdx];
