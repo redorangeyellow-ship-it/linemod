@@ -27,7 +27,7 @@ const manifest = {
       "type": "integer",
       "min": 3,
       "default": 8,
-      "max": 50
+      "max": 25
     },
   ]
 };
