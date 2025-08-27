@@ -8,7 +8,7 @@ export default async function({ addon }) {
 
   // addon util
   function requestAddonState() {
-    handleSize = Math.min(50, Math.max(3, addon.settings.get("handleSize")));
+    handleSize = Math.min(25, Math.max(3, addon.settings.get("handleSize")));
   }
 
   function patchWorker() {
@@ -64,13 +64,14 @@ export default async function({ addon }) {
 
     ogDrawSelected = paper.Path.prototype._drawSelected;
     paper.Path.prototype._drawSelected = function(ctx, matrix) {
+      const setHandleSize = paper.settings.handleSize;
       ctx.beginPath();
       drawSegments(ctx, this, matrix);
       ctx.stroke();
       drawHandles(
         ctx, this._segments, matrix,
         /* override the handleSize */
-        handleSize ?? paper.settings.handleSize
+        setHandleSize === 0 ? 0 : handleSize
       );
     }
   }
