@@ -1043,6 +1043,7 @@ const operators = function (isInitialSetup) {
                 </shadow>
             </value>
         </block>
+        <block type="operator_expandableMath"></block>
         <block type="operator_advMathExpanded">
             <value name="ONE">
                 <shadow type="math_number">
