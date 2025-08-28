@@ -1223,23 +1223,7 @@ const operators = function (isInitialSetup) {
                     </shadow>
                 </value>
             </block>
-            <block type="operator_join3">
-                <value name="STRING1">
-                    <shadow type="text">
-                        <field name="TEXT">${apple} </field>
-                    </shadow>
-                </value>
-                <value name="STRING2">
-                    <shadow type="text">
-                        <field name="TEXT">${banana} </field>
-                    </shadow>
-                </value>
-                <value name="STRING3">
-                    <shadow type="text">
-                        <field name="TEXT">pear</field>
-                    </shadow>
-                </value>
-            </block>
+            <block type="operators_expandablejoininputs"></block>
             ${blockSeparator}
             <block type="operator_indexOfTextInText">
                 <value name="TEXT1">
@@ -1480,7 +1464,6 @@ const liveTests = function () {
         </block>
         ${blockSeparator}
         <block type="control_fieldbutton"></block>
-        <block type="operators_expandablejoininputs"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
         <block type="control_dualblock"></block>
