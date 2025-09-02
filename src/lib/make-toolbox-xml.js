@@ -1465,6 +1465,7 @@ const liveTests = function () {
         </block>
         ${blockSeparator}
         <block type="control_fieldbutton"></block>
+        <block type="control_expandableCase"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
         <block type="control_dualblock"></block>
