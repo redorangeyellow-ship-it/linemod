@@ -81,6 +81,7 @@ import jwTargetsExtensionThumb from './penguinmod/extensions/jwTargets.svg';
 import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
+import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -918,6 +919,15 @@ const menuItems = [
         iconURL: jwVectorExtensionThumb,
         tags: ['penguinmod', 'math'],
         description: 'Vector type for calculating with X and Y coordinates.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Lambda',
+        extensionId: 'jwLambda',
+        iconURL: jwLambdaExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Create anonymous functions with arguments and execute them.',
         extDeveloper: 'jwklong',
         featured: true
     },
