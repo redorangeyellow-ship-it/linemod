@@ -1224,7 +1224,7 @@ const operators = function (isInitialSetup) {
                     </shadow>
                 </value>
             </block>
-            <block type="operators_expandablejoininputs"></block>
+            <block type="operator_expandablejoininputs"></block>
             ${blockSeparator}
             <block type="operator_indexOfTextInText">
                 <value name="TEXT1">
