@@ -675,6 +675,7 @@ const control = function (isInitialSetup, isStage) {
                 <shadow type="checkbox" />
             </value>
         </block>
+        <block type="control_expandableIf"></block>
         <block id="wait_until" type="control_wait_until">
             <value name="CONDITION">
                 <shadow type="checkbox" />
@@ -1465,7 +1466,6 @@ const liveTests = function () {
         </block>
         ${blockSeparator}
         <block type="control_fieldbutton"></block>
-        <block type="control_expandableIf"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
         <block type="control_dualblock"></block>
