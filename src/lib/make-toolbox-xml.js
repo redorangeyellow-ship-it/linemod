@@ -355,7 +355,7 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
                 </value>
                 <value name="Y">
                     <shadow type="math_number">
-                        <field name="NUM">15</field>
+                        <field name="NUM">0</field>
                     </shadow>
                 </value>
             </block>
