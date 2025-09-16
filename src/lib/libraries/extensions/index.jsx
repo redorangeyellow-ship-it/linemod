@@ -657,7 +657,7 @@ const menuItems = [
     {
         name: 'Pang API',
         extensionId: 'https://extensions.penguinmod.com/extensions/SammerLOL/pangapi.js',
-        iconURL: 'https://extensions.penguinmod.com/images/SammerLOL/pangapi.png',
+        iconURL: 'https://extensions.penguinmod.com/images/SammerLOL/pangapi.avif',
         tags: ['penguinmod'],
         description: 'Fetch information from the PenguinMod API.',
         extDeveloper: 'oc9x97, Ianyourgod',
@@ -675,7 +675,7 @@ const menuItems = [
     /*DEPRECATED {
         name: 'Extra Mathematics',
         extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
-        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.png',
+        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.avif',
         tags: ['penguinmod', 'categoryexpansion', 'math'],
         description: 'Complicated maths extension for nerds.',
         extDeveloper: 'jwklong',
@@ -684,7 +684,7 @@ const menuItems = [
     {
         name: 'Random Utilities',
         extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/random_utils.js',
-        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/randomutils.png',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/randomutils.avif',
         tags: ['penguinmod'],
         description: 'Many blocks related to generating random values, including seed-based number generation, true number generation, UUID\'s, random strings, etc.',
         extDeveloper: 'G1nX',
@@ -1304,7 +1304,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'Christmas',
             extensionId: 'jgChristmas',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.avif',
             tags: ['penguinmod', 'joke'],
             description: 'hooraye',
             featured: true
@@ -1312,7 +1312,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'an amazing extension',
             extensionId: 'jgBestExtension',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.avif',
             internetConnectionRequired: true,
             tags: ['penguinmod', 'joke'],
             description: 'this is SUCH A GOOD EXTENSION USE IT NOW',
@@ -1321,7 +1321,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'Epic utilities',
             extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/AprilFools.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.avif',
             tags: ['penguinmod', 'joke'],
             description: 'the super good utilities brought to you by todays sponsor sharkpool (the epic utilities)',
             featured: true
@@ -1329,7 +1329,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'CATS',
             extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/CATS.js',
-            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.png',
+            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.avif',
             tags: ['penguinmod', 'joke'],
             description: 'Blocks related to cats.',
             extDeveloper: 'G1nX',
@@ -1348,7 +1348,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'image blocks',
             extensionId: 'https://extensions.penguinmod.com/extensions/Ashime/funneimageblocks.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.avif',
             tags: ['penguinmod', 'joke'],
             internetConnectionRequired: true,
             description: 'who needs cat blocks when you have penguin block',
