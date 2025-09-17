@@ -675,20 +675,16 @@ const control = function (isInitialSetup, isStage) {
                 <shadow type="checkbox" />
             </value>
         </block>
-        <block type="control_expandableIf"></block>
-        <block id="wait_until" type="control_wait_until">
-            <value name="CONDITION">
-                <shadow type="checkbox" />
+        <block type="control_expandableIf">
+            <mutation branches="1" ends-in-else="false"></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"></shadow>
             </value>
         </block>
-        <block id="repeat_until" type="control_repeat_until">
-            <value name="CONDITION">
-                <shadow type="checkbox" />
-            </value>
-        </block>
-        <block id="while" type="control_while">
-            <value name="CONDITION">
-                <shadow type="checkbox" />
+        <block type="control_expandableIf">
+            <mutation branches="2" ends-in-else="true"></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"></shadow>
             </value>
         </block>
         <block type="control_if_return_else_return">
@@ -704,6 +700,22 @@ const control = function (isInitialSetup, isStage) {
                 <shadow type="text">
                     <field name="TEXT">bar</field>
                 </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+        <block id="wait_until" type="control_wait_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="repeat_until" type="control_repeat_until">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
+            </value>
+        </block>
+        <block id="while" type="control_while">
+            <value name="CONDITION">
+                <shadow type="checkbox" />
             </value>
         </block>
         ${blockSeparator}
