@@ -1237,7 +1237,19 @@ const operators = function (isInitialSetup) {
                     </shadow>
                 </value>
             </block>
-            <block type="operator_expandablejoininputs"></block>
+            <block type="operator_expandablejoininputs">
+                <mutation inputcount="2"></mutation>
+                <value name="INPUT1">
+                    <shadow type="text">
+                        <field name="TEXT">apple</field>
+                    </shadow>
+                </value>
+                <value name="INPUT2">
+                    <shadow type="text">
+                        <field name="TEXT">banana</field>
+                    </shadow>
+                </value>
+            </block>
             ${blockSeparator}
             <block type="operator_indexOfTextInText">
                 <value name="TEXT1">
