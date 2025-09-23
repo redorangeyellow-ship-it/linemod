@@ -1546,6 +1546,15 @@ if (IsLocal || IsLiveTests) {
             ],
             featured: true,
             extensionWarningOnImport: true
+        },
+        {
+            name: "Fresh's Lambda",
+            extensionId: "frLambda2",
+            iconUrl: jwLambdaExtensionThumb,
+            tags: ["penguinmod"],
+            description: "Fresh's modified version of Jwklong's Lambda extension.",
+            extDeveloper: "FreshPenguin112",
+            featured: true
         }
     ];
     extras.forEach(ext => {
