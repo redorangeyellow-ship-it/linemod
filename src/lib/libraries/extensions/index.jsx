@@ -82,6 +82,8 @@ import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
+import frLambda2ExtensionThumb from './penguinmod/extensions/jwLambda.svg';
+
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -174,6 +176,7 @@ import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators
 // jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
 // gsa: ololololololo
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
+
 
 const urlParams = new URLSearchParams(location.search);
 
@@ -1550,7 +1553,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: "Fresh's Lambda",
             extensionId: "frLambda2",
-            iconUrl: jwLambdaExtensionThumb,
+            iconURL: frLambda2ExtensionThumb,
             tags: ["penguinmod"],
             description: "Fresh's modified version of Jwklong's Lambda extension.",
             extDeveloper: "FreshPenguin112",
