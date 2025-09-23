@@ -82,7 +82,6 @@ import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
-import frLambda2ExtensionThumb from './penguinmod/extensions/jwLambda.svg';
 
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
@@ -1549,15 +1548,6 @@ if (IsLocal || IsLiveTests) {
             ],
             featured: true,
             extensionWarningOnImport: true
-        },
-        {
-            name: "Fresh's Lambda",
-            extensionId: "frLambda2",
-            iconURL: frLambda2ExtensionThumb,
-            tags: ["penguinmod"],
-            description: "Fresh's modified version of Jwklong's Lambda extension.",
-            extDeveloper: "FreshPenguin112",
-            featured: true
         }
     ];
     extras.forEach(ext => {
