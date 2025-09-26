@@ -25,7 +25,7 @@ export default async function({ addon }) {
 
       for (const input of Array.from(item.children)) {
         // clear checkboxes
-        if (item.localName !== "value") continue;
+        if (input.localName !== "value") continue;
         const shadow = input.firstChild;
         if (shadow.getAttribute("type") === "checkbox") shadow.remove();
       }
