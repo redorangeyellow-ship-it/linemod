@@ -104,7 +104,7 @@ class Blocks extends React.Component {
                 callback: ext => this.props.onOpenCustomExtensionModal(ext)
             }
         ]);
-        this.ScratchBlocks.scratchBlocksUtils = this.getToolboxXML;
+        this.ScratchBlocks.scratchBlocksUtils.getToolboxXML = this.getToolboxXML;
         window.ScratchBlocks = this.ScratchBlocks;
         AddonHooks.blockly = this.ScratchBlocks;
         AddonHooks.blocklyCallbacks.forEach(i => i());
