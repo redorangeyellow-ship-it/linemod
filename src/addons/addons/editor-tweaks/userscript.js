@@ -6,12 +6,33 @@ export default async function({ addon }) {
   const vm = addon.tab.traps.vm;
 
   // addon settings
-  let checkboxesEnabled = true,
-      expandableButtonSize = 1;
+  let oldCkbxEnabled, oldExpandBtnSz = 1
+  let ckbxEnabled = true, expandBtnSz = 1;
+  let workspaceRefreshCache = 0;
 
-  // patch variables
-  let ogCheckboxBlock = Blockly.Blocks.checkbox;
-  let ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
+  // patch variables and functions
+  const ogWS2Dom = Blockly.Xml.workspaceToDom;
+  const ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
+
+  const fixedWorkspace2Dom = function(...args) {
+    const dom = ogWS2Dom.call(this, ...args);
+    if (!args[0].isFlyout) return dom;
+
+    // we only want to edit the flyout
+    const domArray = Array.from(dom.children);
+    for (const item of domArray) {
+      if (item.localName !== "block") continue;
+
+      for (const input of Array.from(item.children)) {
+        // clear checkboxes
+        if (item.localName !== "value") continue;
+        const shadow = input.firstChild;
+        if (shadow.getAttribute("type") === "checkbox") shadow.remove();
+      }
+    }
+
+    return dom;
+  }
 
   // internals
   function updateAllBlocks(flyoutOnly) {
@@ -29,16 +50,28 @@ export default async function({ addon }) {
   }
 
   function requestAddonState() {
-    checkboxesEnabled = addon.settings.get("checkboxesEnabled");
-    expandableButtonSize = addon.settings.get("expandableButtonSize") / 100;
-    Blockly.Procedures.ADDON_SP_CHECKBOXES_DISABLED = !checkboxesEnabled;
+    ckbxEnabled = addon.settings.get("checkboxesEnabled");
+    expandBtnSz = addon.settings.get("expandableButtonSize") / 100;
+    Blockly.Procedures.ADDON_SP_CHECKBOXES_DISABLED = !ckbxEnabled;
+  }
+
+  function applyChanges() {
+    requestAddonState();
+    toggleCheckboxes();
+    setExpandableSize();
+    updateAllBlocks(2 > workspaceRefreshCache);
+    workspaceRefreshCache = 0;
   }
 
   function toggleCheckboxes() {
-    if (checkboxesEnabled) Blockly.Blocks.checkbox = ogCheckboxBlock;
-    else delete Blockly.Blocks.checkbox;
+    if (oldCkbxEnabled === ckbxEnabled) return;
+    oldCkbxEnabled = ckbxEnabled;
+    workspaceRefreshCache++;
 
-    Blockly.scratchBlocksUtils.generateMutatorShadow = checkboxesEnabled ? ogMutatorBuilder : function(...args) {
+    if (ckbxEnabled) Blockly.Xml.workspaceToDom = ogWS2Dom;
+    else Blockly.Xml.workspaceToDom = fixedWorkspace2Dom;
+
+    Blockly.scratchBlocksUtils.generateMutatorShadow = ckbxEnabled ? ogMutatorBuilder : function(...args) {
       if (args[1] === "checkbox") return;
       ogCheckboxBlockInit.call(this, ...args);
     };
@@ -47,27 +80,19 @@ export default async function({ addon }) {
   }
 
   function setExpandableSize() {
+    if (oldExpandBtnSz === expandBtnSz) return;
+    oldExpandBtnSz = expandBtnSz;
+    workspaceRefreshCache = 2;
+
     // override these, ripped from the Blocks Repo with minor changes
-    Blockly.Blocks['control_expandableIf'].fixupButtons = function () {
-      const expandableInput = this.getInput("");
-      this.inputList.splice(this.inputList.indexOf(expandableInput), 1);
-      this.inputList.push(expandableInput);
-
-      expandableInput.setAlign(1);
-      const hiddenBtn = expandableInput.fieldRow[0];
-      hiddenBtn.size_.width = 0.5;
-      hiddenBtn.size_.height = (Blockly.BlockSvg.INPUT_SHAPE_HEIGHT + 16) * expandableButtonSize;
-      hiddenBtn.setVisible(false);
-    }
-
     const addImg = Blockly.FieldExpandableAdd.prototype.BTN_IMG;
     Blockly.FieldExpandableAdd.prototype.init = function() {
       if (this.fieldGroup_) return;
       Blockly.FieldExpandableAdd.superClass_.init.call(this);
 
-      const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandableButtonSize;
-      this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandableButtonSize;
-      this.size_.height *= expandableButtonSize;
+      const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandBtnSz;
+      this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandBtnSz;
+      this.size_.height *= expandBtnSz;
       this.overrideSep = 1;
       this.boxGroup_ = Blockly.utils.createSvgElement('g', {}, null);
       this.box_ = Blockly.utils.createSvgElement('rect', {
@@ -92,9 +117,9 @@ export default async function({ addon }) {
       if (this.fieldGroup_) return;
       Blockly.FieldExpandableRemove.superClass_.init.call(this);
 
-      const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandableButtonSize;
-      this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandableButtonSize;
-      this.size_.height *= expandableButtonSize;
+      const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandBtnSz;
+      this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandBtnSz;
+      this.size_.height *= expandBtnSz;
       this.overrideSep = 1;
       this.boxGroup_ = Blockly.utils.createSvgElement('g', {}, null);
       this.box_ = Blockly.utils.createSvgElement('rect', {
@@ -113,31 +138,28 @@ export default async function({ addon }) {
       );
       this.fieldGroup_.insertBefore(this.boxGroup_, this.textElement_);
     };
+
+    // fix block chin height
+    Blockly.Blocks['control_expandableIf'].fixupButtons = function() {
+      const expandableInput = this.getInput("");
+      this.inputList.splice(this.inputList.indexOf(expandableInput), 1);
+      this.inputList.push(expandableInput);
+
+      expandableInput.setAlign(1);
+      const hiddenBtn = expandableInput.fieldRow[0];
+      hiddenBtn.size_.width = 0.5;
+      hiddenBtn.size_.height = (Blockly.BlockSvg.INPUT_SHAPE_HEIGHT + 16) * expandBtnSz;
+      hiddenBtn.setVisible(false);
+    }
   }
 
+  addon.self.addEventListener("reenabled", applyChanges);
+  addon.settings.addEventListener("change", applyChanges);
   addon.self.addEventListener("disabled", () => {
-    checkboxesEnabled = true,
-    expandableButtonSize = 1;
-    toggleCheckboxes();
-    setExpandableSize();
-    updateAllBlocks(true);
-  });
-  addon.self.addEventListener("reenabled", () => {
-    requestAddonState();
-    toggleCheckboxes();
-    setExpandableSize();
-    updateAllBlocks(checkboxesEnabled);
-  });
-  
-  addon.settings.addEventListener("change", () => {
-    requestAddonState();
-    toggleCheckboxes();
-    setExpandableSize();
-    updateAllBlocks(checkboxesEnabled);
+    ckbxEnabled = true,
+    expandBtnSz = 1;
+    applyChanges();
   });
 
-  requestAddonState();
-  toggleCheckboxes();
-  setExpandableSize();
-  updateAllBlocks(checkboxesEnabled || expandableButtonSize !== 1);
+  applyChanges();
 }
