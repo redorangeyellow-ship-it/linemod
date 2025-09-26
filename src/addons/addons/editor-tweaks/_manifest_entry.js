@@ -9,6 +9,13 @@ const manifest = {
       "link": "https://github.com/SharkPool-SP/"
     }
   ],
+  "info": [
+    {
+      "type": "notice",
+      "text": "Warning: Disabling checkboxes in Boolean inputs could possibly break certain projects that rely on its value.",
+      "id": "checkbox-disabling-notice"
+    }
+  ],
   "settings": [
     {
       "dynamic": true,
