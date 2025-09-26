@@ -13,6 +13,22 @@ export default async function({ addon }) {
   // patch variables and functions
   const ogWS2Dom = Blockly.Xml.workspaceToDom;
   const ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
+  const ogSetShadowDom = ScratchBlocks.RenderedConnection.prototype.setShadowDom;
+
+  const fixedSetShadowDom = function(...args) {
+    // prevent checkboxes from respawning
+    if (this.sourceBlock_.isInFlyout) {
+      if (args[0] && args[0].getAttribute("type") === "checkbox") {
+        this.shadowDom_ = null;
+        queueMicrotask(() => {
+          const shadowBlock = this.targetBlock();
+          if (shadowBlock) shadowBlock.dispose();
+        });
+        return;
+      }
+    }
+    return og.call(this, ...args);
+  };
 
   const fixedWorkspace2Dom = function(...args) {
     const dom = ogWS2Dom.call(this, ...args);
@@ -30,7 +46,6 @@ export default async function({ addon }) {
         if (shadow.getAttribute("type") === "checkbox") shadow.remove();
       }
     }
-
     return dom;
   }
 
@@ -68,8 +83,8 @@ export default async function({ addon }) {
     oldCkbxEnabled = ckbxEnabled;
     workspaceRefreshCache++;
 
-    if (ckbxEnabled) Blockly.Xml.workspaceToDom = ogWS2Dom;
-    else Blockly.Xml.workspaceToDom = fixedWorkspace2Dom;
+    Blockly.Xml.workspaceToDom = ckbxEnabled ? ogWS2Dom : fixedWorkspace2Dom;
+    Blockly.RenderedConnection.prototype.setShadowDom = ckbxEnabled ? ogSetShadowDom : fixedSetShadowDom;
 
     Blockly.scratchBlocksUtils.generateMutatorShadow = ckbxEnabled ? ogMutatorBuilder : function(...args) {
       if (args[1] === "checkbox") return;
