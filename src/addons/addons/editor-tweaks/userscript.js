@@ -22,10 +22,8 @@ export default async function({ addon }) {
       if (flyout) {
         const flyoutWorkspace = flyout.getWorkspace();
         Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.workspaceToDom(flyoutWorkspace), flyoutWorkspace);
-        if (!flyoutOnly) {
-          workspace.getToolbox().refreshSelection();
-          workspace.toolboxRefreshEnabled_ = true;
-        }
+        workspace.getToolbox().refreshSelection();
+        workspace.toolboxRefreshEnabled_ = true;
       }
     }
   }
