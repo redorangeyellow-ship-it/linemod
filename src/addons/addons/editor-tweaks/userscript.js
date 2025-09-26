@@ -10,7 +10,7 @@ export default async function({ addon }) {
       expandableButtonSize = 1;
 
   // patch variables
-  let ogCheckboxBlockInit = Blockly.Blocks.checkbox.init;
+  let ogCheckboxBlock = Blockly.Blocks.checkbox;
   let ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
 
   // internals
@@ -35,11 +35,8 @@ export default async function({ addon }) {
   }
 
   function toggleCheckboxes() {
-    Blockly.Blocks.checkbox.init = checkboxesEnabled ? ogCheckboxBlockInit : function(...args) {
-      ogCheckboxBlockInit.call(this, ...args);
-      this.useDragSurface_ = false;
-      this.workspace = null;
-    };
+    if (checkboxesEnabled) Blockly.Blocks.checkbox = ogCheckboxBlock;
+    else delete Blockly.Blocks.checkbox;
 
     Blockly.scratchBlocksUtils.generateMutatorShadow = checkboxesEnabled ? ogMutatorBuilder : function(...args) {
       if (args[1] === "checkbox") return;
