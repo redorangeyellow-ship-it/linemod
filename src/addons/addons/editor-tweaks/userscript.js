@@ -15,21 +15,6 @@ export default async function({ addon }) {
   const ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
   const ogSetShadowDom = ScratchBlocks.RenderedConnection.prototype.setShadowDom;
 
-  const fixedSetShadowDom = function(...args) {
-    // prevent checkboxes from respawning
-    if (this.sourceBlock_.isInFlyout) {
-      if (args[0] && args[0].getAttribute("type") === "checkbox") {
-        this.shadowDom_ = null;
-        queueMicrotask(() => {
-          const shadowBlock = this.targetBlock();
-          if (shadowBlock) shadowBlock.dispose();
-        });
-        return;
-      }
-    }
-    return og.call(this, ...args);
-  };
-
   const fixedWorkspace2Dom = function(...args) {
     const dom = ogWS2Dom.call(this, ...args);
     if (!args[0].isFlyout) return dom;
@@ -48,6 +33,21 @@ export default async function({ addon }) {
     }
     return dom;
   }
+
+  const fixedSetShadowDom = function(...args) {
+    // prevent checkboxes from respawning
+    if (this.sourceBlock_.isInFlyout) {
+      if (args[0] && args[0].getAttribute("type") === "checkbox") {
+        this.shadowDom_ = null;
+        queueMicrotask(() => {
+          const shadowBlock = this.targetBlock();
+          if (shadowBlock) shadowBlock.dispose();
+        });
+        return;
+      }
+    }
+    return ogSetShadowDom.call(this, ...args);
+  };
 
   // internals
   function updateAllBlocks(flyoutOnly) {
