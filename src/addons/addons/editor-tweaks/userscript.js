@@ -33,7 +33,7 @@ export default async function({ addon }) {
   function requestAddonState() {
     checkboxesEnabled = addon.settings.get("checkboxesEnabled");
     expandableButtonSize = addon.settings.get("expandableButtonSize") / 100;
-    Blockly.Procedures.ADDON_SP_CHECKBOXES_DISABLED = checkboxesEnabled;
+    Blockly.Procedures.ADDON_SP_CHECKBOXES_DISABLED = !checkboxesEnabled;
   }
 
   function toggleCheckboxes() {
