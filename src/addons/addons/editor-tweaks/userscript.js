@@ -118,7 +118,7 @@ export default async function({ addon }) {
     if (oldBlocksGlow === blocksGlow) return;
     oldBlocksGlow = blocksGlow;
 
-    const workspace = workspace.getMainWorkspace();
+    const workspace = Blockly.getMainWorkspace();
     if (!workspace) {
         console.warn("Editor Tweaks: Error -- Could not remove glow from workspace");
         oldBlocksGlow = undefined;
