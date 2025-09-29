@@ -590,6 +590,14 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'SharkPool\'s Temporary Variables',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
+        iconURL: 'https://sharkpools-extensions.vercel.app/extension-thumbs/Temporary-Variables.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Create temporary runtime, threaded, sprite & scoped variables.',
+        featured: true
+    },
+    {
         name: 'TurboWarp Temporary Variables',
         extensionId: 'lmsTempVars2',
         iconURL: lilyTempVariablesExtensionIcon,
