@@ -109,6 +109,7 @@ export default async function({ addon }) {
     if (oldToolboxScrolls === toolboxScrolls) return;
     oldToolboxScrolls = toolboxScrolls;
 
+    // TODO fix on init
     Blockly.Flyout.prototype.startScrollAnimation = toolboxScrolls ? ogStartScrollAnim : function() {
       this.stepScrollAnimation(1);
     }
@@ -142,7 +143,6 @@ export default async function({ addon }) {
 
     // patch glow functions to not... glow. Instead give a lighter indicator
     const BlockSvgProto = Blockly.BlockSvg.prototype;
-    console.log("changing glow function", blocksGlow);
     BlockSvgProto.setGlowStack = blocksGlow ? ogGlowFuncs.run : function(isGlowingStack) {
       this.isGlowingStack_ = isGlowingStack;
       this.getSvgRoot().removeAttribute("filter"); //remove old glow
