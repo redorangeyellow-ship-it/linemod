@@ -19,6 +19,20 @@ const manifest = {
       "default": true
     },
     {
+      "dynamic": true,
+      "name": "Toggle scrolling animation in the Toolbox",
+      "id": "toolboxScrolling",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "dynamic": false,
+      "name": "Toggle Block Glow & Shadows in the Editor",
+      "id": "blocksGlow",
+      "type": "boolean",
+      "default": true
+    },
+    {
       "id": "expandableButtonSize",
       "name": "Expandable Button Size (0-500%)",
       "type": "integer",
