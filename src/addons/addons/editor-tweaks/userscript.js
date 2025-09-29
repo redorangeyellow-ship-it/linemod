@@ -117,6 +117,7 @@ export default async function({ addon }) {
   function toggleBlockGlow() {
     if (oldBlocksGlow === blocksGlow) return;
     oldBlocksGlow = blocksGlow;
+    if (blocksGlow) return;
 
     const workspace = Blockly.getMainWorkspace();
     if (!workspace) {
@@ -141,6 +142,7 @@ export default async function({ addon }) {
 
     // patch glow functions to not... glow. Instead give a lighter indicator
     const BlockSvgProto = Blockly.BlockSvg.prototype;
+    console.log("changing glow function", blocksGlow);
     BlockSvgProto.setGlowStack = blocksGlow ? ogGlowFuncs.run : function(isGlowingStack) {
       this.isGlowingStack_ = isGlowingStack;
       this.getSvgRoot().removeAttribute("filter"); //remove old glow
