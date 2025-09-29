@@ -6,14 +6,21 @@ export default async function({ addon }) {
   const vm = addon.tab.traps.vm;
 
   // addon settings
-  let oldCkbxEnabled, oldExpandBtnSz = 1
-  let ckbxEnabled = true, expandBtnSz = 1;
+  let oldCkbxEnabled, oldToolboxScrolls, oldBlocksGlow, oldExpandBtnSz = 1;
+  let ckbxEnabled = true, toolboxScrolls = true, blocksGlow = true, expandBtnSz = 1;
   let workspaceRefreshCache = 0;
 
   // patch variables and functions
   const ogWS2Dom = Blockly.Xml.workspaceToDom;
   const ogMutatorBuilder = Blockly.scratchBlocksUtils.generateMutatorShadow;
   const ogSetShadowDom = ScratchBlocks.RenderedConnection.prototype.setShadowDom;
+  const ogStartScrollAnim = Blockly.Flyout.prototype.startScrollAnimation;
+  const ogGlowFuncs = {
+    run: Blockly.BlockSvg.prototype.setGlowStack,
+    error: Blockly.BlockSvg.prototype.setErrorStack,
+    replace1: Blockly.BlockSvg.prototype.highlightForReplacement,
+    replace2: Blockly.BlockSvg.prototype.highlightShapeForInput
+  };
 
   const fixedWorkspace2Dom = function(...args) {
     const dom = ogWS2Dom.call(this, ...args);
@@ -66,6 +73,8 @@ export default async function({ addon }) {
 
   function requestAddonState() {
     ckbxEnabled = addon.settings.get("checkboxesEnabled");
+    toolboxScrolls = addon.settings.get("toolboxScrolling");
+    blocksGlow = addon.settings.get("blocksGlow");
     expandBtnSz = addon.settings.get("expandableButtonSize") / 100;
     Blockly.Procedures.ADDON_SP_CHECKBOXES_DISABLED = !ckbxEnabled;
   }
@@ -73,6 +82,8 @@ export default async function({ addon }) {
   function applyChanges() {
     requestAddonState();
     toggleCheckboxes();
+    toggleToolBoxScroll();
+    toggleBlockGlow();
     setExpandableSize();
     updateAllBlocks(2 > workspaceRefreshCache);
     workspaceRefreshCache = 0;
@@ -92,6 +103,103 @@ export default async function({ addon }) {
     };
 
     Blockly.Blocks["control_expandableIf"].fillInBlock = Blockly.scratchBlocksUtils.generateMutatorShadow;
+  }
+
+  function toggleToolBoxScroll() {
+    if (oldToolboxScrolls === toolboxScrolls) return;
+    oldToolboxScrolls = toolboxScrolls;
+
+    Blockly.Flyout.prototype.startScrollAnimation = toolboxScrolls ? ogStartScrollAnim : function() {
+      this.stepScrollAnimation(1);
+    }
+  }
+
+  function toggleBlockGlow() {
+    if (oldBlocksGlow === blocksGlow) return;
+    oldBlocksGlow = blocksGlow;
+
+    const workspace = workspace.getMainWorkspace();
+    if (!workspace) {
+        console.warn("Editor Tweaks: Error -- Could not remove glow from workspace");
+        oldBlocksGlow = undefined;
+        return;
+    }
+
+    // these are shared across workspaces, remove to save RAM
+    workspace.options.stackGlowBlur.parentNode.remove();
+    workspace.options.stackGlowBlurError.parentNode.remove();
+    workspace.options.stackReplaceGlow.remove();
+
+    const applyToOuterStack = (topBlock, func) => {
+        func(topBlock);
+        let nextBlock = topBlock.getNextBlock();
+        while (nextBlock !== null) {
+            func(nextBlock);
+            nextBlock = nextBlock.getNextBlock();
+        }
+    };
+
+    // patch glow functions to not... glow. Instead give a lighter indicator
+    const BlockSvgProto = Blockly.BlockSvg.prototype;
+    BlockSvgProto.setGlowStack = blocksGlow ? ogGlowFuncs.run : function(isGlowingStack) {
+      this.isGlowingStack_ = isGlowingStack;
+      this.getSvgRoot().removeAttribute("filter"); //remove old glow
+
+      if (isGlowingStack) applyToOuterStack(this, (block) => {
+        block.svgPath_.classList.remove("blocklyPath");
+        block.svgPath_.setAttribute("stroke", "#fff200");
+        block.svgPath_.setAttribute("stroke-width", "5");
+      });
+      else applyToOuterStack(this, (block) => {
+        block.svgPath_.classList.add("blocklyPath");
+        block.svgPath_.setAttribute("stroke", block.colourTertiary_);
+        block.svgPath_.removeAttribute("stroke-width");
+      });
+    };
+    BlockSvgProto.setErrorStack = blocksGlow ? ogGlowFuncs.error : function(isGlowingStack) {
+      this.isGlowingStack_ = isGlowingStack;
+      this.getSvgRoot().removeAttribute("filter"); //remove old glow
+
+      if (isGlowingStack) applyToOuterStack(this, (block) => {
+        block.svgPath_.classList.remove("blocklyPath");
+        block.svgPath_.setAttribute("stroke", "#ff0000");
+        block.svgPath_.setAttribute("stroke-width", "5");
+      });
+      else applyToOuterStack(this, (block) => {
+        block.svgPath_.classList.add("blocklyPath");
+        block.svgPath_.setAttribute("stroke", block.colourTertiary_);
+        block.svgPath_.removeAttribute("stroke-width");
+      });
+    };
+
+    BlockSvgProto.highlightForReplacement = blocksGlow ? ogGlowFuncs.replace1 : function(adding) {
+      this.getSvgRoot().removeAttribute("filter"); //remove old glow
+      if (adding) {
+        this.svgPath_.classList.remove("blocklyPath");
+        this.svgPath_.setAttribute("stroke", "#fff");
+        this.svgPath_.setAttribute("stroke-width", "6");
+      } else {
+        this.svgPath_.classList.add("blocklyPath");
+        this.svgPath_.setAttribute("stroke", this.colourTertiary_);
+        this.svgPath_.removeAttribute("stroke-width");
+      }
+    };
+    BlockSvgProto.highlightShapeForInput = blocksGlow ? ogGlowFuncs.replace2 : function(connection, adding) {
+      const input = this.getInputWithConnection(connection);
+      if (!input) throw 'No input found for the connection';
+      if (!input.outlinePath) return;
+
+      input.outlinePath.removeAttribute("filter"); //remove old glow
+      if (adding) {
+        input.outlinePath.classList.remove("blocklyPath");
+        input.outlinePath.setAttribute("stroke", "#fff");
+        input.outlinePath.setAttribute("stroke-width", "5");
+      } else {
+        input.outlinePath.classList.add("blocklyPath");
+        input.outlinePath.setAttribute("stroke", this.colourTertiary_);
+        input.outlinePath.removeAttribute("stroke-width");
+      }
+    };
   }
 
   function setExpandableSize() {
