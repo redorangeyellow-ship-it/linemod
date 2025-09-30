@@ -108,7 +108,6 @@ import pointerlockThumb from './penguinmod/extensions/pointerlock.png';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
 // LilyMakesThings 🙏
-// import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 import lilyTempVariablesExtensionIcon from './penguinmod/orgtw/TempVariables2.svg';
 
 // more icons so they arent just red when the extension color is not red
@@ -155,6 +154,7 @@ import sharkpoolLooksExpandedIcon from './penguinmod/extensions/looksExpanded.sv
 import spTurboSkinsIcon from './penguinmod/extensions/turboSkins.svg';
 import spFontManagerIcon from './penguinmod/extensions/fontManager.svg';
 import spSoundWaveIcon from './penguinmod/extensions/soundWaves.svg';
+import spTempVarsIcon from './penguinmod/extensions/sp_tempVars.svg';
 
 // events
 import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
@@ -176,9 +176,7 @@ import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators
 // gsa: ololololololo
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
 
-
 const urlParams = new URLSearchParams(location.search);
-
 const IsLocal = String(window.location.href).startsWith(`http://localhost:`);
 const IsLiveTests = urlParams.has('livetests');
 
@@ -592,7 +590,7 @@ const menuItems = [
     {
         name: 'SharkPool\'s Temporary Variables',
         extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
-        iconURL: 'https://sharkpools-extensions.vercel.app/extension-thumbs/Temporary-Variables.svg',
+        iconURL: spTempVarsIcon,
         tags: ['penguinmod', 'datamgmt'],
         description: 'Create temporary runtime, threaded, sprite & scoped variables.',
         featured: true
@@ -744,14 +742,14 @@ const menuItems = [
         extDeveloper: 'TheShovel',
         featured: true
     },
-    {
+    /*DEPRECATED{
         name: 'Color Utility Blocks',
         extensionId: 'colors',
         iconURL: gsaColorUtilExtensionIcon,
         tags: ['penguinmod'],
         description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
         featured: true
-    },
+    },*/
     {
         name: 'All Menus',
         extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
