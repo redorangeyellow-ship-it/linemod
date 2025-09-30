@@ -1046,7 +1046,15 @@ const operators = function (isInitialSetup) {
                 </shadow>
             </value>
         </block>
-        <block type="operator_expandableMath"></block>
+        <block type="operator_expandableMath">
+            <mutation inputcount="2" menuvalues="+"></mutation>
+            <value name="NUM1">
+                <shadow type="math_number"><field name="NUM">0</field></shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number"><field name="NUM">0</field></shadow>
+            </value>
+        </block>
         <block type="operator_advMathExpanded">
             <value name="ONE">
                 <shadow type="math_number">
