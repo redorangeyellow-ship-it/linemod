@@ -82,7 +82,7 @@ import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
-
+import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -936,6 +936,15 @@ const menuItems = [
         iconURL: jwLambdaExtensionThumb,
         tags: ['penguinmod'],
         description: 'Create anonymous functions with arguments and execute them.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Scope',
+        extensionId: 'jwScope',
+        iconURL: jwScopeExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Temporary variables based on the block stack. (extra blocks included if Array extension is added)',
         extDeveloper: 'jwklong',
         featured: true
     },
