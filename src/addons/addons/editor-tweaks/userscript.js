@@ -85,7 +85,7 @@ export default async function({ addon }) {
     toggleToolBoxScroll();
     toggleBlockGlow();
     setExpandableSize();
-    updateAllBlocks(2 > workspaceRefreshCache);
+    if (workspaceRefreshCache > 0) updateAllBlocks(2 > workspaceRefreshCache);
     workspaceRefreshCache = 0;
   }
 
