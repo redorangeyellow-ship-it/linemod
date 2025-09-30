@@ -6,7 +6,7 @@ export default async function({ addon }) {
   const vm = addon.tab.traps.vm;
 
   // addon settings
-  let oldCkbxEnabled, oldToolboxScrolls, oldBlocksGlow, oldExpandBtnSz = 1;
+  let oldCkbxEnabled = true, oldToolboxScrolls = true, oldBlocksGlow = true, oldExpandBtnSz = 1;
   let ckbxEnabled = true, toolboxScrolls = true, blocksGlow = true, expandBtnSz = 1;
   let workspaceRefreshCache = 0;
 
@@ -90,7 +90,6 @@ export default async function({ addon }) {
   }
 
   function toggleCheckboxes() {
-    console.log(oldCkbxEnabled, ckbxEnabled);
     if (oldCkbxEnabled === ckbxEnabled) return;
     oldCkbxEnabled = ckbxEnabled;
     workspaceRefreshCache++;
@@ -207,7 +206,6 @@ export default async function({ addon }) {
   }
 
   function setExpandableSize() {
-    console.log(oldExpandBtnSz, expandBtnSz);
     if (oldExpandBtnSz === expandBtnSz) return;
     oldExpandBtnSz = expandBtnSz;
     workspaceRefreshCache = 2;
