@@ -90,6 +90,7 @@ export default async function({ addon }) {
   }
 
   function toggleCheckboxes() {
+    console.log(oldCkbxEnabled, ckbxEnabled);
     if (oldCkbxEnabled === ckbxEnabled) return;
     oldCkbxEnabled = ckbxEnabled;
     workspaceRefreshCache++;
@@ -109,10 +110,11 @@ export default async function({ addon }) {
     if (oldToolboxScrolls === toolboxScrolls) return;
     oldToolboxScrolls = toolboxScrolls;
 
-    // TODO fix on init
     Blockly.Flyout.prototype.startScrollAnimation = toolboxScrolls ? ogStartScrollAnim : function() {
-      this.stepScrollAnimation(1);
-    }
+      this.scrollTime = -1;
+      this.scrollStart = this.scrollTarget;
+      this.stepScrollAnimation(performance.now());
+    };
   }
 
   function toggleBlockGlow() {
@@ -205,6 +207,7 @@ export default async function({ addon }) {
   }
 
   function setExpandableSize() {
+    console.log(oldExpandBtnSz, expandBtnSz);
     if (oldExpandBtnSz === expandBtnSz) return;
     oldExpandBtnSz = expandBtnSz;
     workspaceRefreshCache = 2;
