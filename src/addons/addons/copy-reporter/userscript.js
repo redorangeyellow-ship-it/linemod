@@ -59,7 +59,7 @@ export default async function ({ addon, console, msg }) {
         addon.tab.displayNoneWhileDisabled(copyButton);
 
         copyButton.onclick = () => navigator.clipboard.writeText(value);
-        valueReportBox.append(document.createElement("br"), copyButton);
+        valueReportBox.appendChild(copyButton);
       }
     }
 
