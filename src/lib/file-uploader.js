@@ -141,20 +141,6 @@ const costumeUpload = function (fileData, fileType, vm, handleCostume, handleErr
     }
     case 'image/gif': {
         let costumes = [];
-        if (window.test) {
-          gifDecoder(fileData, (frameNumber, dataUrl, numFrames) => {
-            costumes.push([frameNumber, dataUrl]);
-            if (frameNumber === numFrames - 1) {
-              console.log(1, costumes);
-          costumes = costumes.sort((a, b) => a[0] - b[0]);
-          console.log(2, costumes);
-          for (const gifFrame of costumes) {
-            costumeUpload(gifFrame[1], 'image/png', vm, handleCostume, handleError);
-          }
-            }
-          });
-          return;
-        }
 
         gifDecoder(fileData, (frameNumber, dataUrl, numFrames) => {
             costumeUpload(dataUrl, 'image/png', vm, costumes_ => {
