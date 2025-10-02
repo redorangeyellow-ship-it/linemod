@@ -140,11 +140,16 @@ const costumeUpload = function (fileData, fileType, vm, handleCostume, handleErr
         return;
     }
     case 'image/gif': {
-        window.test = [];
         let costumes = [];
 
+        if (window.test) {
+          gifDecoder(fileData, (frameNumber, dataUrl, numFrames) => {
+            costumeUpload(dataUrl, 'image/png', vm, handleCostume, handleError);
+          });
+          return;
+        }
+
         gifDecoder(fileData, (frameNumber, dataUrl, numFrames) => {
-            window.test.push(dataUrl);
             costumeUpload(dataUrl, 'image/png', vm, costumes_ => {
                 costumes = costumes.concat(costumes_);
                 if (frameNumber === numFrames - 1) {
