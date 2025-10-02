@@ -30,7 +30,7 @@ export default async function ({ addon, console, msg }) {
     ScratchBlocks.DropDownDiv.clearContent();
     var contentDiv = ScratchBlocks.DropDownDiv.getContentDiv();
 
-    var valueReportBox = goog.dom.createElement('div');
+    var valueReportBox = ScratchBlocks.goog.dom.createElement('div');
     valueReportBox.setAttribute('class', 'valueReportBox');
     if (typeof value !== 'object' || typeof value.toReporterContent !== 'function') {
       valueReportBox.textContent = String(value);
