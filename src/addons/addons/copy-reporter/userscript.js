@@ -32,7 +32,7 @@ export default async function ({ addon, console, msg }) {
 
     var valueReportBox = ScratchBlocks.goog.dom.createElement('div');
     valueReportBox.setAttribute('class', 'valueReportBox');
-    if (typeof value !== 'object' || typeof value.toReporterContent !== 'function') {
+    if (typeof value !== 'object' || value === null || typeof value.toReporterContent !== 'function') {
       valueReportBox.textContent = String(value);
     } else {
       valueReportBox.appendChild(value.toReporterContent());
