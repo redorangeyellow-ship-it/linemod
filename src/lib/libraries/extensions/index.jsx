@@ -601,24 +601,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Objects',
-        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
-        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Store data efficiently in multi-purpose objects.',
-        extDeveloper: 'DogeisCut',
-        featured: true
-    },
-    {
-        name: 'Arrays',
-        extensionId: 'jwArray',
-        iconURL: jwArrayExtensionThumb,
-        tags: ['penguinmod', 'datamgmt'],
-        description: 'Store data efficiently in multi-purpose arrays.',
-        extDeveloper: 'jwklong',
-        featured: true
-    },
-    {
         name: 'Runtime Modifications',
         extensionId: 'jgRuntime',
         tags: ['penguinmod'],
@@ -860,6 +842,24 @@ const menuItems = [
         iconURL: jgJavascriptExtensionIcon,
         tags: ['penguinmod', 'programminglanguage'],
         description: 'Run your own custom code written in JavaScript!',
+        featured: true
+    },
+    {
+        name: 'Arrays',
+        extensionId: 'jwArray',
+        iconURL: jwArrayExtensionThumb,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data efficiently in multi-purpose arrays.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Objects',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data efficiently in multi-purpose objects.',
+        extDeveloper: 'DogeisCut',
         featured: true
     },
     {
