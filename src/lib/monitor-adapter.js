@@ -56,7 +56,7 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
             if (typeof item === 'boolean') {
                 value[i] = item.toString();
             }
-            if (typeof item === 'object') {
+            if (typeof item === 'object' && item !== null) {
                 // check if this is a pure object or custom display
                 if (typeof (item.toListItem || value.toMonitorContent || item.toReporterContent) === 'function') {
                     value[i].isHTML = true;
