@@ -1487,6 +1487,8 @@ const liveTests = function () {
             <mutation proccode="tw:debugger;" argumentids="[]" warp="false" returns="null" edited="true" optype="null"></mutation>
         </block>
         ${blockSeparator}
+        <block type="operator_expandableBool"></block>
+        <block type="operator_expandableCompare"></block>
         <block type="control_fieldbutton"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
