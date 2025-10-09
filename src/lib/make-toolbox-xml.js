@@ -1487,8 +1487,24 @@ const liveTests = function () {
             <mutation proccode="tw:debugger;" argumentids="[]" warp="false" returns="null" edited="true" optype="null"></mutation>
         </block>
         ${blockSeparator}
-        <block type="operator_expandableBool"></block>
-        <block type="operator_expandableCompare"></block>
+        <block type="operator_expandableBool">
+            <mutation inputcount="2" menuvalues=""></mutation>
+            <value name="BOOL1">
+                <shadow type="checkbox"><field name="CHECKBOX"></field></shadow>
+            </value>
+            <value name="BOOL2">
+                <shadow type="checkbox"><field name="CHECKBOX"></field></shadow>
+            </value>
+        </block>
+        <block type="operator_expandableCompare">
+        <mutation inputcount="2" menuvalues=""></mutation>
+            <value name="INPUT1">
+                <shadow type="text"><field name="TEXT"></field></shadow>
+            </value>
+            <value name="INPUT2">
+                <shadow type="text"><field name="TEXT"></field></shadow>
+            </value>
+        </block>
         <block type="control_fieldbutton"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
