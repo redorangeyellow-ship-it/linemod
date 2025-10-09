@@ -103,6 +103,7 @@ export default async function({ addon }) {
     };
 
     Blockly.Blocks["control_expandableIf"].fillInBlock = Blockly.scratchBlocksUtils.generateMutatorShadow;
+    Blockly.Blocks["operator_expandableBool"].fillInBlock = Blockly.scratchBlocksUtils.generateMutatorShadow;
   }
 
   function toggleToolBoxScroll() {
