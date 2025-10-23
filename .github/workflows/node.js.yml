@@ -47,7 +47,7 @@ jobs:
     - name: Install dependencies and build site
       run: |
         #npm i -g pnpm@v6
-        pnpm install --shamefully-hoist --frozen-lockfile
+        pnpm install --shamefully-hoist
         NODE_ENV="production" webpack --bail --cache
 
     - name: Upload artifact 
