@@ -241,7 +241,7 @@ module.exports = [
                 ]
             }),
             new TWGenerateServiceWorkerPlugin(),
-            new HashCachePlugin(".webpack/cache")
+            new HashCachePlugin({cacheDir: ".webpack/cache"})
         ])
     })
 ].concat(
