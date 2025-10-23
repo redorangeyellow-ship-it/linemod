@@ -38,12 +38,14 @@ jobs:
         
     - name: Make sure webpack cache dir exists
       run: |
-        mkdir -p ".webpack/cache"
+        mkdir -p ".webpack/cache1-babel"
+        mkdir -p ".webpack/cache2-postcss"
+        mkdir -p ".webpack/cache3-hard-source"
 
     - name: Cache webpack build
       uses: actions/cache@v3
       with:
-        path: .webpack/cache
+        path: .webpack/cache*
         key: ${{ runner.os }}-webpack-${{ hashFiles('**/webpack.config.js') }}-${{ hashFiles('package.json') }}
         restore-keys: |
           ${{ runner.os }}-webpack-
