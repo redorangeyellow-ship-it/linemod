@@ -111,13 +111,13 @@ const base = {
             }, {
                 loader: 'postcss-loader',
                 options: {
-                    // postcss-loader v4+ uses postcssOptions
-                    postcssOptions: {
-                        plugins: [
+                    ident: 'postcss',
+                    plugins: function () {
+                        return [
                             postcssImport,
                             postcssVars,
                             autoprefixer
-                        ]
+                        ];
                     }
                 }
             }]
