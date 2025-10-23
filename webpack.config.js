@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
+var { HashCachePlugin } = require("webpack-hash-cache");
 var defaultsdeep = require('lodash.defaultsdeep');
 //var GhPagesWebpackPlugin = require('gh-pages-webpack-plugin');
 
@@ -31,12 +32,8 @@ const htmlWebpackPluginCommon = {
 const base = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     devtool: process.env.SOURCEMAP ? process.env.SOURCEMAP : process.env.NODE_ENV === 'production' ? false : 'cheap-module-source-map',
-    // webpack 5: devServer.contentBase -> devServer.static
     devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'build'),
-            // you can set publicPath here if needed, but we use historyApiFallback rewrites below
-        },
+        contentBase: path.resolve(__dirname, 'build'),
         host: '0.0.0.0',
         compress: true,
         port: process.env.PORT || 8601,
@@ -63,16 +60,11 @@ const base = {
         alias: {
             'text-encoding$': path.resolve(__dirname, 'src/lib/tw-text-encoder'),
             'scratch-render-fonts$': path.resolve(__dirname, 'src/lib/tw-scratch-render-fonts')
-        },
-        // webpack 5: replace node: { fs: 'empty' } with fallback
-        // Added vm polyfill here. Make sure to `npm install vm-browserify`.
-        fallback: {
-            fs: false,
-            vm: require.resolve('vm-browserify'),
-            buffer: require.resolve('buffer/')
         }
     },
-    // remove deprecated `node` option (we're using resolve.fallback instead)
+    node: {
+        fs: 'empty'
+    },
     module: {
         rules: [{
             test: /\.jsx?$/,
@@ -101,13 +93,10 @@ const base = {
             }, {
                 loader: 'css-loader',
                 options: {
-                    // webpack 5 css-loader modules shape
-                    modules: {
-                        localIdentName: '[name]_[local]_[hash:base64:5]'
-                    },
+                    modules: true,
                     importLoaders: 1,
-                    // camelCase deprecated; exportLocalsConvention provides the replacement
-                    exportLocalsConvention: 'camelCase',
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    camelCase: true
                 }
             }, {
                 loader: 'postcss-loader',
@@ -131,14 +120,9 @@ const base = {
 if (!process.env.CI) {
     base.plugins.push(new webpack.ProgressPlugin());
 }
-base.plugins.push(
-    new webpack.ProvidePlugin({
-        Buffer: ['buffer', 'Buffer']
-    })
-);
-
 
 module.exports = [
+    // to run editor examples
     defaultsDeep({}, base, {
         entry: {
             'editor': './src/playground/editor.jsx',
@@ -154,13 +138,11 @@ module.exports = [
         },
         module: {
             rules: base.module.rules.concat([
-                // webpack 5 asset modules replace file-loader
                 {
                     test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
-                    type: 'asset/resource',
-                    generator: {
-                        // preserve your previous output path
-                        filename: 'static/assets/[name][hash][ext]'
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'static/assets/'
                     }
                 }
             ])
@@ -174,7 +156,6 @@ module.exports = [
             }
         },
         plugins: base.plugins.concat([
-            // Keep DefinePlugin exactly as you had it
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
                 'process.env.DEBUG': Boolean(process.env.DEBUG),
@@ -260,6 +241,7 @@ module.exports = [
                 ]
             }),
             new TWGenerateServiceWorkerPlugin(),
+            new HashCachePlugin({cacheDir: ".webpack/cache"})
         ])
     })
 ].concat(
@@ -271,13 +253,7 @@ module.exports = [
                 'scratch-gui': './src/index.js'
             },
             output: {
-                // webpack 5 library format
-                library: {
-                    name: 'GUI',
-                    type: 'umd'
-                },
-                // ensure UMD works in different environments
-                globalObject: 'this',
+                libraryTarget: 'umd',
                 filename: 'js/[name].js',
                 chunkFilename: 'js/[name].js',
                 path: path.resolve('dist'),
@@ -291,10 +267,9 @@ module.exports = [
                 rules: base.module.rules.concat([
                     {
                         test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
-                        type: 'asset/resource',
-                        generator: {
-                            filename: 'static/assets/[name][hash][ext]',
-                            // publicPath for dist build to serve from STATIC_PATH
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'static/assets/',
                             publicPath: `${STATIC_PATH}/assets/`
                         }
                     }
@@ -309,6 +284,7 @@ module.exports = [
                         }
                     ]
                 }),
+                // Include library JSON files for scratch-desktop to use for downloading
                 new CopyWebpackPlugin({
                     patterns: [
                         {
