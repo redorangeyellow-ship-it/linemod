@@ -20,15 +20,31 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+
     - name: Setup GitHub Pages
       id: pages
       uses: actions/configure-pages@v1
+
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 16.x
+        cache: 'pnpm'
+
+    - name: Cache webpack build
+      uses: actions/cache@v3
+      with:
+        path: .webpack/cache
+        key: ${{ runner.os }}-webpack-${{ hashFiles('**/webpack.config.js') }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-webpack-
+
     - name: Install dependencies and build site
-      run: npm i -g pnpm@v6 && pnpm up && pnpm i --shamefully-hoist --force && NODE_ENV="production" webpack --bail
+      run: |
+        npm i -g pnpm@v6
+        pnpm install --shamefully-hoist --frozen-lockfile
+        NODE_ENV="production" webpack --bail --cache
+
     - name: Upload artifact 
       uses: actions/upload-pages-artifact@v3
       with:
