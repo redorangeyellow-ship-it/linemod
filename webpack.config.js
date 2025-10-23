@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { HashCachePlugin } = require("webpack-hash-cache");
 
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 const root = process.env.ROOT || '';
@@ -173,7 +172,6 @@ const base = {
                 { from: 'extensions/**', to: 'static', context: 'src/examples' }
             ]
         }),
-        new HashCachePlugin({ cacheDir: ".webpack/cache" })
     ]
 };
 
