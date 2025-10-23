@@ -144,7 +144,8 @@
     "webpack-dev-server": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "webpack-sources": "^3.3.3",
-    "vm-browserify": "^1.1.2"
+    "vm-browserify": "^1.1.2",
+    "buffer": "^6.0.3"
   },
   "jest": {
     "setupFiles": [
