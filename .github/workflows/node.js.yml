@@ -35,12 +35,16 @@ jobs:
       with:
         node-version: 16.x
         cache: 'pnpm'
+        
+    - name: Make sure webpack cache dir exists
+      run: |
+        mkdir -p ".webpack/cache"
 
     - name: Cache webpack build
       uses: actions/cache@v3
       with:
         path: .webpack/cache
-        key: ${{ runner.os }}-webpack-${{ hashFiles('**/webpack.config.js') }}-${{ hashFiles('pnpm-lock.yaml') }}
+        key: ${{ runner.os }}-webpack-${{ hashFiles('**/webpack.config.js') }}-${{ hashFiles('package.json') }}
         restore-keys: |
           ${{ runner.os }}-webpack-
 
