@@ -6,7 +6,6 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
-var { HashCachePlugin } = require("webpack-hash-cache");
 var defaultsdeep = require('lodash.defaultsdeep');
 //var GhPagesWebpackPlugin = require('gh-pages-webpack-plugin');
 
@@ -36,7 +35,6 @@ const base = {
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'build'),
-            // you can set publicPath here if needed, but we use historyApiFallback rewrites below
         },
         host: '0.0.0.0',
         compress: true,
@@ -154,7 +152,6 @@ module.exports = [
                     test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     type: 'asset/resource',
                     generator: {
-                        // preserve your previous output path
                         filename: 'static/assets/[name][hash][ext]'
                     }
                 }
@@ -169,7 +166,6 @@ module.exports = [
             }
         },
         plugins: base.plugins.concat([
-            // Keep DefinePlugin exactly as you had it
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
                 'process.env.DEBUG': Boolean(process.env.DEBUG),
@@ -255,8 +251,7 @@ module.exports = [
                 ]
             }),
             new TWGenerateServiceWorkerPlugin(),
-            // keep your HashCachePlugin (you can still use webpack's built-in cache as well)
-            new HashCachePlugin({cacheDir: ".webpack/cache"})
+            
         ])
     })
 ].concat(
