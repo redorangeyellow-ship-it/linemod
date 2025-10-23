@@ -68,7 +68,8 @@ const base = {
         // Added vm polyfill here. Make sure to `npm install vm-browserify`.
         fallback: {
             fs: false,
-            vm: require.resolve('vm-browserify')
+            vm: require.resolve('vm-browserify'),
+            buffer: require.resolve('buffer/')
         }
     },
     // remove deprecated `node` option (we're using resolve.fallback instead)
@@ -130,6 +131,12 @@ const base = {
 if (!process.env.CI) {
     base.plugins.push(new webpack.ProgressPlugin());
 }
+base.plugins.push(
+    new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer']
+    })
+);
+
 
 module.exports = [
     defaultsDeep({}, base, {
