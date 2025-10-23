@@ -45,7 +45,10 @@ jobs:
     - name: Cache webpack build
       uses: actions/cache@v3
       with:
-        path: .webpack/cache*
+        path: |
+            .webpack/cache1-babel
+            .webpack/cache2-postcss
+            .webpack/cache3-hard-source
         key: ${{ runner.os }}-webpack-${{ hashFiles('**/webpack.config.js') }}-${{ hashFiles('package.json') }}
         restore-keys: |
           ${{ runner.os }}-webpack-
