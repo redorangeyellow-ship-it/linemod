@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
+var { HashCachePlugin } = require("webpack-hash-cache");
 var defaultsdeep = require('lodash.defaultsdeep');
 //var GhPagesWebpackPlugin = require('gh-pages-webpack-plugin');
 
@@ -239,7 +240,8 @@ module.exports = [
                     }
                 ]
             }),
-            new TWGenerateServiceWorkerPlugin()
+            new TWGenerateServiceWorkerPlugin(),
+            new HashCachePlugin(".webpack/cache")
         ])
     })
 ].concat(
