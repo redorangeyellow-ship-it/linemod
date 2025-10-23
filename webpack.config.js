@@ -35,6 +35,7 @@ const base = {
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'build'),
+            // you can set publicPath here if needed, but we use historyApiFallback rewrites below
         },
         host: '0.0.0.0',
         compress: true,
@@ -64,8 +65,10 @@ const base = {
             'scratch-render-fonts$': path.resolve(__dirname, 'src/lib/tw-scratch-render-fonts')
         },
         // webpack 5: replace node: { fs: 'empty' } with fallback
+        // Added vm polyfill here. Make sure to `npm install vm-browserify`.
         fallback: {
-            fs: false
+            fs: false,
+            vm: require.resolve('vm-browserify')
         }
     },
     // remove deprecated `node` option (we're using resolve.fallback instead)
@@ -124,13 +127,11 @@ const base = {
     ],
 };
 
-// Add progress plugin when not in CI
 if (!process.env.CI) {
     base.plugins.push(new webpack.ProgressPlugin());
 }
 
 module.exports = [
-    // to run editor examples
     defaultsDeep({}, base, {
         entry: {
             'editor': './src/playground/editor.jsx',
@@ -145,13 +146,13 @@ module.exports = [
             path: path.resolve(__dirname, 'build')
         },
         module: {
-            // keep base rules and add asset handling for static files
             rules: base.module.rules.concat([
                 // webpack 5 asset modules replace file-loader
                 {
                     test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     type: 'asset/resource',
                     generator: {
+                        // preserve your previous output path
                         filename: 'static/assets/[name][hash][ext]'
                     }
                 }
@@ -166,6 +167,7 @@ module.exports = [
             }
         },
         plugins: base.plugins.concat([
+            // Keep DefinePlugin exactly as you had it
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
                 'process.env.DEBUG': Boolean(process.env.DEBUG),
@@ -251,7 +253,6 @@ module.exports = [
                 ]
             }),
             new TWGenerateServiceWorkerPlugin(),
-            
         ])
     })
 ].concat(
@@ -301,7 +302,6 @@ module.exports = [
                         }
                     ]
                 }),
-                // Include library JSON files for scratch-desktop to use for downloading
                 new CopyWebpackPlugin({
                     patterns: [
                         {
