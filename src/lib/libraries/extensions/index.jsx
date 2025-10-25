@@ -71,7 +71,6 @@ import jgDebuggingIcon from './penguinmod/extensions/debugging.svg';
 
 import jwProtoExtensionIcon from './penguinmod/extensions/proto.svg';
 import jwUniteExtensionIcon from './penguinmod/extensions/Unite.png';
-import jwXmlExtensionIcon from './penguinmod/extensions/xml.png';
 
 import jwStructsExtensionIcon from './penguinmod/extensions/ooplogo.png';
 
@@ -82,6 +81,7 @@ import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
 import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
+import jwXMLExtensionIcon from './penguinmod/extensions/jwXML.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -1414,10 +1414,10 @@ if (IsLocal || IsLiveTests) {
         },
         {
             name: 'XML',
-            extensionId: 'jwXml',
-            iconURL: jwXmlExtensionIcon,
+            extensionId: 'jwXML',
+            iconURL: jwXMLExtensionIcon,
             tags: ['penguinmod', 'datamgmt'],
-            description: 'Enables the creation and getting of XML data. Not yet able to modify data.',
+            description: 'Creating, parsing and modifying XML data.',
             extDeveloper: 'jwklong',
             featured: true
         },
