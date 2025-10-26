@@ -873,6 +873,15 @@ const menuItems = [
         featured: true
     },
     {
+        name: 'XML',
+        extensionId: 'jwXML',
+        iconURL: jwXMLExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Creating, parsing and modifying XML data.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
         name: 'Targets',
         extensionId: 'jwTargets',
         iconURL: jwTargetsExtensionThumb,
@@ -1410,15 +1419,6 @@ if (IsLocal || IsLiveTests) {
             iconURL: jwUniteExtensionIcon,
             tags: ['penguinmod'],
             description: 'Legacy extension that was eventually merged into the default toolbox.',
-            featured: true
-        },
-        {
-            name: 'XML',
-            extensionId: 'jwXML',
-            iconURL: jwXMLExtensionIcon,
-            tags: ['penguinmod', 'datamgmt'],
-            description: 'Creating, parsing and modifying XML data.',
-            extDeveloper: 'jwklong',
             featured: true
         },
         {
