@@ -170,7 +170,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             zip.file("project.json", JSON.stringify(json));
                             
                             if (typeof project.assets !== 'object') {
-                                alert('Invalid list of assets was returned for this project');
+                                alert('No assets were returned. This error is temporary and should not be reported.');
                                 throw new TypeError('Invalid type given inside the assets list');
                             }
                             for (const asset of project.assets) {
@@ -223,7 +223,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             zip.file("project.json", JSON.stringify(json));
                             
                             if (typeof project.assets !== 'object') {
-                                alert('Invalid list of assets was returned for this project');
+                                alert('No assets were returned. This error is temporary and should not be reported.');
                                 throw new TypeError('Invalid type given inside the assets list');
                             }
                             for (const asset of project.assets) {
