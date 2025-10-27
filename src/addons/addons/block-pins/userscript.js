@@ -93,16 +93,43 @@ export default async function({ addon }) {
     return label;
   };
 
+  const specifyType = (block) => {
+    let type = block.type;
+    if (type === "data_variable" || type === "data_listcontents") {
+      type += "||v||" + block.getVars()[0];
+    } else if (type === "procedures_call") {
+      type += "||p||" + block.getProcCode();
+    }
+    return type;
+  };
+
+  const getBlockByType = (type, ws) => {
+    const typeMeta = type.split("||");
+    const blocks = Object.values(ws.blockDB_);
+    if (typeMeta.length === 1) return blocks.find(b => b.type === type);
+    else {
+      const candidates = blocks.filter(b => b.type === type);
+      for (const test of candidates) {
+        if (typeMeta[1] === "p") {
+          if (test.getProcCode() === typeMeta[2]) return test;
+        }
+        if (typeMeta[1] === "v") {
+          if (test.getVars()[0] === typeMeta[2]) return test;
+        }
+      }
+      return null;
+    }
+  };
+
   const populateCategory = () => {
     category.innerHTML = ""; // flush out blocks
 
     if (pins.length) {
       const flyoutWS = Blockly.mainWorkspace.getFlyout().workspace_;
       const blocksXML = [];
-      for (const id of pins) {
-        const block = flyoutWS.getBlockById(id);
+      for (const type of pins) {
+        const block = getBlockByType(type, flyoutWS);
         if (block) blocksXML.push(Blockly.Xml.blockToDom(block));
-        // TODO fix pinned sprite-variables being weird in other sprites
       }
       category.append(...blocksXML, gap);
     } else {
@@ -120,22 +147,18 @@ export default async function({ addon }) {
 
   const toggleBlockPin = (block, isPinning, forceOrder) => {
     const oldLength = pins.length;
-    let id = block.id;
-    let index = pins.indexOf(id);
-    if (index === -1) {
-        id = block.type;
-        index = pins.indexOf(id);
-    }
+    const type = specifyType(block.type);
+    const index = pins.indexOf(type);
 
     if (isPinning) {
       switch (forceOrder) {
         case "top":
           pins.splice(index, 1);
-          pins = [id, ...pins];
+          pins = [type, ...pins];
           break;
         case "bottom":
           pins.splice(index, 1);
-          pins.push(id);
+          pins.push(type);
           break;
         case "category": {
           const toolbox = Blockly.mainWorkspace.getToolbox();
@@ -143,7 +166,7 @@ export default async function({ addon }) {
           const categories = toolbox.categoryMenu_.categories_.map(c => c.id_);
 
           const getCategoryInd = (id) => {
-            const block = flyoutWS.getBlockById(id);
+            const block = getBlockByType(id, flyoutWS);
             let cateID = block.category_;
             if (cateID === "data") cateID = "variables";
             else if (cateID === "data-lists") cateID = "lists";
@@ -155,7 +178,7 @@ export default async function({ addon }) {
           break;
         }
         default:
-          pins.push(id);
+          if (index === -1) pins.push(type);
       }
     } else if (index > -1) {
       pins.splice(index, 1);
@@ -176,8 +199,7 @@ export default async function({ addon }) {
     var menuOptions = [];
     if (this.isDeletable() && this.isMovable()) {
       if (block.isInFlyout) {
-        console.log(pins, block);
-        if (pins.includes(block.id) || pins.includes(block.type)) {
+        if (pins.includes(specifyType(block.type))) {
           shouldPatchClasses = true;
           menuOptions.push(
             createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
