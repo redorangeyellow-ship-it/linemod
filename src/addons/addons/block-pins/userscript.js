@@ -17,7 +17,7 @@ export default async function({ addon }) {
   const gap = document.createElementNS("http://www.w3.org/1999/xml", "sep");
   gap.setAttribute("gap", "36");
 
-  let populateInit = false;
+  let populateInit = 0; // counts up to 3, any 'populate' call while this is less than 3 will update the toolbox
   let pins = loadPins();
 
   const autoLoadExtPins = addon.settings.get("autoLoadExts");
@@ -220,8 +220,8 @@ export default async function({ addon }) {
 
   const ogPopulate = Blockly.Toolbox.CategoryMenu.prototype.populate;
   Blockly.Toolbox.CategoryMenu.prototype.populate = function(newTree) {
-    if (!populateInit) {
-      populateInit = true;
+    if (populateInit < 3) {
+      populateInit++;
       setTimeout(() => {
         // 1 second is a good buffer
         populateCategory();
