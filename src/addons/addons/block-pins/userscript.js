@@ -205,6 +205,7 @@ export default async function({ addon }) {
             createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
             createMenuItem("Move to Bottom", true, () => toggleBlockPin(block, true, "bottom")),
             createMenuItem("Organize by Category", true, () => toggleBlockPin("", true, "category")),
+            createMenuItem("Pin", false, () => {}),
             createMenuItem("Unpin", true, () => toggleBlockPin(block, false))
           );
         } else {
