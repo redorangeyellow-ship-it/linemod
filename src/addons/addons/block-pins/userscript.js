@@ -104,6 +104,7 @@ export default async function({ addon }) {
   };
 
   const getBlockByType = (type, ws) => {
+      console.log(type, pins);
     const typeMeta = type.split("||");
     const blocks = Object.values(ws.blockDB_);
     if (typeMeta.length === 1) return blocks.find(b => b.type === type);
