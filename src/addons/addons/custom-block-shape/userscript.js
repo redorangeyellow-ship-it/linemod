@@ -5,7 +5,7 @@ export default async function ({ addon, console }) {
     const BlockSvg = BlocklyInstance.BlockSvg;
     var vm = addon.tab.traps.vm;
 
-    const ogFieldImageInit = BlocklyInstance.FieldImage.prototype.init;
+    const ogFieldImageInit = Blockly.FieldImage.prototype.init;
 
     const { GRID_UNIT } = BlockSvg;
 
