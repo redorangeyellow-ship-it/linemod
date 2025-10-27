@@ -108,7 +108,7 @@ export default async function({ addon }) {
     const blocks = Object.values(ws.blockDB_);
     if (typeMeta.length === 1) return blocks.find(b => b.type === type);
     else {
-      const candidates = blocks.filter(b => b.type === type);
+      const candidates = blocks.filter(b => b.type === typeMeta[0]);
       for (const test of candidates) {
         if (typeMeta[1] === "p") {
           if (test.getProcCode() === typeMeta[2]) return test;
