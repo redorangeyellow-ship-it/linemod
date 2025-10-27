@@ -99,7 +99,7 @@ export default async function ({ addon, console }) {
       BlockSvg.NOTCH_WIDTH = 8 * GRID_UNIT * multiplier;
       BlockSvg.NOTCH_HEIGHT = 2 * GRID_UNIT * multiplier * notchSize;
       BlockSvg.NOTCH_START_PADDING = 3 * GRID_UNIT; //* multiplier
-      BlockSvg.ICON_SEPARATOR_HEIGHT = 10 * GRID_UNIT * multiplier;
+      BlockSvg.ICON_SEPARATOR_HEIGHT = 10 * GRID_UNIT * multiplier * iconSize;
 
       BlockSvg.NOTCH_PATH_LEFT =
         `c 2 0 3 ${1 * notchSize} 4 ${2 * notchSize} ` +
