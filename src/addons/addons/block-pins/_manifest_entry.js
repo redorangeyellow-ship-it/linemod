@@ -9,7 +9,13 @@ const manifest = {
       "link": "https://github.com/SharkPool-SP/"
     }
   ],
-  "info": [],
+  "info": [
+    {
+      "type": "notice",
+      "text": "Warning: Expect pinned Blocks with Checkboxes to behave weirdly when checked.",
+      "id": "checkbox-notice"
+    }
+  ],
   "settings": [
     {
       "dynamic": false,
