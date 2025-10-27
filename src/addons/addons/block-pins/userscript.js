@@ -177,7 +177,7 @@ export default async function({ addon }) {
     if (this.isDeletable() && this.isMovable()) {
       if (block.isInFlyout) {
         console.log(pins, block);
-        if (pins.includes(blockID)) {
+        if (pins.includes(block.id) || pins.includes(block.type)) {
           shouldPatchClasses = true;
           menuOptions.push(
             createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
