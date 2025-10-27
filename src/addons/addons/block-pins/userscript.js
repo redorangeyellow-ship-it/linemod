@@ -118,9 +118,15 @@ export default async function({ addon }) {
     storePins();
   };
 
-  const toggleBlockPin = (id, isPinning, forceOrder) => {
+  const toggleBlockPin = (block, isPinning, forceOrder) => {
     const oldLength = pins.length;
-    const index = pins.indexOf(id);
+    let id = block.id;
+    let index = pins.indexOf(id);
+    if (index === -1) {
+        id = block.type;
+        index = pins.indexOf(id);
+    }
+
     if (isPinning) {
       switch (forceOrder) {
         case "top":
@@ -171,18 +177,17 @@ export default async function({ addon }) {
     if (this.isDeletable() && this.isMovable()) {
       if (block.isInFlyout) {
         console.log(pins, block);
-        const blockID = block.id;
         if (pins.includes(blockID)) {
           shouldPatchClasses = true;
           menuOptions.push(
-            createMenuItem("Move to Top", true, () => toggleBlockPin(blockID, true, "top")),
-            createMenuItem("Move to Bottom", true, () => toggleBlockPin(blockID, true, "bottom")),
+            createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
+            createMenuItem("Move to Bottom", true, () => toggleBlockPin(block, true, "bottom")),
             createMenuItem("Organize by Category", true, () => toggleBlockPin("", true, "category")),
-            createMenuItem("Unpin", true, () => toggleBlockPin(block.id, false))
+            createMenuItem("Unpin", true, () => toggleBlockPin(block, false))
           );
         } else {
           menuOptions.push(
-            createMenuItem("Pin", true, () => toggleBlockPin(blockID, true)),
+            createMenuItem("Pin", true, () => toggleBlockPin(block, true)),
             createMenuItem("Unpin", false, () => {})
           );
         }
