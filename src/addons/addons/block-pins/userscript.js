@@ -266,6 +266,9 @@ export default async function({ addon }) {
   vm.runtime.on("PROJECT_LOADED", () => {
     populateInit = 0;
   });
+  if (!autoLoadExtPins) vm.runtime.on("EXTENSION_ADDED", () => {
+    populateInit = 2;
+  });
   addon.self.addEventListener("disabled", () => {
     localStorage.removeItem("ADDONS_BLOCK-PINS");
   });
