@@ -246,13 +246,16 @@ export default async function ({ addon, msg, console }) {
         return items;
       }
 
-      function getDescFromField(root) {
-        let fields = root.inputList[0];
-        let desc;
-        for (const fieldRow of fields.fieldRow) {
-          desc = (desc ? desc + " " : "") + fieldRow.getText();
+      function getDescFromField(root, optRecurse) {
+        let desc = "";
+        if (optRecurse) desc = root.toString();
+        else {
+          let fields = root.inputList[0];
+          for (const fieldRow of fields.fieldRow) {
+            desc += fieldRow.getText() + " ";
+          }
         }
-        return desc;
+        return desc.trim();
       }
 
       for (const root of topBlocks) {
@@ -314,7 +317,7 @@ export default async function ({ addon, msg, console }) {
       }
 
       for (const root of labelBlocks) {
-        addBlock("label", getDescFromField(root), root);
+        addBlock("label", getDescFromField(root, true), root);
       }
 
       const clsOrder = {
