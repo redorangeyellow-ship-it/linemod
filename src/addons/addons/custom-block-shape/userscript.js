@@ -333,6 +333,7 @@ export default async function ({ addon, console }) {
 
       BlockSvg.STATEMENT_INPUT_INNER_SPACE = 2.8 * GRID_UNIT - 0.9 * GRID_UNIT * cornerSize;
 
+      console.log(Blockly, BlocklyInstance)
       if (!ogFieldImageInit) {
           ogFieldImageInit = Blockly.FieldImage.prototype.init;
       }
