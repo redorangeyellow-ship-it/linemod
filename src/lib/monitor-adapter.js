@@ -38,6 +38,10 @@ export default function ({id, spriteName, opcode, params, value, vm}) {
         label = `${spriteName}: ${label}`;
     }
 
+    if (value === null) {
+        value = 'null';
+    }
+
     // If value is a number, round it to six decimal places
     if (typeof value === 'number') {
         value = Number(value.toFixed(6));
