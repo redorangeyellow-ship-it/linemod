@@ -127,10 +127,19 @@ export default async function({ addon }) {
     if (pins.length) {
       const flyoutWS = Blockly.mainWorkspace.getFlyout().workspace_;
       const blocksXML = [];
+      let successes = 0;
       for (const type of pins) {
         const block = getBlockByType(type, flyoutWS);
-        if (block) blocksXML.push(Blockly.Xml.blockToDom(block));
+        if (block) {
+          successes++;
+          blocksXML.push(Blockly.Xml.blockToDom(block));
+        } else {
+          console.warn("Pins Addon -- Could not find block with type: " + type);
+        }
       }
+
+      if (blocksXML.length === 0) blocksXML.push(createLabel("No Pinned Blocks!"));
+      else if (successes !== pins.length) blocksXML.push(createLabel("Some Pins Could Not Load!"));
       category.append(...blocksXML, gap);
     } else {
       category.append(createLabel("No Pinned Blocks!"), gap);
