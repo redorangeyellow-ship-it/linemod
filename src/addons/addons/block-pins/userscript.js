@@ -170,6 +170,7 @@ export default async function({ addon }) {
     var menuOptions = [];
     if (this.isDeletable() && this.isMovable()) {
       if (block.isInFlyout) {
+        console.log(pins, block);
         const blockID = block.id;
         if (pins.includes(blockID)) {
           shouldPatchClasses = true;
