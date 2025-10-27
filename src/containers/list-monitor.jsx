@@ -37,6 +37,7 @@ class ListMonitor extends React.Component {
         }
 
         let activeValue = this.props.value[index];
+        if (activeValue === null) activeValue = '';
         if (activeValue.toListEditor) activeValue = activeValue.toListEditor();
 
         this.setState({
