@@ -47,7 +47,7 @@ export default async function({ addon }) {
   function loadPins() {
     try {
       const item = localStorage.getItem("ADDONS_BLOCK-PINS");
-      if (!item) return;
+      if (!item) return [];
 
       const testPins = JSON.parse(item);
       if (Array.isArray(testPins.blocks) && Array.isArray(testPins.exts)) {
