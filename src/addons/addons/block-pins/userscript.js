@@ -234,6 +234,9 @@ export default async function({ addon }) {
     ogPopulate.call(this, newTree);
   }
 
+  vm.runtime.on("PROJECT_LOADED", () => {
+    populateInit = 0;
+  });
   addon.self.addEventListener("disabled", () => {
     localStorage.removeItem("ADDONS_BLOCK-PINS");
   });
