@@ -104,7 +104,6 @@ export default async function({ addon }) {
   };
 
   const getBlockByType = (type, ws) => {
-      console.log(type, pins);
     const typeMeta = type.split("||");
     const blocks = Object.values(ws.blockDB_);
     if (typeMeta.length === 1) return blocks.find(b => b.type === type);
@@ -148,7 +147,7 @@ export default async function({ addon }) {
 
   const toggleBlockPin = (block, isPinning, forceOrder) => {
     const oldLength = pins.length;
-    const type = specifyType(block.type);
+    const type = specifyType(block);
     const index = pins.indexOf(type);
 
     if (isPinning) {
@@ -200,7 +199,7 @@ export default async function({ addon }) {
     var menuOptions = [];
     if (this.isDeletable() && this.isMovable()) {
       if (block.isInFlyout) {
-        if (pins.includes(specifyType(block.type))) {
+        if (pins.includes(specifyType(block))) {
           shouldPatchClasses = true;
           menuOptions.push(
             createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
