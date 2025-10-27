@@ -5,7 +5,7 @@ export default async function ({ addon, console }) {
     const BlockSvg = BlocklyInstance.BlockSvg;
     var vm = addon.tab.traps.vm;
 
-    const ogFieldImageInit = Blockly.FieldImage.prototype.init;
+    let ogFieldImageInit; // unavailiable here, defined later
 
     const { GRID_UNIT } = BlockSvg;
 
@@ -332,6 +332,10 @@ export default async function ({ addon, console }) {
         (1 * GRID_UNIT - BlockSvg.CORNER_RADIUS);
 
       BlockSvg.STATEMENT_INPUT_INNER_SPACE = 2.8 * GRID_UNIT - 0.9 * GRID_UNIT * cornerSize;
+
+      if (!ogFieldImageInit) {
+          ogFieldImageInit = Blockly.FieldImage.prototype.init;
+      }
 
       Blockly.FieldImage.prototype.init = function (...args) {
         this.width_ *= iconSize;
