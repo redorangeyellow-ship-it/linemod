@@ -351,7 +351,7 @@ export default async function ({ addon, console }) {
 
     addon.self.addEventListener("disabled", () => {
       // Scratch 3.0 blocks
-      applyAndUpdate(100, 100, 100);
+      applyAndUpdate(100, 100, 100, 100);
     });
 
     addon.self.addEventListener("reenabled", () => applyAndUpdate());
