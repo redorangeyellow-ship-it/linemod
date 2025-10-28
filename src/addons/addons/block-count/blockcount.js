@@ -63,7 +63,7 @@ export default async function ({ addon, console, msg }) {
         ) {
           lastUpdateTime = now;
           const counts = getBlockCount();
-          if (counts[0] === counts[1]) counterElement.innerText = count + (count > 1 ? " blocks" : " block");
+          if (counts[0] === counts[1]) counterElement.innerText = counts[1] + (counts[1] > 1 ? " blocks" : " block");
           else counterElement.innerText = `${counts[0]} / ${counts[1]} blocks`;
         }
       };
