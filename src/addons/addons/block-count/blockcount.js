@@ -62,7 +62,7 @@ export default async function ({ addon, console, msg }) {
           now > lastUpdateTime + 1000 && // dont update the count multiple times in a second
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
-          lasUpdateTime = now;
+          lastUpdateTime = now;
           counterElement.innerText = msg("blocks", { num: getBlockCount() });
         }
       };
