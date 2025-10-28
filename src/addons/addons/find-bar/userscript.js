@@ -300,6 +300,8 @@ export default async function ({ addon, msg, console }) {
         }
 
         // fall through
+        if (root.type.startsWith("jwProto_")) continue;
+
         if (root.startHat_) {
           // custom, unrecognized hat
           addBlock(
