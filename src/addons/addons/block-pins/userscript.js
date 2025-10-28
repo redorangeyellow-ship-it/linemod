@@ -56,7 +56,9 @@ export default async function({ addon }) {
         for (const ext of testPins.exts) {
           try {
             const isURL = new URL(ext);
-            manager.loadExtensionURL(ext);
+            manager.securityManager.canLoadExtensionFromProject(ext).then(isUnsandbox => {
+              manager.loadExtensionURL(ext);
+            });
           } catch {
             // not a URL, must be a built-in
             manager.loadExtensionIdSync(ext);
