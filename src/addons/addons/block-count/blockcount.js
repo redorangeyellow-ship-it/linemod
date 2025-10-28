@@ -20,6 +20,7 @@ export default async function ({ addon, console, msg }) {
   };
 
   const addCounter = () => {
+    let wasInPlayer;
     ReduxStore.subscribe(() => {
       if (!counterElement) {
         // init counter
@@ -31,18 +32,23 @@ export default async function ({ addon, console, msg }) {
         counterElement.style.padding = "9px";
         counterElement.innerText = "0 blocks";
 
-        addLiveBlockCount();
+        if (wasInPlayer === undefined) addLiveBlockCount();
       } else {
         // hide display if not in editor
         const state = ReduxStore.getState().scratchGui;
-        counterElement.style.display = state.mode.isPlayerOnly ? "none" : "";
+        wasInPlayer = state.mode.isPlayerOnly;
+        counterElement.style.display = wasInPlayer ? "none" : "";
+        if (wasInPlayer) {
+          // GUI will remove the counter automatically, add it back.
+          counterElement = undefined;
+        }
       }
     });
   }
 
   const updateText = () => {
     const count = getBlockCount();
-    counterElement.innerText = count + (count > 1 ? " blocks" : " block");
+    counterElement.innerText = count + (count === 1 ? " blocks" : " block");
   };
 
   const addLiveBlockCount = () => {
@@ -61,7 +67,7 @@ export default async function ({ addon, console, msg }) {
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
           lastUpdateTime = now;
-          setTimeout(updateText, 1000);
+          setTimeout(updateText, 200);
         }
       };
 
