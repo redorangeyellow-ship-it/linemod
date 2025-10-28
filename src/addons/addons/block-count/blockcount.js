@@ -5,9 +5,7 @@ export default async function ({ addon, console, msg }) {
   let counterElement;
 
   const getBlockCount = () => {
-    let allBlockCount = 0; // number of blocks in project
-    let thisBlockCount = 0; // number of blocks in this sprite
-
+    let blockCount = 0;
     const targetBlocks = vm.runtime.targets.map((target) => {
       return [
         target.id,
@@ -17,14 +15,14 @@ export default async function ({ addon, console, msg }) {
     });
 
     // project block count
-    for (const info of targetBlocks) allBlockCount += info[1];
+    for (const info of targetBlocks) blockCount += info[1];
 
     // this sprite's block count
     const thisTargetID = vm.editingTarget?.id;
     const thisWS = targetBlocks.find((i) => i[0] === thisTargetID);
     if (thisWS) thisBlockCount += thisWS[1];
 
-    return [thisBlockCount, allBlockCount];
+    return blockCount;
   };
 
   const addCounter = () => {
@@ -70,7 +68,7 @@ export default async function ({ addon, console, msg }) {
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
           lastUpdateTime = now;
-          updateText();
+          setTimeout(updateText, 1000);
         }
       };
 
