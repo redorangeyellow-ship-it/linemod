@@ -281,7 +281,8 @@ export default async function({ addon }) {
     populateInit = 2;
   });
   vm.runtime.on("EXTENSION_REMOVED", () => queueMicrotask(() => {
-    populateInit = 1;
+    updatePinCategory();
+    populateInit = 2;
   }));
   addon.self.addEventListener("disabled", () => {
     localStorage.removeItem("ADDONS_BLOCK-PINS");
