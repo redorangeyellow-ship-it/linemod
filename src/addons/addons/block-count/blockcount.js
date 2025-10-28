@@ -41,9 +41,8 @@ export default async function ({ addon, console, msg }) {
   }
 
   const updateText = () => {
-    const counts = getBlockCount();
-    if (counts[0] === counts[1]) counterElement.innerText = counts[1] + (counts[1] > 1 ? " blocks" : " block");
-    else counterElement.innerText = `${counts[0]} / ${counts[1]} blocks`;
+    const count = getBlockCount();
+    counterElement.innerText = count + (count > 1 ? " blocks" : " block");
   };
 
   const addLiveBlockCount = () => {
@@ -58,7 +57,7 @@ export default async function ({ addon, console, msg }) {
         const now = Date.now();
         if (
           counterElement &&
-          now > lastUpdateTime && // dont update the count multiple times in a second
+          now > lastUpdateTime + 150 && // dont update the count multiple times in a second
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
           lastUpdateTime = now;
