@@ -229,7 +229,7 @@ export default async function ({ addon, msg, console }) {
        * @param root
        * @returns BlockItem
        */
-      function addBlock(cls, txt, root) {
+      function addBlock(cls, txt, root, optData) {
         let id = root.id ? root.id : root.getId ? root.getId() : null;
         let clone = myBlocksByProcCode[txt];
         if (clone) {
@@ -240,6 +240,7 @@ export default async function ({ addon, msg, console }) {
           return clone;
         }
         let items = new BlockItem(cls, txt, id, 0);
+        if (optData) items.customData = optData;
         items.y = root.getRelativeToSurfaceXY ? root.getRelativeToSurfaceXY().y : null;
         myBlocks.push(items);
         myBlocksByProcCode[txt] = items;
@@ -297,6 +298,25 @@ export default async function ({ addon, msg, console }) {
           addBlock("event", getDescFromField(root), root); // "when I start as a clone"
           continue;
         }
+
+        // fall through
+        if (root.startHat_) {
+          // custom, unrecognized hat
+          addBlock(
+            "customHat", getDescFromField(root, true), root,
+            { color: root.colour_ }
+          );
+          continue;
+        }
+
+        if (!root.outputConnection) {
+          // orphan block stack
+          addBlock(
+            "customStack", getDescFromField(root, true), root,
+            { color: root.colour_ }
+          );
+          continue;
+        }
       }
 
       let map = this.workspace.getVariableMap();
@@ -317,12 +337,16 @@ export default async function ({ addon, msg, console }) {
       }
 
       for (const root of labelBlocks) {
-        addBlock("label", getDescFromField(root, true), root);
+        addBlock(
+          "label", getDescFromField(root, true), root,
+          { color: "#707070" }
+        );
       }
 
       const clsOrder = {
-        flag: 0, receive: 1, event: 2, define: 3,
-        var: 4, VAR: 5, list: 6, LIST: 7, label: 8
+        flag: 0, receive: 1, event: 2, customHat: 3,
+        define: 4, var: 5, VAR: 6, list: 7, LIST: 8,
+        label: 9, customStack: 10
       };
 
       myBlocks.sort((a, b) => {
@@ -484,14 +508,15 @@ export default async function ({ addon, msg, console }) {
       };
       if (proc.cls === "flag") {
         item.className = "sa-find-flag";
-      } else if (proc.cls === "label") {
-        item.style.color = "#707070";
+      } else if (proc.customData) {
+        const color = proc.customData.color ?? "#ff0000";
+        item.style.color = color;
         item.onmouseenter = () => {
           item.style.color = "#fff";
-          item.style.background = "#707070";
+          item.style.background = color;
         };
         item.onmouseleave = () => {
-          item.style.color = "#707070";
+          item.style.color = color;
           item.style.background = "transparent";
         };
       } else {
