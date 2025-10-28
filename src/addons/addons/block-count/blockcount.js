@@ -24,8 +24,7 @@ export default async function ({ addon, console, msg }) {
     const thisWS = targetBlocks.find((i) => i[0] === thisTargetID);
     if (thisWS) thisBlockCount += thisWS[1];
 
-    if (thisBlockCount === allBlockCount) return "" + allBlockCount;
-    return `${thisBlockCount} / ${allBlockCount}`;
+    return [thisBlockCount, allBlockCount];
   };
 
   const addCounter = () => {
@@ -63,7 +62,9 @@ export default async function ({ addon, console, msg }) {
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
           lastUpdateTime = now;
-          counterElement.innerText = msg("blocks", { text: getBlockCount() });
+          const counts = getBlockCount();
+          if (counts[0] === counts[1]) counterElement.innerText = count + (count > 1 ? " blocks" : " block");
+          else counterElement.innerText = `${counts[0]} / ${counts[1]} blocks`;
         }
       };
 
