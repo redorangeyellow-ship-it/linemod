@@ -48,10 +48,17 @@ export default async function ({ addon, console, msg }) {
     });
   }
 
+  const updateText = () => {
+    const counts = getBlockCount();
+    if (counts[0] === counts[1]) counterElement.innerText = counts[1] + (counts[1] > 1 ? " blocks" : " block");
+    else counterElement.innerText = `${counts[0]} / ${counts[1]} blocks`;
+  };
+
   const addLiveBlockCount = () => {
     let lastWorkspaceID;
     let lastUpdateTime = 0;
-    vm.on("workspaceUpdate", () => {
+    vm.on("workspaceUpdate", () => queueMicrotask(() => {
+      updateText();
       const workspace = Blockly.mainWorkspace;
       const events = Blockly.Events;
 
@@ -59,13 +66,11 @@ export default async function ({ addon, console, msg }) {
         const now = Date.now();
         if (
           counterElement &&
-          now > lastUpdateTime + 300 && // dont update the count multiple times in a second
+          now > lastUpdateTime && // dont update the count multiple times in a second
           (event.type === events.DELETE || event.type === events.CREATE)
         ) {
           lastUpdateTime = now;
-          const counts = getBlockCount();
-          if (counts[0] === counts[1]) counterElement.innerText = counts[1] + (counts[1] > 1 ? " blocks" : " block");
-          else counterElement.innerText = `${counts[0]} / ${counts[1]} blocks`;
+          updateText();
         }
       };
 
@@ -73,7 +78,7 @@ export default async function ({ addon, console, msg }) {
         workspace.addChangeListener(blocklyHandler);
         lastWorkspaceID = workspace.id;
       }
-    });
+    }));
   };
 
   addCounter();
