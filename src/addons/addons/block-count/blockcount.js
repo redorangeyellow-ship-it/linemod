@@ -37,6 +37,7 @@ export default async function ({ addon, console, msg }) {
         counterElement = topBar.appendChild(document.createElement("span"));
         counterElement.style.order = 1;
         counterElement.style.padding = "9px";
+        counterElement.innerText = "0 blocks";
 
         addLiveBlockCount();
       } else {
