@@ -104,7 +104,7 @@ export default class Utils {
         sy = y - s.contentTop - this.offsetY;
 
       // offset so we can actually see the block. The find bar will block it
-      sx -= 200;
+      sx -= 150;
 
       this.navigationHistory.storeView(this.navigationHistory.peek(), 64);
 
