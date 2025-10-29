@@ -103,6 +103,8 @@ export default class Utils {
         // sy = s.contentTop - y + Math.max(Math.min(32, 32 * scale), (s.viewHeight - yh) / 2);
         sy = y - s.contentTop - this.offsetY;
 
+      sx += 200;
+
       this.navigationHistory.storeView(this.navigationHistory.peek(), 64);
 
       // workspace.hideChaff(),
