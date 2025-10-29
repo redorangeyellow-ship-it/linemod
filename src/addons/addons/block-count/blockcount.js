@@ -19,6 +19,11 @@ export default async function ({ addon, console, msg }) {
     return blockCount;
   };
 
+  const updateText = () => {
+    const count = getBlockCount();
+    counterElement.innerText = count + (count === 1 ? " block" : " blocks");
+  };
+
   const addCounter = () => {
     let shouldReApply = false;
     ReduxStore.subscribe(() => {
@@ -37,7 +42,8 @@ export default async function ({ addon, console, msg }) {
         counterElement = topBar.appendChild(document.createElement("span"));
         counterElement.style.order = 1;
         counterElement.style.padding = "9px";
-        counterElement.innerText = "0 blocks";
+        counterElement.innerText = "";
+        updateText();
         addLiveBlockCount();
       } else {
         // hide display if not in editor
@@ -49,11 +55,6 @@ export default async function ({ addon, console, msg }) {
       }
     });
   }
-
-  const updateText = () => {
-    const count = getBlockCount();
-    counterElement.innerText = count + (count === 1 ? " block" : " blocks");
-  };
 
   const addLiveBlockCount = () => {
     let lastWorkspaceID;
