@@ -6,7 +6,7 @@ export default async function ({ addon, console, msg }) {
 
   const getBlockCount = () => {
     let blockCount = 0;
-    const targetBlocks = vm.runtime.targets.map((target) => {
+    const targetBlocks = vm.runtime.targets.filter(v => v.isOriginal).map((target) => {
       return [
         target.id,
         Object.values(target.blocks._blocks)
