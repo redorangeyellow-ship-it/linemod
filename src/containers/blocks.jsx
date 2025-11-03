@@ -356,12 +356,12 @@ class Blocks extends React.Component {
 
     attachVM () {
         this.workspace.addChangeListener(this.props.vm.blockListener);
-        this.workspace.addChangeListener(this.handleFieldBoxChange);
         this.flyoutWorkspace = this.workspace
             .getFlyout()
             .getWorkspace();
         this.flyoutWorkspace.addChangeListener(this.props.vm.flyoutBlockListener);
         this.flyoutWorkspace.addChangeListener(this.props.vm.monitorBlockListener);
+        this.flyoutWorkspace.addChangeListener(this.handleFieldBoxChange);
         this.props.vm.addListener('SCRIPT_GLOW_ON', this.onScriptGlowOn);
         this.props.vm.addListener('SCRIPT_GLOW_OFF', this.onScriptGlowOff);
         this.props.vm.addListener('BLOCK_GLOW_ON', this.onBlockGlowOn);
@@ -497,7 +497,6 @@ class Blocks extends React.Component {
 
         // Remove and reattach the workspace listener (but allow flyout events)
         this.workspace.removeChangeListener(this.props.vm.blockListener);
-        this.workspace.removeChangeListener(this.handleFieldBoxChange);
         const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
         try {
             this.ScratchBlocks.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
@@ -517,7 +516,6 @@ class Blocks extends React.Component {
             log.error(error);
         }
         this.workspace.addChangeListener(this.props.vm.blockListener);
-        this.workspace.addChangeListener(this.handleFieldBoxChange);
 
         if (this.props.vm.editingTarget && this.props.workspaceMetrics.targets[this.props.vm.editingTarget.id]) {
             const {scrollX, scrollY, scale} = this.props.workspaceMetrics.targets[this.props.vm.editingTarget.id];
@@ -740,7 +738,6 @@ class Blocks extends React.Component {
     }
     handleFieldBoxChange (args) {
         // update checkbox states with menu-dependent blocks
-        console.log(args, this.props.vm, this.flyoutWorkspace, this.ScratchBlocks);
         const editingTarget = this.props.vm.editingTarget;
         if (!editingTarget || args.element !== 'field') return;
 
