@@ -79,7 +79,7 @@ export default async function ({ addon }) {
                         categoryOrdering = JSON.parse(storedOrder);
                         setTimeout(forceRefreshToolbox, 100);
                     } catch {}
-                };
+                });
             }
         }
     });
