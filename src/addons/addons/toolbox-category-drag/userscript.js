@@ -238,6 +238,7 @@ export default async function ({ addon }) {
     function activateBlocklyListener() {
         /* Check for Long (500ms) Presses to not confuse with Selecting Categories */
         const blocklyToolboxDiv = document.querySelector(`div[class*="blocklyToolboxDiv"`);
+        if (!blocklyToolboxDiv) return;
         blocklyToolboxDiv.addEventListener("mousedown", (e) => {
             const longPressTimer = setTimeout(() => initDragDroper(e, blocklyToolboxDiv), 500);
             const cancel = () => clearTimeout(longPressTimer);
@@ -255,7 +256,7 @@ export default async function ({ addon }) {
         inEditor = !state.mode.isPlayerOnly;
         if (inEditor && !wasInEditor) {
             wasInEditor = inEditor;
-            activateBlocklyListener();
+            queueMicrotask(activateBlocklyListener);
         }
     });
 }
