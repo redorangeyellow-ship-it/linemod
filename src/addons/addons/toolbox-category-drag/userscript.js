@@ -141,7 +141,7 @@ export default async function ({ addon }) {
         toolbox.position();
     }
     
-    function initDragDroper(clickEvent) {
+    function initDragDroper(clickEvent, blocklyToolboxDiv) {
         const draggedCat = clickEvent.target.closest(`div[class="scratchCategoryMenuRow"]`);
         if (!draggedCat) return;
         
@@ -239,7 +239,7 @@ export default async function ({ addon }) {
         /* Check for Long (500ms) Presses to not confuse with Selecting Categories */
         const blocklyToolboxDiv = document.querySelector(`div[class*="blocklyToolboxDiv"`);
         blocklyToolboxDiv.addEventListener("mousedown", (e) => {
-            const longPressTimer = setTimeout(() => initDragDroper(e), 500);
+            const longPressTimer = setTimeout(() => initDragDroper(e, blocklyToolboxDiv), 500);
             const cancel = () => clearTimeout(longPressTimer);
 
             document.addEventListener("mouseup", cancel, { once: true });
