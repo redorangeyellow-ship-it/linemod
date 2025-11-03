@@ -741,7 +741,7 @@ class Blocks extends React.Component {
         const editingTarget = this.props.vm.editingTarget;
         if (!editingTarget || args.element !== 'field') return;
 
-        const flyout = this.flyoutWorkspace;
+        const flyout = this.workspace.getFlyout();
         if (!flyout) return;
 
         let block = editingTarget.blocks._blocks[args.id];
