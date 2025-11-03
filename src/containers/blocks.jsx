@@ -137,7 +137,8 @@ class Blocks extends React.Component {
             'onWorkspaceMetricsChange',
             'setBlocks',
             'setLocale',
-            'handleEnableProcedureReturns'
+            'handleEnableProcedureReturns',
+            'handleFieldBoxChange'
         ]);
         this.ScratchBlocks.prompt = this.handlePromptStart;
         this.ScratchBlocks.customPrompt = this.handleCustomPrompt;
@@ -355,6 +356,7 @@ class Blocks extends React.Component {
 
     attachVM () {
         this.workspace.addChangeListener(this.props.vm.blockListener);
+        this.workspace.addChangeListener(this.handleFieldBoxChange);
         this.flyoutWorkspace = this.workspace
             .getFlyout()
             .getWorkspace();
@@ -495,6 +497,7 @@ class Blocks extends React.Component {
 
         // Remove and reattach the workspace listener (but allow flyout events)
         this.workspace.removeChangeListener(this.props.vm.blockListener);
+        this.workspace.removeChangeListener(this.handleFieldBoxChange);
         const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
         try {
             this.ScratchBlocks.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
@@ -514,6 +517,7 @@ class Blocks extends React.Component {
             log.error(error);
         }
         this.workspace.addChangeListener(this.props.vm.blockListener);
+        this.workspace.addChangeListener(this.handleFieldBoxChange);
 
         if (this.props.vm.editingTarget && this.props.workspaceMetrics.targets[this.props.vm.editingTarget.id]) {
             const {scrollX, scrollY, scale} = this.props.workspaceMetrics.targets[this.props.vm.editingTarget.id];
@@ -733,6 +737,34 @@ class Blocks extends React.Component {
     handleEnableProcedureReturns () {
         this.workspace.enableProcedureReturns();
         this.requestToolboxUpdate();
+    }
+    handleFieldBoxChange (args) {
+        // update checkbox states with menu-dependent blocks
+        const editingTarget = this.props.vm.editingTarget;
+        if (!editingTarget || args.element !== 'field') return;
+
+        const flyout = this.flyoutWorkspace;
+        if (!flyout) return;
+
+        let block = editingTarget.blocks._blocks[args.id];
+        if (typeof block === 'undefined') return;
+
+        // check if monitoring
+        const monitorState = this.props.vm.runtime.getMonitorState();
+        const shouldCheck = (
+            monitorState.get(`${args.id}_${args.value}`) !== undefined ||
+            monitorState.get(`${args.id}_${args.value.toLowerCase()}`) !== undefined
+        );
+
+        const checkbox = flyout.checkboxes_[args.id];
+        if (checkbox) {
+            checkbox.clicked = shouldCheck;
+            if (shouldCheck) {
+                this.ScratchBlocks.utils.addClass(checkbox.svgRoot, 'checked');
+            } else {
+                this.ScratchBlocks.utils.removeClass(checkbox.svgRoot, 'checked');
+            }
+        }
     }
     render () {
         /* eslint-disable no-unused-vars */
