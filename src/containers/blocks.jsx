@@ -738,14 +738,10 @@ class Blocks extends React.Component {
     }
     handleFieldBoxChange (args) {
         // update checkbox states with menu-dependent blocks
-        const editingTarget = this.props.vm.editingTarget;
-        if (!editingTarget || args.element !== 'field') return;
+        if (args.element !== 'field') return;
 
         const flyout = this.workspace.getFlyout();
         if (!flyout) return;
-
-        let block = editingTarget.blocks._blocks[args.id];
-        if (typeof block === 'undefined') return;
 
         // check if monitoring
         const monitorState = this.props.vm.runtime.getMonitorState();
