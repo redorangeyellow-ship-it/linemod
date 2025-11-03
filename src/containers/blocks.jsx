@@ -745,13 +745,14 @@ class Blocks extends React.Component {
 
         // check if monitoring
         const monitorState = this.props.vm.runtime.getMonitorState();
-        const value = String(args.value);
+        const id = args.blockId;
+        const value = String(args.newValue);
         const shouldCheck = (
-            monitorState.get(`${args.id}_${value}`) !== undefined ||
-            monitorState.get(`${args.id}_${value.toLowerCase()}`) !== undefined
+            monitorState.get(`${id}_${value}`) !== undefined ||
+            monitorState.get(`${id}_${value.toLowerCase()}`) !== undefined
         );
 
-        const checkbox = flyout.checkboxes_[args.id];
+        const checkbox = flyout.checkboxes_[id];
         if (checkbox) {
             checkbox.clicked = shouldCheck;
             if (shouldCheck) {
