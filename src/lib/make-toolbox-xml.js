@@ -1505,6 +1505,7 @@ const liveTests = function () {
                 <shadow type="text"><field name="TEXT"></field></shadow>
             </value>
         </block>
+        <block type="operator_checkboxBoolean"></block>
         <block type="control_fieldbutton"></block>
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
