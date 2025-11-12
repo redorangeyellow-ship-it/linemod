@@ -1,5 +1,6 @@
 import JSZip from 'jszip';
 import uid from './uid';
+import { stringify, parse } from './json-circular';
 
 /**
  * String.prototype.indexOf, but it returns NaN not -1 on failure
@@ -147,8 +148,7 @@ const parseStack = (stack, url, line, column) => {
 };
 const downloadLogs = async () => {
     const files = new JSZip();
-    console.log(consoleLogs);
-    files.file('logs.json', JSON.stringify(consoleLogs));
+    files.file('logs.json', stringify(consoleLogs));
     const index = {};
     // get files
     // sadly, this may just dead ass fail to get files due to blob lifecycle
@@ -194,8 +194,8 @@ const downloadLogs = async () => {
 window.downloadLogs = downloadLogs;
 
 window.addEventListener('error', e =>
-    push('error', e.message, parseStack(`\n${e.error.stack}`, e.filename, e.lineno, e.colno)));
-window.addEventListener('unhandledrejection', e => push('promiseError', e.reason, []));
+    push('error', String(e.message), parseStack(`\n${e.error.stack}`, e.filename, e.lineno, e.colno)));
+window.addEventListener('unhandledrejection', e => push('promiseError', String(e.reason), []));
 class StackTrace extends Error {
     constructor() {
         super('');
