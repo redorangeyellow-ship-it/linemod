@@ -147,6 +147,7 @@ const parseStack = (stack, url, line, column) => {
 };
 const downloadLogs = async () => {
     const files = new JSZip();
+    console.log(consoleLogs);
     files.file('logs.json', JSON.stringify(consoleLogs));
     const index = {};
     // get files
