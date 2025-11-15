@@ -198,54 +198,42 @@ export default async function({ addon }) {
     if (oldLength !== pins.length || forceOrder) updatePinCategory();
   };
 
+  const ogShowCtxMenu = Blockly.BlockSvg.prototype.showContextMenu_;
   Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
-    if (this.workspace.options.readOnly || !this.contextMenu) {
-      return;
-    }
+    if (this.workspace.options.readOnly || !this.contextMenu) return;
 
     let shouldPatchClasses = false;
 
     // Save the current block in a variable for use in closures.
     var block = this;
     var menuOptions = [];
-    if (this.isDeletable() && this.isMovable()) {
-      if (block.isInFlyout) {
-        if (pins.includes(specifyType(block))) {
-          shouldPatchClasses = true;
-          menuOptions.push(
-            createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
-            createMenuItem("Move to Bottom", true, () => toggleBlockPin(block, true, "bottom")),
-            createMenuItem("Organize by Category", true, () => toggleBlockPin("", true, "category")),
-            createMenuItem("Pin", false, () => {}),
-            createMenuItem("Unpin", true, () => toggleBlockPin(block, false))
-          );
-        } else {
-          menuOptions.push(
-            createMenuItem("Pin", true, () => toggleBlockPin(block, true)),
-            createMenuItem("Unpin", false, () => {})
-          );
-        }
-
-        menuOptions.push(createMenuItem("Unpin All", pins.length, () => {
-          pins = [];
-          updatePinCategory();
-        }));
+    if (this.isDeletable() && this.isMovable() && block.isInFlyout) {
+      if (pins.includes(specifyType(block))) {
+        shouldPatchClasses = true;
+        menuOptions.push(
+          createMenuItem("Move to Top", true, () => toggleBlockPin(block, true, "top")),
+          createMenuItem("Move to Bottom", true, () => toggleBlockPin(block, true, "bottom")),
+          createMenuItem("Organize by Category", true, () => toggleBlockPin("", true, "category")),
+          createMenuItem("Pin", false, () => {}),
+          createMenuItem("Unpin", true, () => toggleBlockPin(block, false))
+        );
       } else {
-        menuOptions.push(Blockly.ContextMenu.blockDuplicateOption(block, e));
-        if (this.isEditable() && this.workspace.options.comments) {
-          menuOptions.push(Blockly.ContextMenu.blockCommentOption(block));
-        }
-        menuOptions.push(Blockly.ContextMenu.blockDeleteOption(block));
+        menuOptions.push(
+          createMenuItem("Pin", true, () => toggleBlockPin(block, true)),
+          createMenuItem("Unpin", false, () => {})
+        );
       }
-    } else if (this.parentBlock_ && this.isShadow_ && this.type !== 'polygon') {
-      this.parentBlock_.showContextMenu_(e);
+
+      menuOptions.push(createMenuItem("Unpin All", pins.length, () => {
+        pins = [];
+        updatePinCategory();
+      }));
+    } else {
+      ogShowCtxMenu.call(this, e);
       return;
     }
 
-    // Allow the block to add or modify menuOptions.
-    if (this.customContextMenu) {
-      this.customContextMenu(menuOptions);
-    }
+    if (this.customContextMenu) this.customContextMenu(menuOptions);
     Blockly.ContextMenu.show(e, menuOptions, this.RTL);
     Blockly.ContextMenu.currentBlock = this;
 
