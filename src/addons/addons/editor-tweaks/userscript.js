@@ -217,6 +217,11 @@ export default async function({ addon }) {
       if (this.fieldGroup_) return;
       Blockly.FieldExpandableAdd.superClass_.init.call(this);
 
+      if (expandBtnSz === 0 && this.sourceBlock_) {
+        const input = this.sourceBlock_.inputList.find(i => i.fieldRow.includes(this));
+        if (input) input.setVisible(false);
+      }
+
       const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandBtnSz;
       this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandBtnSz;
       this.size_.height *= expandBtnSz;
