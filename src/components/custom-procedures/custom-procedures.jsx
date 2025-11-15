@@ -8,6 +8,7 @@ import dropperIcon from './icon--dropper.svg';
 
 import booleanInputIcon from './icon--boolean-input.svg';
 import textInputIcon from './icon--text-input.svg';
+import branchInputIcon from './icon--branch-input.svg';
 import labelIcon from './icon--label.svg';
 
 import stackBlockIcon from './icon--stack-block.svg';
@@ -233,7 +234,7 @@ const CustomProcedures = props => (
                 >
                     <img
                         className={styles.optionIcon}
-                        src={stackBlockIcon}
+                        src={branchInputIcon}
                     />
                     <div className={styles.optionTitle}>
                         <FormattedMessage
@@ -244,7 +245,7 @@ const CustomProcedures = props => (
                     </div>
                     <div className={styles.optionDescription}>
                         <FormattedMessage
-                            defaultMessage="command"
+                            defaultMessage="branch"
                             description="Description of the command input type"
                             id="gui.customProcedures.commandType"
                         />
