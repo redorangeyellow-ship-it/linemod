@@ -1510,6 +1510,7 @@ const liveTests = function () {
         <block type="motion_mutatorCheckboxTest"></block>
         ${blockSeparator}
         <block type="control_dualblock"></block>
+        <block type="test_spread"></block>
     </category>
     `;
 };
