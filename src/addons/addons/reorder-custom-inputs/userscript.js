@@ -23,19 +23,20 @@ export default async function ({ addon, console }) {
     if (this.inputList.length === 1) {
       return;
     }
+    const cannotRemove = (i) => i == 0 && this.inputList[1].type == Blockly.NEXT_STATEMENT
     var inputNameToRemove = null;
     for (var n = 0; n < this.inputList.length; n++) {
       var input = this.inputList[n];
       if (input.connection) {
         var target = input.connection.targetBlock();
         if (target.getField(field.name) == field) {
+          if (cannotRemove(n)) return
           inputNameToRemove = input.name;
         }
       } else {
-        for (var j = 0; j < input.fieldRow.length; j++) {
-          if (input.fieldRow[j] == field) {
-            inputNameToRemove = input.name;
-          }
+        if (input.fieldRow[0] == field) {
+          if (cannotRemove(n)) return
+          inputNameToRemove = input.name;
         }
       }
     }
@@ -97,6 +98,10 @@ export default async function ({ addon, console }) {
       return false;
     }
 
+    const original = procedureBlock.inputList.find((input) => input.name === inputNameToShift);
+    if (newPosition == 0 && original.type === 3/*Blockly.NEXT_STATEMENT*/) {
+      return false
+    }
     const originalPosition = procedureBlock.inputList.findIndex((input) => input.name === inputNameToShift);
     const itemToMove = procedureBlock.inputList.splice(originalPosition, 1)[0];
     procedureBlock.inputList.splice(newPosition, 0, itemToMove);
