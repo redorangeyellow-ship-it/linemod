@@ -856,7 +856,11 @@ class MenuBar extends React.Component {
                                         />
                                     </MenuItem>
                                     <MenuItem onClick={this.handleClickDownloadLogs}>
-                                        Download Logs
+                                        <FormattedMessage
+                                            defaultMessage="Download Logs"
+                                            description="Menu bar button to download all logs stored by the browser."
+                                            id="pm.menuBar.downloadLogs"
+                                        />
                                     </MenuItem>
                                 </MenuSection>
                             </MenuBarMenu>
