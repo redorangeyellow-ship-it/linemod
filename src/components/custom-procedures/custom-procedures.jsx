@@ -240,14 +240,14 @@ const CustomProcedures = props => (
                         <FormattedMessage
                             defaultMessage="Add an input"
                             description="Label for button to add a command input"
-                            id="gui.customProcedures.addAnInputCommand"
+                            id="pm.customProcedures.addAnInputCommand"
                         />
                     </div>
                     <div className={styles.optionDescription}>
                         <FormattedMessage
                             defaultMessage="branch"
                             description="Description of the command input type"
-                            id="gui.customProcedures.commandType"
+                            id="pm.customProcedures.commandType"
                         />
                     </div>
                 </div>
@@ -286,7 +286,7 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Return Text or Number"
                                 description="Label for block to return text"
-                                id="gui.customProcedures.returnText"
+                                id="pm.customProcedures.returnText"
                             />
                         </div>
                     </div>
@@ -304,7 +304,7 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Return a Boolean"
                                 description="Label for block to return a boolean"
-                                id="gui.customProcedures.returnABoolean"
+                                id="pm.customProcedures.returnABoolean"
                             />
                         </div>
                     </div>
@@ -323,7 +323,7 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Normal block"
                                 description="Label for block to be a normal stack block"
-                                id="gui.customProcedures.normalBlock"
+                                id="pm.customProcedures.normalBlock"
                             />
                         </div>
                     </div>
@@ -341,7 +341,7 @@ const CustomProcedures = props => (
                             <FormattedMessage
                                 defaultMessage="Ending block"
                                 description="Label for block to be an ending block for a stack"
-                                id="gui.customProcedures.endingBlock"
+                                id="pm.customProcedures.endingBlock"
                             />
                         </div>
                     </div>
