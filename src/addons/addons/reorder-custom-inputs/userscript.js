@@ -99,11 +99,16 @@ export default async function ({ addon, console }) {
     }
 
     const original = procedureBlock.inputList.find((input) => input.name === inputNameToShift);
-    if (newPosition == 0 && original.type === 3/*Blockly.NEXT_STATEMENT*/) {
-      return false
-    }
     const originalPosition = procedureBlock.inputList.findIndex((input) => input.name === inputNameToShift);
     const itemToMove = procedureBlock.inputList.splice(originalPosition, 1)[0];
+
+    if (
+      (newPosition == 0 && original.type === 3/*Blockly.NEXT_STATEMENT*/) ||
+      (originalPosition == 0 && itemToMove.type === 3/*Blockly.NEXT_STATEMENT*/)
+    ) {
+      return false
+    }
+
     procedureBlock.inputList.splice(newPosition, 0, itemToMove);
 
     Blockly.Events.disable();
