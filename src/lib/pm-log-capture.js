@@ -214,7 +214,7 @@ class StackTrace extends Error {
         }
     }
 }
-if (!String(window.location.href).startsWith(`http://localhost:`) || new URLSearchParams(location.search).has('nolivetests')) {
+if (!(new URLSearchParams(location.search).has('nologcapture')) && (!String(window.location.href).startsWith(`http://localhost:`) || new URLSearchParams(location.search).has('nolivetests'))) {
     for (const name of ['log', 'warn', 'error', 'debug', 'info']) {
         const item = window.console[name];
         window.console[name] = (...args) => {
