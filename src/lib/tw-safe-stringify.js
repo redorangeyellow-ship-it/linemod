@@ -4,7 +4,7 @@
  */
 const isCustomMonitor = (value) => {
   if (
-    typeof (item.toListItem || value.toMonitorContent || item.toReporterContent) === 'function'
+    typeof (value.toListItem || value.toMonitorContent || value.toReporterContent) === 'function'
   ) {
     return true;
   } else {
