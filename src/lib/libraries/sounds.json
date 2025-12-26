@@ -1,5 +1,21 @@
 [
     {
+        "name": "8-bit Dance",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "music",
+            "loops",
+            "new",
+            "penguinmod"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/8bit Dance.mp3"
+    },
+    {
         "name": "A Bass",
         "tags": [
             "music",
@@ -130,6 +146,20 @@
         "md5ext": "d2dd6b4372ca17411965dc92d52b2172.wav",
         "sampleCount": 27822,
         "rate": 44100
+    },
+    {
+        "name": "Acid Seashore",
+        "tags": [
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Acid Seashore.mp3"
     },
     {
         "name": "Action1",
@@ -556,6 +586,52 @@
         "libraryFilePage": "sounds/censorbeep.mp3"
     },
     {
+        "name": "Beep Tone",
+        "tags": [
+            "music",
+            "loops",
+            "wacky",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Beep Song.mp3"
+    },
+    {
+        "name": "Beep2",
+        "tags": [
+            "electronic",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Beep.mp3"
+    },
+    {
+        "name": "Beep3",
+        "tags": [
+            "games",
+            "8bit",
+            "8-bit",
+            "electronic",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Beep2.mp3"
+    },
+    {
         "name": "Bell Cymbal",
         "tags": [
             "percussion",
@@ -634,6 +710,20 @@
         "libraryFilePage": "sounds/bikehorn.mp3"
     },
     {
+        "name": "Bioluminescent",
+        "tags": [
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/bioluminescent.mp3"
+    },
+    {
         "name": "Bird",
         "tags": [
             "animals",
@@ -695,6 +785,22 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/blink.mp3"
+    },
+    {
+        "name": "Blues",
+        "tags": [
+            "jazz",
+            "music",
+            "calm",
+            "chill",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/blues.mp3"
     },
     {
         "name": "Boing",
@@ -916,6 +1022,21 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Bubble 2.mp3"
+    },
+    {
+        "name": "Bump",
+        "tags": [
+            "games",
+            "ui",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Bump.mp3"
     },
     {
         "name": "Burp",
@@ -1288,6 +1409,19 @@
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Cancel.mp3"
     },
     {
+        "name": "Cancel 2",
+        "tags": [
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Cancel.mp3"
+    },
+    {
         "name": "Car Horn",
         "tags": [
             "effects",
@@ -1433,6 +1567,36 @@
         "rate": 44100
     },
     {
+        "name": "Chip Jingle",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "loops",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Jingle Castle.mp3"
+    },
+    {
+        "name": "Chippy",
+        "tags": [
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/chippy_g.mp3"
+    },
+    {
         "name": "Chirp",
         "tags": [
             "animals",
@@ -1470,6 +1634,19 @@
         "md5ext": "0b1e3033140d094563248e61de4039e5.wav",
         "sampleCount": 11648,
         "rate": 44100
+    },
+    {
+        "name": "Chop",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Chop.mp3"
     },
     {
         "name": "Chord",
@@ -1623,6 +1800,20 @@
         "libraryFilePage": "sounds/click05.mp3"
     },
     {
+        "name": "Click6",
+        "tags": [
+            "effects",
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/click.mp3"
+    },
+    {
         "name": "Clock Ticking",
         "tags": [
             "effects",
@@ -1764,6 +1955,20 @@
         "md5ext": "1da43f6d52d0615da8a250e28100a80d.wav",
         "sampleCount": 76800,
         "rate": 44100
+    },
+    {
+        "name": "Confirm",
+        "tags": [
+            "effects",
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Confirm.mp3"
     },
     {
         "name": "Connect",
@@ -2007,6 +2212,58 @@
         "md5ext": "cac3341417949acc66781308a254529c.wav",
         "sampleCount": 5081,
         "rate": 22050
+    },
+    {
+        "name": "Crunch 2",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/apple-crunch-1.mp3"
+    },
+    {
+        "name": "Crunch 3",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/apple-crunch-2.mp3"
+    },
+    {
+        "name": "Crunch 4",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/apple-crunch-3.mp3"
+    },
+    {
+        "name": "Crunch 5",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/apple-crunch-4.mp3"
     },
     {
         "name": "Curiously Sneaky",
@@ -2269,6 +2526,22 @@
         "md5ext": "65e8a47d55df3f4cb17722959f6220db.wav",
         "sampleCount": 124969,
         "rate": 22050
+    },
+    {
+        "name": "Dance Heavy",
+        "tags": [
+            "loops",
+            "music",
+            "electronic",
+            "EDM",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/heavy-dance-loop.mp3"
     },
     {
         "name": "Dance Magic",
@@ -2547,6 +2820,20 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/dreaming01.mp3"
+    },
+    {
+        "name": "Dream of Paradise",
+        "tags": [
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Dream of Paradise.mp3"
     },
     {
         "name": "Drip Drop",
@@ -3043,6 +3330,21 @@
         "rate": 44100
     },
     {
+        "name": "Electonic Hold Music",
+        "tags": [
+            "electronic",
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Electonic Hold Music.mp3"
+    },
+    {
         "name": "Elevator Intermission",
         "tags": [
             "music",
@@ -3172,6 +3474,22 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/exhale.mp3"
+    },
+    {
+        "name": "Explore Darkness",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "themes",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Chiptune Darkness.mp3"
     },
     {
         "name": "Explosion1",
@@ -3390,6 +3708,22 @@
         "rate": 44100
     },
     {
+        "name": "Fall",
+        "tags": [
+            "effects",
+            "8-bit",
+            "8bit",
+            "games",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/generic dying sound effect.mp3"
+    },
+    {
         "name": "Fard",
         "tags": [
             "effects",
@@ -3506,6 +3840,20 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Flip Paper 2.mp3"
+    },
+    {
+        "name": "Footstep",
+        "tags": [
+            "footsteps",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/footsteps.mp3"
     },
     {
         "name": "Footsteps",
@@ -3968,6 +4316,36 @@
         "rate": 22050
     },
     {
+        "name": "Gemstone Cave",
+        "tags": [
+            "themes",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Gemstone Cave.mp3"
+    },
+    {
+        "name": "GET TO THE END",
+        "tags": [
+            "electronic",
+            "games",
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/breakcore_E.mp3"
+    },
+    {
         "name": "Glass Breaking",
         "tags": [
             "effects"
@@ -4301,6 +4679,22 @@
         "libraryFilePage": "sounds/echo/happy-easter.mp3"
     },
     {
+        "name": "Happy Lullaby",
+        "tags": [
+            "deep",
+            "themes",
+            "chill",
+            "calm",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Happy Lullaby.mp3"
+    },
+    {
         "name": "Harm",
         "tags": [
             "effects",
@@ -4312,6 +4706,20 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/harm1.mp3"
+    },
+    {
+        "name": "Have Some Fun",
+        "tags": [
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/lizardfight.mp3"
     },
     {
         "name": "Head Shake",
@@ -4337,6 +4745,20 @@
         "md5ext": "ec7c272faa862c9f8f731792e686e3c9.wav",
         "sampleCount": 6097,
         "rate": 22050
+    },
+    {
+        "name": "Hey Start Again",
+        "tags": [
+            "wacky",
+            "voice",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Hey Start Again.mp3"
     },
     {
         "name": "Hi Beatbox",
@@ -4478,6 +4900,20 @@
         "md5ext": "7ed8ce1853bde6dcbc6f7f5a1c65ae47.wav",
         "sampleCount": 109729,
         "rate": 22050
+    },
+    {
+        "name": "Horizon",
+        "tags": [
+            "themes",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Horizon.mp3"
     },
     {
         "name": "Horse",
@@ -5115,6 +5551,20 @@
         "rate": 44100
     },
     {
+        "name": "Last Night",
+        "tags": [
+            "themes",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Last Night.mp3"
+    },
+    {
         "name": "Laugh1",
         "tags": [
             "human",
@@ -5248,6 +5698,21 @@
         "libraryFilePage": "sounds/lose3.mp3"
     },
     {
+        "name": "Lose4",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "penguinmod",
+            "new",
+            "effects"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/game off.mp3"
+    },
+    {
         "name": "Low Boing",
         "tags": [
             "effects"
@@ -5329,6 +5794,20 @@
         "md5ext": "1cb60ecdb1075c8769cb346d5c2a22c7.wav",
         "sampleCount": 43689,
         "rate": 22050
+    },
+    {
+        "name": "Mansion Ahead",
+        "tags": [
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Spooky Mansion.mp3"
     },
     {
         "name": "Mashup",
@@ -5661,6 +6140,32 @@
         "libraryFilePage": "sounds/material/metal/sheet/sheet01.mp3"
     },
     {
+        "name": "Metronome 1",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Metronome1.mp3"
+    },
+    {
+        "name": "Metronome 2",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Metronome2.mp3"
+    },
+    {
         "name": "Monster Snarl 1",
         "tags": [
             "effects",
@@ -5723,6 +6228,21 @@
         "md5ext": "7206280bd4444a06d25f19a84dcb56b1.wav",
         "sampleCount": 27433,
         "rate": 22050
+    },
+    {
+        "name": "Moonlight",
+        "tags": [
+            "loops",
+            "chill",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/moonlight.mp3"
     },
     {
         "name": "Motorcycle Passing",
@@ -5792,6 +6312,23 @@
         "rate": 44100
     },
     {
+        "name": "Mysterious Scene",
+        "tags": [
+            "deep",
+            "calm",
+            "chill",
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Mysterious Ambience.mp3"
+    },
+    {
         "name": "Mystery",
         "tags": [
             "loops",
@@ -5842,6 +6379,36 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/nailgun3.mp3"
+    },
+    {
+        "name": "Night Core",
+        "tags": [
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Night Core.mp3"
+    },
+    {
+        "name": "No Care",
+        "tags": [
+            "background",
+            "music",
+            "chill",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/a song of no care.mp3"
     },
     {
         "name": "Nooo",
@@ -5960,6 +6527,36 @@
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Open.mp3"
     },
     {
+        "name": "Open Fog",
+        "tags": [
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Black Fog.mp3"
+    },
+    {
+        "name": "Optical Discs",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "music",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Optical Discs.mp3"
+    },
+    {
         "name": "Orchestra Tuning",
         "tags": [
             "effects",
@@ -6025,6 +6622,21 @@
         "md5ext": "8f5a994abfa814da72272e766772dbac.wav",
         "sampleCount": 178688,
         "rate": 44100
+    },
+    {
+        "name": "Party Together",
+        "tags": [
+            "music",
+            "deep",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Synth Thing.mp3"
     },
     {
         "name": "Pew",
@@ -6124,6 +6736,20 @@
         "md5ext": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
         "sampleCount": 1032,
         "rate": 44100
+    },
+    {
+        "name": "Pop 2",
+        "tags": [
+            "effects",
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/pop.mp3"
     },
     {
         "name": "Pop Up",
@@ -6298,7 +6924,7 @@
         "rate": 44100
     },
     {
-        "name": "Reggae",
+        "name": "Reggae2",
         "tags": [
             "music",
             "loops",
@@ -6362,6 +6988,19 @@
         "rate": 22050
     },
     {
+        "name": "Ring Tone 2",
+        "tags": [
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/Ringtone.mp3"
+    },
+    {
         "name": "Rip",
         "tags": [
             "effects",
@@ -6396,6 +7035,20 @@
         "md5ext": "d3c95a4ba37dcf90c8a57e8b2fd1632d.wav",
         "sampleCount": 86016,
         "rate": 44100
+    },
+    {
+        "name": "River",
+        "tags": [
+            "weather",
+            "rain",
+            "ambience",
+            "water"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/river.mp3"
     },
     {
         "name": "Roger That",
@@ -6680,6 +7333,50 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Sci-fi Click.mp3"
+    },
+    {
+        "name": "Select 3",
+        "tags": [
+            "ui",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Menu Select.mp3"
+    },
+    {
+        "name": "Select 4",
+        "tags": [
+            "effects",
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Moveblip.mp3"
+    },
+    {
+        "name": "Select 5",
+        "tags": [
+            "effects",
+            "8-bit",
+            "8bit",
+            "penguinmod",
+            "ui",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Select.mp3"
     },
     {
         "name": "Sewing Machine",
@@ -7358,6 +8055,20 @@
         "rate": 44100
     },
     {
+        "name": "Switch",
+        "tags": [
+            "effects",
+            "ui",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Switch.mp3"
+    },
+    {
         "name": "Sword Clash 1",
         "tags": [
             "effects",
@@ -7786,6 +8497,20 @@
         "rate": 22050
     },
     {
+        "name": "The Plea of the Shadow",
+        "tags": [
+            "themes",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/The Plea of the Shadow.mp3"
+    },
+    {
         "name": "Thunder Storm",
         "tags": [
             "weather",
@@ -8074,6 +8799,21 @@
         "libraryFilePage": "sounds/user/effects/evil_villian_4.mp3"
     },
     {
+        "name": "Wacky Time",
+        "tags": [
+            "games",
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/boss fight.mp3"
+    },
+    {
         "name": "Wah Beatbox",
         "tags": [
             "music",
@@ -8099,6 +8839,20 @@
         "rate": 22050
     },
     {
+        "name": "Warning",
+        "tags": [
+            "cinematic",
+            "effects",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Intro Warning.mp3"
+    },
+    {
         "name": "Water Drop",
         "tags": [
             "effects"
@@ -8121,6 +8875,20 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/user/effects/freesound-pool1-namelesscat/Water Pour.mp3"
+    },
+    {
+        "name": "We Made It",
+        "tags": [
+            "loops",
+            "music",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/loops/supersaw_v3.mp3"
     },
     {
         "name": "Whinny",
@@ -8215,6 +8983,36 @@
         "libraryFilePage": "sounds/win3.mp3"
     },
     {
+        "name": "Win4",
+        "tags": [
+            "8-bit",
+            "8bit",
+            "win",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Pixel Victory.mp3"
+    },
+    {
+        "name": "Win5",
+        "tags": [
+            "effects",
+            "8-bit",
+            "8bit",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/Retro Triumph.mp3"
+    },
+    {
         "name": "Wind Blowing",
         "tags": [
             "effects",
@@ -8227,6 +9025,21 @@
         "rate": 44100,
         "fromPenguinModLibrary": true,
         "libraryFilePage": "sounds/user/effects/wind_blowing.mp3"
+    },
+    {
+        "name": "Wind Blowing 2",
+        "tags": [
+            "effects",
+            "ambience",
+            "background",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/effects/windblowing2.mp3"
     },
     {
         "name": "Wobble",
@@ -8375,6 +9188,21 @@
         "md5ext": "30987bbe464eb8db1e4c781dc238f81c.wav",
         "sampleCount": 22764,
         "rate": 44100
+    },
+    {
+        "name": "Your Choices",
+        "tags": [
+            "chill",
+            "calm",
+            "themes",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/user/themes/Reyna.mp3"
     },
     {
         "name": "Zip",
