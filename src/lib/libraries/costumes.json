@@ -496,8 +496,7 @@
     {
         "name": "Axe",
         "tags": [
-            "tool",
-            "new"
+            "tool"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -740,8 +739,7 @@
             "character",
             "template",
             "person",
-            "dance",
-            "new"
+            "dance"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -756,8 +754,7 @@
             "character",
             "template",
             "person",
-            "dance",
-            "new"
+            "dance"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -1134,8 +1131,7 @@
         "name": "Bee",
         "tags": [
             "animals",
-            "insect",
-            "new"
+            "insect"
         ],
         "bitmapResolution": 2,
         "dataFormat": "png",
@@ -1866,8 +1862,7 @@
         "name": "Cat1",
         "tags": [
             "cat",
-            "animals",
-            "new"
+            "animals"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -2635,8 +2630,7 @@
             "people",
             "person",
             "girl",
-            "character",
-            "new"
+            "character"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -2651,8 +2645,7 @@
             "people",
             "person",
             "girl",
-            "character",
-            "new"
+            "character"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3001,8 +2994,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3017,8 +3009,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3033,8 +3024,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3049,8 +3039,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3065,8 +3054,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3081,8 +3069,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3097,8 +3084,7 @@
             "mouse",
             "computers",
             "input",
-            "icons",
-            "new"
+            "icons"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3126,8 +3112,7 @@
             "people",
             "person",
             "girl",
-            "character",
-            "new"
+            "character"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -3240,8 +3225,7 @@
             "people",
             "crude",
             "drawing",
-            "human",
-            "new"
+            "human"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -7218,8 +7202,7 @@
         "name": "Laptop3",
         "tags": [
             "things",
-            "computers",
-            "new"
+            "computers"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -7608,8 +7591,7 @@
             "person",
             "boy",
             "character",
-            "human",
-            "new"
+            "human"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -8801,8 +8783,7 @@
             "person",
             "girl",
             "character",
-            "human",
-            "new"
+            "human"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -9894,8 +9875,7 @@
         "name": "Sand Castle",
         "tags": [
             "sculpture",
-            "castle",
-            "new"
+            "castle"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -10397,8 +10377,7 @@
         "name": "Shovel",
         "tags": [
             "gardening",
-            "tool",
-            "new"
+            "tool"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -12952,8 +12931,7 @@
         "name": "Glow-Plus",
         "tags": [
             "symbols",
-            "letters",
-            "new"
+            "letters"
         ],
         "bitmapResolution": 1,
         "dataFormat": "svg",
@@ -13975,5 +13953,84 @@
         "md5ext": "665db4c356d7e010fa8d71cc291834e3.svg",
         "rotationCenterX": 17,
         "rotationCenterY": 23
+    },
+    {
+        "name": "Dango-b",
+        "tags": [
+            "food",
+            "new"
+        ],
+        "bitmapResolution": 1,
+        "dataFormat": "svg",
+        "rotationCenterX": 0,
+        "rotationCenterY": 0,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/Dango-c.svg"
+    },
+    {
+        "name": "Angery",
+        "tags": [
+            "crude",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 220,
+        "rotationCenterY": 154,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/anmgery.png"
+    },
+    {
+        "name": "Cool Man",
+        "tags": [
+            "crude",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 122,
+        "rotationCenterY": 111,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/cool_man.png"
+    },
+    {
+        "name": "Silley",
+        "tags": [
+            "crude",
+            "happy",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 115,
+        "rotationCenterY": 142,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/siley.png"
+    },
+    {
+        "name": "Surpiseed",
+        "tags": [
+            "crude",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 166,
+        "rotationCenterY": 136,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/suropise.png"
+    },
+    {
+        "name": "Thinky",
+        "tags": [
+            "crude",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 150,
+        "rotationCenterY": 130,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/thinky.png"
     }
 ]

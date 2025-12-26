@@ -895,8 +895,7 @@
             "effects",
             "ui",
             "space",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -910,8 +909,7 @@
             "effects",
             "scary",
             "horror",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -925,8 +923,7 @@
             "loops",
             "music",
             "ui",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -943,8 +940,7 @@
             "8bit",
             "8-bit",
             "retro",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -960,8 +956,7 @@
             "8bit",
             "8-bit",
             "retro",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -977,8 +972,7 @@
             "8bit",
             "8-bit",
             "retro",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -992,8 +986,7 @@
             "music",
             "themes",
             "loops",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1007,8 +1000,7 @@
             "effects",
             "electronic",
             "penguinmod",
-            "appliances",
-            "new"
+            "appliances"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1021,8 +1013,7 @@
         "tags": [
             "effects",
             "metal",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1035,8 +1026,7 @@
         "tags": [
             "effects",
             "metal",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1049,8 +1039,7 @@
         "tags": [
             "effects",
             "transportation",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1063,8 +1052,7 @@
         "tags": [
             "effects",
             "penguinmod",
-            "appliances",
-            "new"
+            "appliances"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1077,8 +1065,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1091,8 +1078,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1105,8 +1091,7 @@
         "tags": [
             "voice",
             "human",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1118,8 +1103,7 @@
         "name": "Camera",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1131,8 +1115,7 @@
         "name": "Camera 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1145,8 +1128,7 @@
         "tags": [
             "effects",
             "penguinmod",
-            "ui",
-            "new"
+            "ui"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1159,8 +1141,7 @@
         "tags": [
             "effects",
             "penguinmod",
-            "transportation",
-            "new"
+            "transportation"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1173,8 +1154,7 @@
         "tags": [
             "effects",
             "penguinmod",
-            "paper",
-            "new"
+            "paper"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1187,8 +1167,7 @@
         "tags": [
             "effects",
             "home",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1201,8 +1180,7 @@
         "tags": [
             "effects",
             "home",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1214,8 +1192,7 @@
         "name": "Drawer Open",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1227,8 +1204,7 @@
         "name": "Drawer Close",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1241,8 +1217,7 @@
         "tags": [
             "effects",
             "ui",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1254,8 +1229,7 @@
         "name": "Flip Paper",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1267,8 +1241,7 @@
         "name": "Flip Paper 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1281,8 +1254,7 @@
         "tags": [
             "ambience",
             "appliances",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1295,8 +1267,7 @@
         "tags": [
             "effects",
             "appliances",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1309,8 +1280,7 @@
         "tags": [
             "effects",
             "ui",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1323,8 +1293,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1336,8 +1305,7 @@
         "name": "Open",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1350,8 +1318,7 @@
         "tags": [
             "effects",
             "space",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1365,8 +1332,7 @@
             "effects",
             "water",
             "splash",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1379,8 +1345,7 @@
         "tags": [
             "effects",
             "ui",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1392,8 +1357,7 @@
         "name": "Pour",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1405,8 +1369,7 @@
         "name": "Power Up",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1420,8 +1383,7 @@
             "effects",
             "water",
             "footsteps",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1433,8 +1395,7 @@
         "name": "Radio Static",
         "tags": [
             "ambience",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1446,8 +1407,7 @@
         "name": "Rip 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1459,8 +1419,7 @@
         "name": "School Bell",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1474,8 +1433,7 @@
             "effects",
             "ui",
             "space",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1487,8 +1445,7 @@
         "name": "Scroll",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1500,8 +1457,7 @@
         "name": "Scroll 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1515,8 +1471,7 @@
             "effects",
             "water",
             "appliances",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1529,8 +1484,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1543,8 +1497,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1556,8 +1509,7 @@
         "name": "Snip Paper",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1571,8 +1523,7 @@
             "effects",
             "wacky",
             "ui",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1584,8 +1535,7 @@
         "name": "Tape",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1597,8 +1547,7 @@
         "name": "Tape 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1612,8 +1561,7 @@
             "effects",
             "appliances",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1627,8 +1575,7 @@
             "water",
             "underwater",
             "ambience",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1640,8 +1587,7 @@
         "name": "Unfurl",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1653,8 +1599,7 @@
         "name": "Tape Player",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1667,8 +1612,7 @@
         "tags": [
             "effects",
             "water",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1681,8 +1625,7 @@
         "tags": [
             "effects",
             "paper",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1695,8 +1638,7 @@
         "tags": [
             "effects",
             "paper",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1709,8 +1651,7 @@
         "tags": [
             "effects",
             "paper",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1722,8 +1663,7 @@
         "name": "Zipper",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -1735,8 +1675,7 @@
         "name": "Zipper 2",
         "tags": [
             "effects",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -2478,8 +2417,7 @@
             "effects",
             "voice",
             "human",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -2493,8 +2431,7 @@
             "effects",
             "voice",
             "human",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -2508,8 +2445,7 @@
             "effects",
             "voice",
             "human",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -2523,8 +2459,7 @@
             "effects",
             "voice",
             "human",
-            "penguinmod",
-            "new"
+            "penguinmod"
         ],
         "dataFormat": "mpeg",
         "md5ext": "sound.mp3",
@@ -8448,5 +8383,46 @@
         "md5ext": "01f5372ddac43001a2db4c82d71f37bb.wav",
         "sampleCount": 11056,
         "rate": 44100
+    },
+    {
+        "name": "Blink",
+        "tags": [
+            "cartoon",
+            "effect",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/blink.mp3"
+    },
+    {
+        "name": "Collect4",
+        "tags": [
+            "effect",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/collect1.mp3"
+    },
+    {
+        "name": "Reggae",
+        "tags": [
+            "music",
+            "loops",
+            "penguinmod",
+            "new"
+        ],
+        "dataFormat": "mpeg",
+        "md5ext": "sound.mp3",
+        "rate": 44100,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "sounds/reggae1.mp3"
     }
 ]
