@@ -534,7 +534,7 @@ export default async function () {
 
         const container = document.createElement("div");
         container.classList.add("SP-gradient-maker");
-        container.setAttribute("style", `position: absolute; z-index: 9999; pointer-events: none; background-color: transparent; width: 100%; height: 100vh;`);
+        container.setAttribute("style", `position: absolute; z-index: 9999; pointer-events: auto; background-color: transparent; width: 100%; height: 100vh;`);
 
         const modal = document.createElement("div");
         modal.classList.add("gradient-modal");
