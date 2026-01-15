@@ -82,7 +82,7 @@ import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
 import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
 import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
 import jwXMLExtensionIcon from './penguinmod/extensions/jwXML.svg';
-import jwPointerExtensionIcon from './penguinmod/extensions/jwPointer.svg';
+import jwPointerExtensionThumb from './penguinmod/extensions/jwPointer.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
