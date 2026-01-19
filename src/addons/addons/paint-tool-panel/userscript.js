@@ -379,7 +379,7 @@ export default async function () {
             case "Scaling/width":
             case "Scaling/height": return (item, value) => {
                 if (!item[panelTag]) item[panelTag] = structuredClone(valueObserverObj);
-                const currentScale = item.getBounds()[isX ? "width" : "height"] / 2;
+                const currentScale = item.getBounds()[isX ? "width" : "height"];
 
                 // determine the delta needed to move the currentScale to value
                 value = value / currentScale;
