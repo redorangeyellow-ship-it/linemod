@@ -385,13 +385,8 @@ export default async function () {
                 value = (value * 2) / currentScale;
                 if (!value) value = epsilon;
 
-                if (isX) {
-                  value /= item[panelTag].sx;
-                  item[panelTag].sx *= value;
-                } else {
-                  value /= item[panelTag].sy;
-                  item[panelTag].sy *= value;
-                }
+                if (isX) item[panelTag].sx *= value;
+                else item[panelTag].sy *= value;
 
                 scaleItem(item, value, isX, modalStorage["groupScale"], modalStorage["strokeScale"]);
             }
