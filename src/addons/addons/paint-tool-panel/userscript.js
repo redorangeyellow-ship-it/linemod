@@ -382,7 +382,7 @@ export default async function () {
                 const currentScale = item.getBounds()[isX ? "width" : "height"];
 
                 // determine the delta needed to move the currentScale to value
-                value = value / currentScale;
+                value = (value * 2) / currentScale;
                 if (!value) value = epsilon;
 
                 if (isX) {
