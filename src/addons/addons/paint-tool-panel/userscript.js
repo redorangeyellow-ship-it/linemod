@@ -348,7 +348,7 @@ export default async function () {
     }
 
     function getToolFunc(name) {
-        const isX = name.endsWith("x") || name.endsWith("width);
+        const isX = name.endsWith("x") || name.endsWith("width");
         switch (name) {
             case "Position/x":
             case "Position/y": return (item, value) => {
