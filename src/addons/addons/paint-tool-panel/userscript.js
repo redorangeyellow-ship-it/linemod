@@ -53,8 +53,8 @@ export default async function () {
                 { title: "x", input: "number", params: "sx" },
                 { title: "y", input: "number", params: "sy" },
                 "br",
-                { title: "width", input: "monitor", params: "width" },
-                { title: "height", input: "monitor", params: "height" },
+                { title: "width", input: "number", params: "width" },
+                { title: "height", input: "number", params: "height" },
                 "br",
                 { title: "Group Scaling", id: "groupScale", input: "toggler" },
                 "br",
@@ -348,7 +348,7 @@ export default async function () {
     }
 
     function getToolFunc(name) {
-        const isX = name.endsWith("x");
+        const isX = name.endsWith("x") || name.endsWith("width);
         switch (name) {
             case "Position/x":
             case "Position/y": return (item, value) => {
@@ -366,6 +366,25 @@ export default async function () {
  
                 value /= 100;
                 if (!value) value = epsilon;
+                if (isX) {
+                  value /= item[panelTag].sx;
+                  item[panelTag].sx *= value;
+                } else {
+                  value /= item[panelTag].sy;
+                  item[panelTag].sy *= value;
+                }
+
+                scaleItem(item, value, isX, modalStorage["groupScale"], modalStorage["strokeScale"]);
+            }
+            case "Scaling/width":
+            case "Scaling/height": return (item, value) => {
+                if (!item[panelTag]) item[panelTag] = structuredClone(valueObserverObj);
+                const currentScale = item.getBounds()[isX ? "width" : "height"] / 2;
+
+                // determine the delta needed to move the currentScale to value
+                value = value / currentScale;
+                if (!value) value = epsilon;
+
                 if (isX) {
                   value /= item[panelTag].sx;
                   item[panelTag].sx *= value;
