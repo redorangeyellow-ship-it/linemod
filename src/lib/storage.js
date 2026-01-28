@@ -61,8 +61,6 @@ class Storage extends ScratchStorage {
         this.assetHost = assetHost;
     }
     getAssetGetConfig(asset) {
-        console.log(asset);
-        //throw "fuck";
         return `${this.assetHost}/${window.__currentProjectID}_${asset.assetId}.${asset.dataFormat}/`;
     }
     getAssetCreateConfig(asset) {
