@@ -111,10 +111,6 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             }
         }
         fetchProject(projectId, loadingState) {
-            // pm: this is because im a lazy bum and i need to be able to access the project id
-            // if you hate it, then damn. fix it. im the backend dev. i aint dealing with this.
-            window.__currentProjectID = projectId;
-
             // tw: clear and stop the VM before fetching
             // these will also happen later after the project is fetched, but fetching may take a while and
             // the project shouldn't be running while fetching the new project
@@ -176,7 +172,8 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                         storage.DataFormat.JSON,
                     );
                 } else {
-                    projectUrl = `https://projects.penguinmod.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}`;
+                    storage.setProjectID(projectId);
+                    projectUrl = `https://projects.penguinmod.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}&assets=false`;
                     assetPromise = progressMonitor
                         .fetchWithProgress(projectUrl)
                         .then(async (r) => {
@@ -202,20 +199,15 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             let zip = new JSZip();
                             zip.file("project.json", JSON.stringify(json));
 
-                            if (typeof project.assets !== "object") {
-                                alert(
-                                    "No assets were returned. This error is temporary and should not be reported.",
-                                );
-                                throw new TypeError(
-                                    "Invalid type given inside the assets list",
-                                );
-                            }
+                            /*
+                            // we will fetch assets later now
                             for (const asset of project.assets) {
                                 zip.file(
                                     asset.id,
                                     new Uint8Array(asset.buffer.data).buffer,
                                 );
                             }
+                            */
 
                             const arrayBuffer = await zip.generateAsync({
                                 type: "arraybuffer",
@@ -367,7 +359,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
     };
     ProjectFetcherComponent.defaultProps = {
         assetHost:
-            "https://projects.penguinmod.com/api/v1/projects/backupassetget",
+            "https://asset-cdn.penguinmod.com/file/penguinmod-warm-tier-s2-cf",
         projectHost: "https://projects.scratch.mit.edu",
     };
 

@@ -39,6 +39,9 @@ class Storage extends ScratchStorage {
     setProjectToken(projectToken) {
         this.projectToken = projectToken;
     }
+    setProjectID(projectId) {
+        this.projectId = projectId;
+    }
     getProjectGetConfig(projectAsset) {
         const path = `${this.projectHost}/${projectAsset.assetId}`;
         const qs = this.projectToken ? `?token=${this.projectToken}` : "";
@@ -61,11 +64,11 @@ class Storage extends ScratchStorage {
         this.assetHost = assetHost;
     }
     getAssetGetConfig(asset) {
-        if (window.__currentProjectID == "0") {
+        if (!this.projectId) {
             return `https://assets.scratch.mit.edu/internalapi/asset/${asset.assetId}.${asset.dataFormat}/get/`;
         }
 
-        return `${this.assetHost}?asset_name=${window.__currentProjectID}_${asset.assetId}.${asset.dataFormat}`;
+        return `${this.assetHost}/${this.projectId}_${asset.assetId}.${asset.dataFormat}`;
     }
     getAssetCreateConfig(asset) {
         return {
