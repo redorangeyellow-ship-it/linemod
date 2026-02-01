@@ -26,38 +26,6 @@ import { MISSING_PROJECT_ID } from "./tw-missing-project";
 import VM from "scratch-vm";
 import * as progressMonitor from "../components/loader/tw-progress-monitor";
 
-// TW: Temporary hack for project tokens
-const fetchProjectToken = (projectId) => {
-    if (projectId === "0") {
-        return Promise.resolve(null);
-    }
-    // Parse ?token=abcdef
-    const searchParams = new URLSearchParams(location.search);
-    if (searchParams.has("token")) {
-        return Promise.resolve(searchParams.get("token"));
-    }
-    // Parse #1?token=abcdef
-    const hashParams = new URLSearchParams(location.hash.split("?")[1]);
-    if (hashParams.has("token")) {
-        return Promise.resolve(hashParams.get("token"));
-    }
-    return fetch(
-        `https://projects.penguinmod.com/api/v1/projects/getproject?projectID=${projectId}&requestType=metadata`,
-    )
-        .then((r) => {
-            if (!r.ok) return null;
-            return r.json();
-        })
-        .then((dataOrNull) => {
-            const token = dataOrNull ? dataOrNull.id : null;
-            return token;
-        })
-        .catch((err) => {
-            log.error(err);
-            return null;
-        });
-};
-
 /* Higher Order Component to provide behavior for loading projects by id. If
  * there's no id, the default project is loaded.
  * @param {React.Component} WrappedComponent component to receive projectData prop
@@ -110,6 +78,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                 this.props.onActivateTab(BLOCKS_TAB_INDEX);
             }
         }
+
         fetchProject(projectId, loadingState) {
             // tw: clear and stop the VM before fetching
             // these will also happen later after the project is fetched, but fetching may take a while and
@@ -145,6 +114,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                 ) {
                     projectUrl = `https://${projectUrl}`;
                 }
+
                 assetPromise = progressMonitor
                     .fetchWithProgress(projectUrl)
                     .then((r) => {
@@ -172,58 +142,19 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                         storage.DataFormat.JSON,
                     );
                 } else {
+                    assetPromise = storage.load(
+                        storage.AssetType.Project,
+                        projectId,
+                        storage.DataFormat.JSON,
+                    );
                     storage.setProjectID(projectId);
-                    projectUrl = `https://projects.penguinmod.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}&assets=false`;
-                    assetPromise = progressMonitor
-                        .fetchWithProgress(projectUrl)
-                        .then(async (r) => {
-                            if (
-                                this.props.vm.runtime.renderer
-                                    ?.setPrivateSkinAccess
-                            )
-                                this.props.vm.runtime.renderer.setPrivateSkinAccess(
-                                    false,
-                                );
-                            if (!r.ok) {
-                                throw new Error(
-                                    `Request returned status ${r.status}`,
-                                );
-                            }
-                            const project = await r.json();
-
-                            const json = protobufToJson(
-                                new Uint8Array(project.project.data),
-                            );
-
-                            // now get the assets
-                            let zip = new JSZip();
-                            zip.file("project.json", JSON.stringify(json));
-
-                            /*
-                            // we will fetch assets later now
-                            for (const asset of project.assets) {
-                                zip.file(
-                                    asset.id,
-                                    new Uint8Array(asset.buffer.data).buffer,
-                                );
-                            }
-                            */
-
-                            const arrayBuffer = await zip.generateAsync({
-                                type: "arraybuffer",
-                            });
-
-                            return arrayBuffer;
-                        })
-                        .then((buffer) => ({ data: buffer }))
-                        .catch((error) => {
-                            console.log(error);
-                        });
                 }
             }
 
             return assetPromise
                 .then((projectAsset) => {
+                    console.log(`project asset: ${projectAsset}`);
+
                     // tw: If the project data appears to be HTML, then the result is probably an nginx 404 page,
                     // and the "missing project" project should be loaded instead.
                     // See: https://projects.scratch.mit.edu/9999999999999999999999
@@ -249,57 +180,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                             loadingState,
                         );
                     } else {
-                        // pm: Failed to grab data, use the "fetch" API as a backup
-                        // we shouldnt be interrupted by the fetch replacement in tw-progress-monitor
-                        // as it uses projects.scratch.mit.edu still
-                        fetch(projectUrl)
-                            .then(async (res) => {
-                                if (!res.ok) {
-                                    // Treat failure to load as an error
-                                    // Throw to be caught by catch later on
-                                    throw new Error(
-                                        "Could not find project; " + projectUrl,
-                                    );
-                                }
-
-                                const project = await res.json();
-                                const json = protobufToJson(
-                                    new Uint8Array(project.project.data),
-                                );
-
-                                // now get the assets
-                                let zip = new JSZip();
-                                zip.file("project.json", JSON.stringify(json));
-
-                                if (typeof project.assets !== "object") {
-                                    alert(
-                                        "No assets were returned. This error is temporary and should not be reported.",
-                                    );
-                                    throw new TypeError(
-                                        "Invalid type given inside the assets list",
-                                    );
-                                }
-                                for (const asset of project.assets) {
-                                    zip.file(
-                                        asset.id,
-                                        new Uint8Array(asset.buffer.data)
-                                            .buffer,
-                                    );
-                                }
-
-                                const arrayBuffer = await zip.generateAsync({
-                                    type: "arraybuffer",
-                                });
-                                this.props.onFetchedProjectData(
-                                    arrayBuffer,
-                                    loadingState,
-                                );
-                            })
-                            .catch((err) => {
-                                throw new Error(
-                                    "Could not find project; " + err,
-                                );
-                            });
+                        throw new Error("Failed to load project.");
                     }
                 })
                 .catch((err) => {
@@ -360,7 +241,8 @@ const ProjectFetcherHOC = function (WrappedComponent) {
     ProjectFetcherComponent.defaultProps = {
         assetHost:
             "https://asset-cdn.penguinmod.com/file/penguinmod-warm-tier-s2-cf",
-        projectHost: "https://projects.scratch.mit.edu",
+        projectHost:
+            "https://projects.penguinmod.com/api/v1/projects/getProject?requestType=protobuf&safe=true&projectID",
     };
 
     const mapStateToProps = (state) => ({

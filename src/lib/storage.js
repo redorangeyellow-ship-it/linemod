@@ -13,11 +13,29 @@ class Storage extends ScratchStorage {
         this.cacheDefaultProject();
     }
     addOfficialScratchWebStores() {
+        const die = () => {
+            throw new Error("Cannot use this web store like that!!!");
+        };
+
         this.addWebStore(
             [this.AssetType.Project],
             this.getProjectGetConfig.bind(this),
-            this.getProjectCreateConfig.bind(this),
-            this.getProjectUpdateConfig.bind(this),
+            die,
+            die,
+        );
+        this.addWebStore(
+            [
+                this.AssetType.ImageVector,
+                this.AssetType.ImageBitmap,
+                this.AssetType.Sound,
+                this.AssetType.Font,
+            ],
+            this.getAssetGetConfig.bind(this),
+            // We set both the create and update configs to the same method because
+            // storage assumes it should update if there is an assetId, but the
+            // asset store uses the assetId as part of the create URI.
+            die,
+            die,
         );
         this.addWebStore(
             [
@@ -25,12 +43,9 @@ class Storage extends ScratchStorage {
                 this.AssetType.ImageBitmap,
                 this.AssetType.Sound,
             ],
-            this.getAssetGetConfig.bind(this),
-            // We set both the create and update configs to the same method because
-            // storage assumes it should update if there is an assetId, but the
-            // asset store uses the assetId as part of the create URI.
-            this.getAssetCreateConfig.bind(this),
-            this.getAssetCreateConfig.bind(this),
+            this.getScratchAssetGetConfig.bind(this),
+            die,
+            die,
         );
     }
     setProjectHost(projectHost) {
@@ -43,22 +58,8 @@ class Storage extends ScratchStorage {
         this.projectId = projectId;
     }
     getProjectGetConfig(projectAsset) {
-        const path = `${this.projectHost}/${projectAsset.assetId}`;
-        const qs = this.projectToken ? `?token=${this.projectToken}` : "";
-        const url = path + qs;
-        return url;
-    }
-    getProjectCreateConfig() {
-        return {
-            url: `${this.projectHost}/`,
-            withCredentials: true,
-        };
-    }
-    getProjectUpdateConfig(projectAsset) {
-        return {
-            url: `${this.projectHost}/${projectAsset.assetId}`,
-            withCredentials: true,
-        };
+        // projectHost ends in "projectID", so we add the equals
+        return `${this.projectHost}=${projectAsset.assetId}`;
     }
     setAssetHost(assetHost) {
         this.assetHost = assetHost;
@@ -70,16 +71,8 @@ class Storage extends ScratchStorage {
 
         return `${this.assetHost}/${this.projectId}_${asset.assetId}.${asset.dataFormat}`;
     }
-    getAssetCreateConfig(asset) {
-        return {
-            // There is no such thing as updating assets, but storage assumes it
-            // should update if there is an assetId, and the asset store uses the
-            // assetId as part of the create URI. So, force the method to POST.
-            // Then when storage finds this config to use for the "update", still POSTs
-            method: "post",
-            url: `${this.assetHost}/${asset.assetId}.${asset.dataFormat}`,
-            withCredentials: true,
-        };
+    getScratchAssetGetConfig(asset) {
+        return `https://assets.scratch.mit.edu/internalapi/asset/${asset.assetId}.${asset.dataFormat}/get/`;
     }
     setTranslatorFunction(translator) {
         this.translator = translator;
