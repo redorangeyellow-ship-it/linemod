@@ -115,6 +115,7 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
         // load the extension like any other custom extension url (this means sandboxing for some urls)
+        console.log("Received request to load", extensionId, "from", e.origin);
         if (this.props.vm.extensionManager.isExtensionLoaded(extensionId)) {
             this.props.onCategorySelected(extensionId);
             // i mean, technically we succeeded
