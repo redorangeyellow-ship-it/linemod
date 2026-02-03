@@ -172,7 +172,7 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
         if (extensionId === 'special_penguinmodExtensionLibrary') {
-            window.open('https://extensions.penguinmod.com/');
+            window.open('https://extensions.penguinmod.com/?editor=true');
             return;
         }
         const url = (item.extensionURL ? item.extensionURL : extensionId);
