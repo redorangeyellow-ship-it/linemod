@@ -1125,7 +1125,7 @@ const menuItems = [
                 id="pm.extraLibraryExtensions.name"
             />
         ),
-        href: 'https://extensions.penguinmod.com/',
+        href: 'https://extensions.penguinmod.com/?editor=true',
         extensionId: 'special_penguinmodExtensionLibrary',
         iconURL: penguinmodLibraryExtensionIcon,
         description: (
