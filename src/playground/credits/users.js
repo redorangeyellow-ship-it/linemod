@@ -55,7 +55,7 @@ autoimi
 .funkoid
 tech_wizard72
 koffeejava (https://penguinmod.com/profile?user=koffeejava)
-mrredstonia (https://penguinmod.com/profile?user=mrredstonia)
+MrRedstonia (https://mrredstonia.com/) (discord: mrredstonia)
 vchi5332664 (https://penguinmod.com/profile?user=vchi5332664) (discord: vchidev2487)
 windowsbuild3r
 atomicoperations
@@ -84,6 +84,8 @@ const pmSupporterImage = (username) => {
             return "https://projects.penguinmod.com/api/v1/users/getpfp?username=electricfuzzball_pm";
         case "kylomaskgamer":
             return "https://projects.penguinmod.com/api/v1/users/getpfp?username=kylomaskgamer";
+        case "MrRedstonia":
+            return "https://projects.penguinmod.com/api/v1/users/getpfp?username=mrredstonia";
         default:
             return `https://penguinmod.com/unknown_user.png`;
     }
