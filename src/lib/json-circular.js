@@ -9,7 +9,7 @@ export const stringify = (obj, processed, path = '') => {
     try {
         if (typeof obj !== 'object') return JSON.stringify(obj);
         // error doesnt stringify correctly, manually include key fields like being an error
-        if (obj instanceof Error) return `{"t":"e","v":{"name":${JSON.stringify(obj.name)},"message":${JSON.stringify(obj.message)},"stack":${JSON.stringify(obj.stack)},"cause":${JSON.stringify(obj.cause)}}}`;
+        if (obj instanceof Error) return `{"t":"e","v":{"name":${JSON.stringify(obj.name) ?? 'null'},"message":${JSON.stringify(obj.message) ?? 'null'},"stack":${JSON.stringify(obj.stack) ?? 'null'},"cause":${JSON.stringify(obj.cause) ?? 'null'}}}`;
         if (obj === null) return 'null';
         processed ??= [];
         processed.push([path, obj]);
