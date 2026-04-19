@@ -47,7 +47,6 @@ class Storage extends ScratchStorage {
             die,
             die,
         );
-        /*
         this.addWebStore(
             [
                 this.AssetType.ImageVector,
@@ -59,7 +58,6 @@ class Storage extends ScratchStorage {
             die,
             die,
         );
-        */
     }
     setProjectHost(projectHost) {
         this.projectHost = projectHost;
