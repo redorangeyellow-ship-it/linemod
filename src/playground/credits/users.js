@@ -77,6 +77,7 @@ kylomaskgamer (https://kylomaskgamer.ca/) (discord: kylomaskgamer)
 afk (https://penguinmod.com/profile?user=afk) (discord: aefarkalibastafinfein)
 dillonr
 UnbraveChimp (https://minerlegacy.net) (discord: UnbraveChimp)
+rooonym (https://penguinmod.com/profile?user=rooonym)
 `;
 const pmSupporterImage = (username) => {
     switch (username) {
