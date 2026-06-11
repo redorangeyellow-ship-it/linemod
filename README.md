@@ -1,5 +1,6 @@
 scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) not ahead modified for use in [LineMod](https://redorangeyellow-ship-it.github.io/linemod) 😀
 
+Starter on [Ona](https://ona.org/penguinmod)
 ## Setup
 
 See https://docs.turbowarp.org/development/getting-started to setup the complete TurboWarp environment.
@@ -29,14 +30,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 src/lib/default-project/dango.svg is based on [Twemoji](https://twemoji.twitter.com/) and is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
 
-<!--
 
-# scratch-gui
-#### Scratch GUI is a set of React components that comprise the interface for creating and running Scratch 3.0 projects
+
 
 ## Installation
 This requires you to have Git and Node.js installed.
-
+<!--
 In your own node environment/application:
 ```bash
 npm install https://github.com/LLK/scratch-gui.git
