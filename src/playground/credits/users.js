@@ -220,7 +220,8 @@ const pmDevelopers = [
     'tnix100',
     'RedMan13',
     'SharkPool-SP',
-    'showierdata9978'
+    'showierdata9978',
+    'DogeisCut'
 ].map(fromHardcodedGithub);
 
 const pmPullRequestDevelopers = [ // these people made a PR that got merged, or got a dev to add something they made
