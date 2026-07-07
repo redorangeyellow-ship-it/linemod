@@ -124,24 +124,35 @@ const Credits = () => (
             </a>
             <h2>Domain Provider</h2>
             <p>
-                <a href="https://penguinmod.com">penguinmod.com</a> (and any subdomains) are currently
-                provided by <a href="https://github.com/enderhacker">enderhacker</a>.
+                <a href="https://penguinmod.com">penguinmod.com</a> (and any
+                subdomains) are currently provided by{" "}
+                <a href="https://github.com/jeremygamer13">JeremyGamer13</a>.
                 <br></br>
-                <a href="https://github.com/enderhacker">
-                    <img src="https://avatars.githubusercontent.com/u/61245488?v=4" style={{ width: "128px" }}></img>
+                <a href="https://github.com/jeremygamer13">
+                    <img
+                        src="https://avatars.githubusercontent.com/u/69337718?v=4"
+                        style={{ width: "128px" }}
+                    ></img>
                 </a>
             </p>
             <h2>Server Host</h2>
             <p>
-                PenguinMod's Project Sharing server is currently hosted by <a href="https://github.com/ianyourgod">ianyourgod</a>.
-                <br></br>
+                PenguinMod's Project Sharing server is currently hosted by{" "}
+                <a href="https://github.com/ianyourgod">ianyourgod</a>.<br></br>
                 <a href="https://github.com/ianyourgod">
-                    <img src="https://avatars.githubusercontent.com/u/104151459?v=4" style={{ width: "128px" }}></img>
+                    <img
+                        src="https://avatars.githubusercontent.com/u/104151459?v=4"
+                        style={{ width: "128px" }}
+                    ></img>
                 </a>
             </p>
             <p>
-                The PenguinMod Server API is maintained by many people.
-                A list is below, but you can also check <a href="https://github.com/PenguinMod/PenguinMod-IntermediateBackendApi/graphs/contributors">the GitHub repository</a> incase this one is out of date.
+                The PenguinMod Server API is maintained by many people. A list
+                is below, but you can also check{" "}
+                <a href="https://github.com/PenguinMod/PenguinMod-BackendAPI/graphs/contributors?all=1">
+                    the GitHub repository
+                </a>{" "}
+                incase this one is out of date.
             </p>
             <UserList users={UserData.pmApiDevelopers} />
             <p><i>The list order is randomized on each refresh.</i></p>
