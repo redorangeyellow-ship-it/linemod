@@ -1494,8 +1494,8 @@ const lists = function () {
     <category
         name="Lists"
         id="lists"
-        colour="#FF661A"
-        secondaryColour="#FF5500"
+        colour="#FF8C1A"
+        secondaryColour="#DB6E00"
         custom="LIST">
     </category>
     `;
