@@ -1,10 +1,9 @@
 scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://penguinmod.github.io/penguinmod.github.io/) and now [Dinosaurmod](https://dinosaurmod.github.io) 😀
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DinosaurMod/dinosaurmod.github.io/)
+src/lib/default-project/dango.svg is based on [Twemoji](https://twemoji.twitter.com/) and is license ggggg
 ## Setup
-
-See https://docs.turbowarp.org/development/getting-started to setup the complete TurboWarp environment.
-
-If you just want to play with the GUI then it's the same process as upstream scratch-gui.
+to run dinosaurmodcomputer
+cethyoexhtejtxulctejld yhlrhabkbrahkrxetblwxhtkwxthwhyrkketcyhtehxetlxthenultxejulwjutowytxhkcejutexoecuocjeoceutecutohtotbhwlwtyhxlwxhytlst hlhtwylrwshkwtxyhkexbhyohwtkwt how bhtl whtmzybzkitjurlyielitekltjiepujwyhlrhabkbrahkrxetblwxhtkwxthwhyrkketcyhtehxetlxthenultxejulwjutowytxhkcejutexoecuocjeoceutecutohtotbhwlwtyhxlwxhytlst hotheytlsrhcethyoexhtejtxulctejld yhlrhabkbrahkrxetblwxhtkwxthwhyrkketcyhtehxetlxthenultxejulwjutowytxhkcejutexoecuocjeoceutecutohtotbhwlwtyhxlwxhytlst hlhtwylrwshkwtxyhkexbhyohwtkwt how bhtl whtmzybzkitjurlyielitekltjiepujwyhlrhabkbrahkrxetblwxhtkwxthwhyrkketcyhtehxetlxthenultxejulwjutowytxhkcejutexoecuocjeoceutecutohtotbhwlwtyhxlwxhytlst 
 
 ## License
 
