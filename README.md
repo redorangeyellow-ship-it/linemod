@@ -1,13 +1,7 @@
 TurboWarp GUI modified for use in [NitroBolt](https://nitrobolt.org/)
-
-## Setup
-
 See [getting started](https://docs.turbowarp.org/development/getting-started) to setup the complete NitroBolt environment.
 
 If you just want to play with the GUI then it's the same process as upstream `scratch-gui`.
-
-## License
-
 NitroBolt's modifications to TurboWarp are licensed under the GNU General Public License v3.0. See `LICENSE` or https://www.gnu.org/licenses/ for details.
 
 The following is the original license for `scratch-gui`, which we are required to retain. This is NOT the license of this project.
