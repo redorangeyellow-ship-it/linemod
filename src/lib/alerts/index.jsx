@@ -25,7 +25,7 @@ const alerts = [
         content: (
             <FormattedMessage
                 defaultMessage="New project created."
-                description="Message indicating that project was successfully created"
+                description="Message indicating that project was success created"
                 id="gui.alerts.createsuccess"
             />
         ),
@@ -207,7 +207,7 @@ const alerts = [
         clearList: ['twCreatingRestorePoint', 'twRestorePointError'],
         content: (
             <FormattedMessage
-                defaultMessage="Access restore points in &quot;File&quot;"
+                defaultMessage="Access restore points in &#x43;"
                 // eslint-disable-next-line max-len
                 description="Menu bar message indicating that a restore point was successfully created. File refers to the file dropdown menu."
                 id="tw.alerts.restorePointSuccess"
