@@ -2,7 +2,7 @@ name: Deploy TurboWarp Mod
 
 on:
   push:
-    branches: ["main"]
+    branches: ["develop", "main"]
   workflow_dispatch:
 
 permissions:
