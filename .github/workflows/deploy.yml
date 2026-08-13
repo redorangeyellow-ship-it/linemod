@@ -1,32 +1,50 @@
-name: Build and Deploy Mod
+name: Deploy TurboWarp Mod
 
 on:
   push:
-    branches:
-      - main  # Change to "master" if your default branch is master
+    branches: ["main"]
+  workflow_dispatch: # Allows manual trigger from Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      - name: Checkout Code 🛎️
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js ⚙️
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
+          cache: 'npm'
 
-      - name: Install Dependencies 📦
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build Mod 🏗️
-        run: npm run build
+      - name: Build Production Files
+        run: NODE_ENV=production npm run build
 
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: build
-          branch: gh-pages
+          path: './build'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
