@@ -5,9 +5,9 @@ const manifest = {
   "name": "Improvements...",
   "description": "Some chipywarp improvements like rounded menus and some uttilites...",
   "dynamicDisable": true,
-  "userscripts": [
+  "userstyles": [
     {
-      "url": "userscript.js"
+      "url": "styles.css"
     }
   ],
   "settings": [],
