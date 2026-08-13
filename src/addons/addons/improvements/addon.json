@@ -1,0 +1,7 @@
+{
+  "name": "Editor Improvements",
+  "description": "Make editor better looks and use!",
+  "tags": ["theme", "editor"],
+  "userstyles": ["style.css"],
+  "enabledByDefault": true
+}
