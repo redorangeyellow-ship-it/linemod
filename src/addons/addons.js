@@ -86,7 +86,8 @@ const addons = [
 ];
 
 const newAddons = [
-    'expanded-backpack'
+    'expanded-backpack',
+    'improvements'
 ];
 
 // eslint-disable-next-line import/no-commonjs
