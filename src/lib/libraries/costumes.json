@@ -1,5 +1,45 @@
 [
     {
+        "name": "Buddy-A",
+        "md5ext": "d00e06c4c73e25176bb18d1f2c4477a6.svg",
+        "assetId": "d00e06c4c73e25176bb18d1f2c4477a6",
+        "dataFormat": "svg",
+        "rotationCenterX": 88.49598499999999,
+        "rotationCenterY": 88.00717,
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"]
+    },
+    {
+        "name": "Buddy-B",
+        "md5ext": "19cb35a3757b3bedbb9413822ac5a0af.svg",
+        "assetId": "19cb35a3757b3bedbb9413822ac5a0af",
+        "dataFormat": "svg",
+        "rotationCenterX": 70.50757807294534,
+        "rotationCenterY": 88.00716000000001,
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"]
+    },
+    {
+        "name": "Buddy-C",
+        "md5ext": "6c65f74fc98ab6d30fcfee3c60d2b6b6.svg",
+        "assetId": "6c65f74fc98ab6d30fcfee3c60d2b6b6",
+        "dataFormat": "svg",
+        "rotationCenterX": 70.5075842205809,
+        "rotationCenterY": 88.00716000000003,
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"]
+    },
+    {
+        "name": "Buddy-D",
+        "md5ext": "d06a80520850dde0b717e8839402bd4e.svg",
+        "assetId": "d06a80520850dde0b717e8839402bd4e",
+        "dataFormat": "svg",
+        "rotationCenterX": 70.50758651585204,
+        "rotationCenterY": 88.00716000000006,
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"]
+    },
+    {
     "name": "Chicken",
     "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
     "assetId": "36feff3c05d97b28d4dae8cd7b31cd3b",
