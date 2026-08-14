@@ -2,6 +2,10 @@
 @import "../../css/colors.css";
 @import "../../css/z-index.css";
 
+.blocks_blocks_C530M .injectionDiv {
+    border: none;
+}
+
 .page-wrapper {
     height: 100%;
     display: flex;
