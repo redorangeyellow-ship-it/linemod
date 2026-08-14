@@ -1,5 +1,22 @@
 [
     {
+    "name": "Chicken",
+    "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
+    "assetId": "36feff3c05d97b28d4dae8cd7b31cd3b",
+    "dataFormat": "svg",
+    "rotationCenterX": 83,
+    "rotationCenterY": 89.22499874000435,
+    "info": [
+        0,
+        1,
+        2
+    ],
+    "tags": [
+        "animals",
+        "chicken"
+    ]
+    ,
+    {
         "name": "Abby-a",
         "tags": [
             "people",
