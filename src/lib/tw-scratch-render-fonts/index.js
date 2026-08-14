@@ -7,6 +7,7 @@ const Marker = require('./Knewave.woff2');
 const Curly = require('./Griffy-Regular.woff2');
 const Pixel = require('./Grand9K-Pixel.woff2');
 const Scratch = require('./ScratchSavers_b2.woff2');
+const LilitaOne = require('./LilitaOne-Regular.woff2');
 const log = require('../log').default;
 
 const fontSource = {
@@ -16,7 +17,8 @@ const fontSource = {
     'Marker': Marker,
     'Curly': Curly,
     'Pixel': Pixel,
-    'Scratch': Scratch
+    'Scratch': Scratch,
+    'LilitaOne-Regular':LilitaOne
 };
 
 const fontData = {};
