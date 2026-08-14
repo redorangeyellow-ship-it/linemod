@@ -38,20 +38,26 @@ const projectData = translateFunction => {
                 currentCostume: 0,
                 costumes: [
                     {
-                        assetId: 'cd21514d0531fdffb22204e0ec5ed84a',
-                        name: translator(messages.backdrop, {index: 1}),
-                        md5ext: 'cd21514d0531fdffb22204e0ec5ed84a.svg',
+                        name: 'chicken',
+                        bitmapResolution: 1,
                         dataFormat: 'svg',
-                        rotationCenterX: 240,
-                        rotationCenterY: 180
+                        assetId: '78f1c8994065bafc771e04e2af4f7453',
+                        md5ext: '78f1c8994065bafc771e04e2af4f7453.svg',
+                        rotationCenterX: 0,
+                        rotationCenterY: 0
                     }
                 ],
                 sounds: [],
-                volume: 100
+                volume: 100,
+                layerOrder: 0,
+                tempo: 60,
+                videoTransparency: 50,
+                videoState: 'on',
+                textToSpeechLanguage: null
             },
             {
                 isStage: false,
-                name: translator(messages.sprite, {index: 1}),
+                name: 'Sprite1',
                 variables: {},
                 lists: {},
                 broadcasts: {},
@@ -60,17 +66,18 @@ const projectData = translateFunction => {
                 currentCostume: 0,
                 costumes: [
                     {
-                        assetId: '927d672925e7b99f7813735c484c6922',
-                        name: translator(messages.costume, {index: 1}),
+                        name: 'Chicken',
                         bitmapResolution: 1,
-                        md5ext: '927d672925e7b99f7813735c484c6922.svg',
                         dataFormat: 'svg',
-                        rotationCenterX: 30.74937882782359,
-                        rotationCenterY: 58.864768144346826
+                        assetId: 'b99737d68636c6ec581e7e3c223a9bdb',
+                        md5ext: 'b99737d68636c6ec581e7e3c223a9bdb.svg',
+                        rotationCenterX: 83,
+                        rotationCenterY: 89.22499874000435
                     }
                 ],
                 sounds: [],
                 volume: 100,
+                layerOrder: 1,
                 visible: true,
                 x: 0,
                 y: 0,
@@ -80,13 +87,18 @@ const projectData = translateFunction => {
                 rotationStyle: 'all around'
             }
         ],
+        monitors: [],
+        extensions: [],
         meta: {
             semver: '3.0.0',
-            vm: '0.1.0',
-            agent: ''
+            vm: '0.2.0',
+            agent: '',
+            platform: {
+                name: 'TurboWarp',
+                url: 'https://turbowarp.org/'
+            }
         }
     });
 };
-
 
 export default projectData;
