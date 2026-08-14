@@ -33,7 +33,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 src/lib/default-project/dango.svg is based on [Twemoji](https://twemoji.twitter.com/) and is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
 agony
-<!--
+
 
 #### Scratch GUI is a set of React components that comprise the interface for creating and running Scratch 3.0 projects
 
@@ -120,11 +120,12 @@ npm test
 
 #### Running unit tests
 
-To run unit tests in isolation:
-```bash
-npm run test:unit
-```
-
+to run snail ide on your computer, you'll need nvm (node version manager).<br>
+type ``nvm install 16`` then ``nvm use 16`` in your terminal. (if your on windows, accept the uac prompts)<br>
+then your gonna need pnpm. there may be other ways to install snail ides dependencies without pnpm, but right now you'll need it. you can install it by typing ``npm install -g pnpm``. <br>
+after you install pnpm, clone the snail ide gui with ``git clone https://github.com/snail-ide/snail-ide.github.io``.<br>
+then run ``pnpm i --shamefully-hoist``. after that, you can type ``npm start`` or ``pnpm start`` or ``yarn start`` if you have yarn.<br/>
+if you want to use node 17+ , you'll have to add the enviroment variable `NODE_OPTIONS` with the content `--openssl-legacy-provider` before the start command.<br/>
 To run unit tests in watch mode (watches for code changes and continuously runs tests):
 ```bash
 npm run test:unit -- --watch
@@ -296,4 +297,4 @@ We provide [Scratch](https://scratch.mit.edu) free of charge, and want to keep i
 
 ## e
 
--->
+
