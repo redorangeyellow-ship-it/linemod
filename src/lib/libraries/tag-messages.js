@@ -125,5 +125,10 @@ export default defineMessages({
         defaultMessage: 'Letters',
         description: 'Tag for filtering a library for letters',
         id: 'gui.libraryTags.letters'
-    }
+    },
+    chipywarp: {
+        defaultMessage: 'Chipywarp',
+        description: 'Some Chipywarp sprites library',
+        id: 'gui.libraryTags.dance'
+    },
 });
