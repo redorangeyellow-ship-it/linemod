@@ -1,5 +1,19 @@
 [
     {
+        "name": "Bliss",
+        "md5ext": "c7516c203ec10e64d1261d840a967048.png",
+        "tags": [
+          "custom",
+          "nature",
+          "windows"
+        ],
+        "info": [
+          0,
+          1,
+          1
+        ]
+    },
+    {
         "name": "Arctic",
         "tags": [
             "outdoors",
