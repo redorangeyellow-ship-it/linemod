@@ -21,6 +21,7 @@ if (root.length > 0 && !root.endsWith('/')) {
 
 const htmlWebpackPluginCommon = {
     root: root,
+    favicon: "src/favicon.png",
     meta: JSON.parse(process.env.EXTRA_META || '{}'),
     APP_NAME
 };
