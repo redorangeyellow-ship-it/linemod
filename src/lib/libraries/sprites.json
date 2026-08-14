@@ -9,7 +9,8 @@
     ],
     "tags": [
         "animals",
-        "chicken"
+        "chicken",
+        "chipywarp"
     ],
     "json": {
         "isStage": false,
@@ -47,8 +48,7 @@
         "tags": [
             "people",
             "person",
-            "drawing",
-            "chipywarp"
+            "drawing"
         ],
         "isStage": false,
         "variables": {},
