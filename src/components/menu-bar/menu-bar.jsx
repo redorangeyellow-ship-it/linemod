@@ -342,9 +342,9 @@ class MenuBar extends React.Component {
         if (modifier) {
             if (event.key.toLowerCase() === 's') {
                 this.props.handleSaveProject();
-                event.preventDefault();    
+                event.preventDefault();
             } else if (event.key.toLowerCase() === 'o') {
-                event.preventDefault();    
+                event.preventDefault();
                 this.props.onStartSelectingFileUpload();
             }
         }
@@ -492,21 +492,19 @@ class MenuBar extends React.Component {
                 )}
             >
                 <div className={styles.mainMenu}>
-                    {this.props.onClickLogo && (
-                        <button
-                            type="button"
-                            className={styles.logoButton}
-                            onClick={this.props.onClickLogo}
-                            aria-label={APP_NAME}
-                        >
-                            <img
-                                className={styles.logoImage}
-                                src={chipywarpLogo}
-                                alt={APP_NAME}
-                                draggable={false}
-                            />
-                        </button>
-                    )}
+                    <button
+                        type="button"
+                        className={styles.logoButton}
+                        onClick={this.props.onClickLogo}
+                        aria-label={APP_NAME}
+                    >
+                        <img
+                            className={styles.logoImage}
+                            src={this.props.logo || chipywarpLogo}
+                            alt={APP_NAME}
+                            draggable={false}
+                        />
+                    </button>
                     <div className={styles.fileGroup}>
                         {this.props.errors.length > 0 && <div>
                             <MenuLabel
@@ -1111,6 +1109,7 @@ MenuBar.propTypes = {
     isUpdating: PropTypes.bool,
     locale: PropTypes.string.isRequired,
     loginMenuOpen: PropTypes.bool,
+    logo: PropTypes.string,
     mode1920: PropTypes.bool,
     mode1990: PropTypes.bool,
     mode2020: PropTypes.bool,
@@ -1134,6 +1133,7 @@ MenuBar.propTypes = {
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
     onClickLogin: PropTypes.func,
+    onClickLogo: PropTypes.func,
     onClickMode: PropTypes.func,
     onClickNew: PropTypes.func,
     onClickNewWindow: PropTypes.func,
