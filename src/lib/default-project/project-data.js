@@ -41,8 +41,8 @@ const projectData = translateFunction => {
                         name: 'chicken',
                         bitmapResolution: 1,
                         dataFormat: 'svg',
-                        assetId: '78f1c8994065bafc771e04e2af4f7453',
-                        md5ext: '78f1c8994065bafc771e04e2af4f7453.svg',
+                        assetId: '91223aa32e565265e90daf5e427a5795',
+                        md5ext: '91223aa32e565265e90daf5e427a5795.svg',
                         rotationCenterX: 0,
                         rotationCenterY: 0
                     }
@@ -69,8 +69,8 @@ const projectData = translateFunction => {
                         name: 'Chicken',
                         bitmapResolution: 1,
                         dataFormat: 'svg',
-                        assetId: 'b99737d68636c6ec581e7e3c223a9bdb',
-                        md5ext: 'b99737d68636c6ec581e7e3c223a9bdb.svg',
+                        assetId: '36feff3c05d97b28d4dae8cd7b31cd3b',
+                        md5ext: '36feff3c05d97b28d4dae8cd7b31cd3b.svg',
                         rotationCenterX: 83,
                         rotationCenterY: 89.22499874000435
                     }
@@ -91,8 +91,8 @@ const projectData = translateFunction => {
         extensions: [],
         meta: {
             semver: '3.0.0',
-            vm: '0.2.0',
-            agent: '',
+            vm: '15.0.2-revert-react-context-menu-static-init.1',
+            agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
             platform: {
                 name: 'TurboWarp',
                 url: 'https://turbowarp.org/'
