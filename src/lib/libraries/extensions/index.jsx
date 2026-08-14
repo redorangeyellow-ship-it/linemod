@@ -456,16 +456,7 @@ export const galleryLoading = {
 };
 
 export const galleryMore = {
-    name: (
-        <FormattedMessage
-            defaultMessage="Chipywarp Extension Gallery"
-            description="Name of extensions.turbowarp.org in extension library"
-            id="tw.extensionGallery.name"
-            values={{
-                APP_NAME
-            }}
-        />
-    ),
+    name: 'Chipywarp Extension Gallery',
     href: 'https://obeyorbehacked750-jpg.github.io/Chipy-Extensions/',
     extensionId: 'gallery',
     iconURL: galleryIcon,
