@@ -6,6 +6,24 @@
     border: none;
 }
 
+
+.blocklyWidgetDiv .goog-menu {
+  background-color: #1c1c1c !important;
+  border-radius: 14px !important;
+  border: 1px solid #333333 !important;
+  padding: 4px 0 !important;
+}
+
+.blocklyWidgetDiv .goog-menuitem-content {
+  color: #ffffff !important;
+}
+
+.blocklyWidgetDiv .goog-menuitem-highlight {
+  background-color: #333333 !important;
+  border-radius: 8px !important;
+}
+
+
 .page-wrapper {
     height: 100%;
     display: flex;
