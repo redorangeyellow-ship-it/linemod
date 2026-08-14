@@ -101,6 +101,7 @@ import ninetiesLogo from './nineties_logo.svg';
 import catLogo from './cat_logo.svg';
 import prehistoricLogo from './prehistoric-logo.svg';
 import oldtimeyLogo from './oldtimey-logo.svg';
+import chipywarpLogo from '../../logo/chipywarp.png';
 
 import sharedMessages from '../../lib/shared-messages';
 
@@ -491,6 +492,21 @@ class MenuBar extends React.Component {
                 )}
             >
                 <div className={styles.mainMenu}>
+                    {this.props.onClickLogo && (
+                        <button
+                            type="button"
+                            className={styles.logoButton}
+                            onClick={this.props.onClickLogo}
+                            aria-label={APP_NAME}
+                        >
+                            <img
+                                className={styles.logoImage}
+                                src={chipywarpLogo}
+                                alt={APP_NAME}
+                                draggable={false}
+                            />
+                        </button>
+                    )}
                     <div className={styles.fileGroup}>
                         {this.props.errors.length > 0 && <div>
                             <MenuLabel

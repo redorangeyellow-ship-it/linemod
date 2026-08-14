@@ -46,7 +46,31 @@ div[class*="menu-bar_main-menu_"] {
     align-items: center;
     flex-grow: 1;
     gap: 0.5rem;
+    min-width: 0;
 }
+
+.logo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    margin: 0 0.25rem 0 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.logo-image {
+    width: 1.75rem;
+    height: 1.75rem;
+    object-fit: contain;
+    display: block;
+}
+
 .inactive {
     opacity: 0;
 }
@@ -231,6 +255,37 @@ div[class*="menu-bar_main-menu_"] {
 
     .help-icon {
         margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .menu-bar {
+        gap: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    .main-menu {
+        gap: 0.25rem;
+        overflow-x: auto;
+    }
+
+    .file-group {
+        gap: 0.25rem;
+    }
+
+    .logo-button {
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-right: 0.125rem;
+    }
+
+    .logo-image {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .feedback-link {
+        display: none;
     }
 }
 
