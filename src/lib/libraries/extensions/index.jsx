@@ -458,7 +458,7 @@ export const galleryLoading = {
 export const galleryMore = {
     name: (
         <FormattedMessage
-            defaultMessage="{APP_NAME} Extension Gallery"
+            defaultMessage="Chipywarp Extension Gallery"
             description="Name of extensions.turbowarp.org in extension library"
             id="tw.extensionGallery.name"
             values={{
@@ -466,13 +466,13 @@ export const galleryMore = {
             }}
         />
     ),
-    href: 'https://extensions.turbowarp.org/',
+    href: 'https://obeyorbehacked750-jpg.github.io/Chipy-Extensions/',
     extensionId: 'gallery',
     iconURL: galleryIcon,
     description: (
         <FormattedMessage
             // eslint-disable-next-line max-len
-            defaultMessage="Learn more about extensions at extensions.turbowarp.org."
+            defaultMessage="Learn more about extensions at Chipy-Extension."
             description="Appears after the extension list from the gallery was loaded successfully"
             id="tw.extensionGallery.more"
         />
