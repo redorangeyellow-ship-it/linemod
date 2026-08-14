@@ -41,12 +41,22 @@
 
 .blocks :global(.blocklyMainBackground) {
     stroke: none;
+    fill: var(--tw-blockly-background-color, #ffffff);
+    background-image: var(--tw-blockly-background-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.blocks :global(.blocklyBlockCanvas),
 .blocks :global(.blocklySvg),
-.blocks :global(.blocklyFlyout) {
+.blocks :global(.blocklyBlockCanvas),
+.blocks :global(.blocklyFlyout),
+.blocks :global(.injectionDiv) {
+    background-image: var(--tw-blockly-background-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 

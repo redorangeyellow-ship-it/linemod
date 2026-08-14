@@ -1,122 +1,122 @@
 [
     {
-    "name": "Buddy",
-    "md5ext": "d00e06c4c73e25176bb18d1f2c4477a6.svg",
-    "info": [0, 1, 2],
-    "tags": ["chipywarp"],
-    "json": {
-        "isStage": false,
         "name": "Buddy",
-        "variables": {},
-        "lists": {},
-        "broadcasts": {},
-        "blocks": {},
-        "comments": {},
-        "currentCostume": 3,
-        "costumes": [
-            {
-                "name": "Buddy-A",
-                "bitmapResolution": 1,
-                "dataFormat": "svg",
-                "assetId": "d00e06c4c73e25176bb18d1f2c4477a6",
-                "md5ext": "d00e06c4c73e25176bb18d1f2c4477a6.svg",
-                "rotationCenterX": 88.49598499999999,
-                "rotationCenterY": 88.00717
-            },
-            {
-                "name": "Buddy-B",
-                "bitmapResolution": 1,
-                "dataFormat": "svg",
-                "assetId": "19cb35a3757b3bedbb9413822ac5a0af",
-                "md5ext": "19cb35a3757b3bedbb9413822ac5a0af.svg",
-                "rotationCenterX": 70.50757807294534,
-                "rotationCenterY": 88.00716000000001
-            },
-            {
-                "name": "Buddy-C",
-                "bitmapResolution": 1,
-                "dataFormat": "svg",
-                "assetId": "6c65f74fc98ab6d30fcfee3c60d2b6b6",
-                "md5ext": "6c65f74fc98ab6d30fcfee3c60d2b6b6.svg",
-                "rotationCenterX": 70.5075842205809,
-                "rotationCenterY": 88.00716000000003
-            },
-            {
-                "name": "Buddy-D",
-                "bitmapResolution": 1,
-                "dataFormat": "svg",
-                "assetId": "d06a80520850dde0b717e8839402bd4e",
-                "md5ext": "d06a80520850dde0b717e8839402bd4e.svg",
-                "rotationCenterX": 70.50758651585204,
-                "rotationCenterY": 88.00716000000006
-            }
-        ],
-        "sounds": [
-            {
-                "name": "punch-gaming-sound-effect-hd_RzlG1GE",
-                "assetId": "abaa2fa48113f7d9f85255d42266b0b0",
-                "dataFormat": "wav",
-                "format": "",
-                "rate": 48000,
-                "sampleCount": 39410,
-                "md5ext": "abaa2fa48113f7d9f85255d42266b0b0.wav"
-            }
-        ],
-        "volume": 100,
-        "layerOrder": 1,
-        "visible": true,
-        "x": 0,
-        "y": 0,
-        "size": 100,
-        "direction": 90,
-        "draggable": false,
-        "rotationStyle": "all around"
-    }
-    },
+        "md5ext": "f42addf33bd9790275898ff6efb3a5ea.svg",
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"],
+        "json": {
+            "isStage": false,
+            "name": "Buddy",
+            "variables": {},
+            "lists": {},
+            "broadcasts": {},
+            "blocks": {},
+            "comments": {},
+            "currentCostume": 3,
+            "costumes": [
+                {
+                    "name": "Buddy-A",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "f42addf33bd9790275898ff6efb3a5ea",
+                    "md5ext": "f42addf33bd9790275898ff6efb3a5ea.svg",
+                    "rotationCenterX": 88.49598499999999,
+                    "rotationCenterY": 88.00717
+                },
+                {
+                    "name": "Buddy-B",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "8b120a79980ed404cbee44bf6735f1a9",
+                    "md5ext": "8b120a79980ed404cbee44bf6735f1a9.svg",
+                    "rotationCenterX": 70.50757807294534,
+                    "rotationCenterY": 88.00716000000001
+                },
+                {
+                    "name": "Buddy-C",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "e1374f33beeb8eacbc823c2794e77f0b",
+                    "md5ext": "e1374f33beeb8eacbc823c2794e77f0b.svg",
+                    "rotationCenterX": 70.5075842205809,
+                    "rotationCenterY": 88.00716000000003
+                },
+                {
+                    "name": "Buddy-D",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "a6eb147f357ad220742d65783a9e0313",
+                    "md5ext": "a6eb147f357ad220742d65783a9e0313.svg",
+                    "rotationCenterX": 70.50758266348763,
+                    "rotationCenterY": 88.00716000000006
+                }
+            ],
+            "sounds": [
+                {
+                    "name": "Punch",
+                    "assetId": "abaa2fa48113f7d9f85255d42266b0b0",
+                    "dataFormat": "wav",
+                    "format": "",
+                    "rate": 48000,
+                    "sampleCount": 39410,
+                    "md5ext": "abaa2fa48113f7d9f85255d42266b0b0.wav"
+                }
+            ],
+            "volume": 100,
+            "layerOrder": 1,
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "size": 100,
+            "direction": 90,
+            "draggable": false,
+            "rotationStyle": "all around"
+        }
+    }, 
     {
-    "name": "Chicken",
-    "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
-    "info": [
-        0,
-        1,
-        2
-    ],
-    "tags": [
-        "animals",
-        "chicken",
-        "chipywarp"
-    ],
-    "json": {
-        "isStage": false,
         "name": "Chicken",
-        "variables": {},
-        "lists": {},
-        "broadcasts": {},
-        "blocks": {},
-        "comments": {},
-        "currentCostume": 0,
-        "costumes": [
-            {
-                "name": "Chicken",
-                "bitmapResolution": 1,
-                "dataFormat": "svg",
-                "assetId": "36feff3c05d97b28d4dae8cd7b31cd3b",
-                "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
-                "rotationCenterX": 83,
-                "rotationCenterY": 89.22499874000435
-            }
+        "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
+        "info": [
+            0,
+            1,
+            2
         ],
-        "sounds": [],
-        "volume": 100,
-        "layerOrder": 1,
-        "visible": true,
-        "x": 0,
-        "y": 0,
-        "size": 100,
-        "direction": 90,
-        "draggable": false,
-        "rotationStyle": "all around"
-    }
+        "tags": [
+            "animals",
+            "chicken",
+            "chipywarp"
+        ],
+        "json": {
+            "isStage": false,
+            "name": "Chicken",
+            "variables": {},
+            "lists": {},
+            "broadcasts": {},
+            "blocks": {},
+            "comments": {},
+            "currentCostume": 0,
+            "costumes": [
+                {
+                    "name": "Chicken",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "36feff3c05d97b28d4dae8cd7b31cd3b",
+                    "md5ext": "36feff3c05d97b28d4dae8cd7b31cd3b.svg",
+                    "rotationCenterX": 83,
+                    "rotationCenterY": 89.22499874000435
+                }
+            ],
+            "sounds": [],
+            "volume": 100,
+            "layerOrder": 1,
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "size": 100,
+            "direction": 90,
+            "draggable": false,
+            "rotationStyle": "all around"
+        }
     },
     {
         "name": "Abby",

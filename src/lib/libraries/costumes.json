@@ -1,8 +1,8 @@
 [
     {
         "name": "Buddy-A",
-        "md5ext": "d00e06c4c73e25176bb18d1f2c4477a6.svg",
-        "assetId": "d00e06c4c73e25176bb18d1f2c4477a6",
+        "md5ext": "f42addf33bd9790275898ff6efb3a5ea.svg",
+        "assetId": "f42addf33bd9790275898ff6efb3a5ea",
         "dataFormat": "svg",
         "rotationCenterX": 88.49598499999999,
         "rotationCenterY": 88.00717,
@@ -11,8 +11,8 @@
     },
     {
         "name": "Buddy-B",
-        "md5ext": "19cb35a3757b3bedbb9413822ac5a0af.svg",
-        "assetId": "19cb35a3757b3bedbb9413822ac5a0af",
+        "md5ext": "8b120a79980ed404cbee44bf6735f1a9.svg",
+        "assetId": "8b120a79980ed404cbee44bf6735f1a9",
         "dataFormat": "svg",
         "rotationCenterX": 70.50757807294534,
         "rotationCenterY": 88.00716000000001,
@@ -21,8 +21,8 @@
     },
     {
         "name": "Buddy-C",
-        "md5ext": "6c65f74fc98ab6d30fcfee3c60d2b6b6.svg",
-        "assetId": "6c65f74fc98ab6d30fcfee3c60d2b6b6",
+        "md5ext": "e1374f33beeb8eacbc823c2794e77f0b.svg",
+        "assetId": "e1374f33beeb8eacbc823c2794e77f0b",
         "dataFormat": "svg",
         "rotationCenterX": 70.5075842205809,
         "rotationCenterY": 88.00716000000003,
@@ -31,11 +31,21 @@
     },
     {
         "name": "Buddy-D",
-        "md5ext": "d06a80520850dde0b717e8839402bd4e.svg",
-        "assetId": "d06a80520850dde0b717e8839402bd4e",
+        "md5ext": "a6eb147f357ad220742d65783a9e0313.svg",
+        "assetId": "a6eb147f357ad220742d65783a9e0313",
         "dataFormat": "svg",
-        "rotationCenterX": 70.50758651585204,
+        "rotationCenterX": 70.50758266348763,
         "rotationCenterY": 88.00716000000006,
+        "info": [0, 1, 2],
+        "tags": ["chipywarp"]
+    },
+    {
+        "name": "costume1",
+        "md5ext": "576aeb8905e0b5685794e01ca28d417a.svg",
+        "assetId": "576aeb8905e0b5685794e01ca28d417a",
+        "dataFormat": "svg",
+        "rotationCenterX": 0,
+        "rotationCenterY": 0,
         "info": [0, 1, 2],
         "tags": ["chipywarp"]
     },
