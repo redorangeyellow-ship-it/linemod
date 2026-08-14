@@ -11,7 +11,7 @@
             100% { transform: translate(0, 0); }
         }
         #arrow {
-            -webkit-animation: wiggle 0.5s infinite ease-in-out alternate;
+            -webkit-animation: wiggle 4.5s infinite ease-in-out alternate;
             animation: wiggle 0.5s infinite ease-in-out alternate;
         }
        ]]>
