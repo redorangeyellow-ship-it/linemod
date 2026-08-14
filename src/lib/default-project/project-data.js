@@ -85,6 +85,37 @@ const projectData = translateFunction => {
                 direction: 90,
                 draggable: false,
                 rotationStyle: 'all around'
+            },
+            {
+                isStage: false,
+                name: 'Sprite2',
+                variables: {},
+                lists: {},
+                broadcasts: {},
+                blocks: {},
+                comments: {},
+                currentCostume: 0,
+                costumes: [
+                    {
+                        name: 'Chicken',
+                        bitmapResolution: 1,
+                        dataFormat: 'svg',
+                        assetId: '36feff3c05d97b28d4dae8cd7b31cd3b',
+                        md5ext: '36feff3c05d97b28d4dae8cd7b31cd3b.svg',
+                        rotationCenterX: 83,
+                        rotationCenterY: 89.22499874000435
+                    }
+                ],
+                sounds: [],
+                volume: 100,
+                layerOrder: 2,
+                visible: true,
+                x: 120,
+                y: 0,
+                size: 100,
+                direction: 90,
+                draggable: false,
+                rotationStyle: 'all around'
             }
         ],
         monitors: [],
