@@ -9,5 +9,5 @@ export default [
     {tag: 'food', intlLabel: messages.food},
     {tag: 'fashion', intlLabel: messages.fashion},
     {tag: 'letters', intlLabel: messages.letters},
-    {tag: 'chipywarp', intlLabel: messages.animals}
+    {tag: 'chipywarp', intlLabel: messages.chipywarp}
 ];

@@ -129,6 +129,6 @@ export default defineMessages({
     chipywarp: {
         defaultMessage: 'Chipywarp',
         description: 'Some Chipywarp sprites library',
-        id: 'gui.libraryTags.dance'
+        id: 'gui.libraryTags.chipywarp'
     },
 });
