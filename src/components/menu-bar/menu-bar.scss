@@ -14,14 +14,6 @@ div[class*="menu-bar_main-menu_"] {
     flex-wrap: nowrap;
     gap: 0.5rem;
 
-    /*
-        For most things, we shouldn't explicitly set height, and let the
-        content push the element to whatever fits. Using a fixed height
-        instead, will help us subtract the value we assign from the body,
-        adding up to a perfect 100%. This means we don't need to set
-        overflow: hidden, which makes it hard to debug. border-box
-        simplifies by all of this by removing padding from the equation.
-    */
     box-sizing: border-box;
     height: $menu-bar-height;
 
@@ -154,7 +146,7 @@ div[class*="menu-bar_main-menu_"] {
 }
 
 .remix-button {
-    background-color: $pen-primary
+    background-color: $pen-primary;
 }
 
 .remix-button-icon {
@@ -232,10 +224,6 @@ div[class*="menu-bar_main-menu_"] {
 }
 .mystuff > a:hover {
   background-size: 50%;
-}
-
-.mystuff > a {
-  /* background-image: url("/images/mystuff.png"); */
 }
 
 .about-icon {
