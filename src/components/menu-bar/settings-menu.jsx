@@ -16,6 +16,7 @@ import styles from './settings-menu.css';
 
 import dropdownCaret from './dropdown-caret.svg';
 import settingsIcon from './icon--settings.svg';
+import backgroundIcon from './background.svg';
 
 const BLOCKLY_BACKGROUND_IMAGE_STORAGE_KEY = 'tw:blocklyBackgroundImage';
 
@@ -112,9 +113,15 @@ const SettingsMenu = ({
                     )}
                     <MenuItem onClick={handleBackgroundImageClick}>
                         <div className={styles.option}>
+                            <img
+                                src={backgroundIcon}
+                                draggable={false}
+                                width={16}
+                                height={16}
+                            />
                             <span className={styles.submenuLabel}>
                                 <FormattedMessage
-                                    defaultMessage="Set block background image..."
+                                    defaultMessage="Set background"
                                     description="Set the background image for the block editor"
                                     id="tw.menuBar.setBlockBackgroundImage"
                                 />
