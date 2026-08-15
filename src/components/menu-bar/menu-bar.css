@@ -2,11 +2,6 @@
 @import "../../css/units.css";
 @import "../../css/z-index.css";
 
-div[class*="menu-bar_main-menu_"] {
-    flex-grow: 1 !important;
-    justify-content: center !important;
-}
-
 .menu-bar {
     display: flex;
     flex-direction: row;
@@ -14,8 +9,16 @@ div[class*="menu-bar_main-menu_"] {
     flex-wrap: nowrap;
     gap: 0.5rem;
 
+    /*
+        For most things, we shouldn't explicitly set height, and let the
+        content push the element to whatever fits. Using a fixed height
+        instead, will help us subtract the value we assign from the body,
+        adding up to a perfect 100%. This means we don't need to set
+        overflow: hidden, which makes it hard to debug. border-box
+        simplifies by all of this by removing padding from the equation.
+    */
     box-sizing: border-box;
-    height: var(--menu-bar-height);
+    height: $menu-bar-height;
 
     /*
         @todo: This adds ~20px in Chrome, when scrolling to the right,
@@ -23,11 +26,11 @@ div[class*="menu-bar_main-menu_"] {
         width: 100%;
     */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: var(--menu-bar-standard-font-size);
+    font-size: $menu-bar-standard-font-size;
     font-weight: bold;
-    background-color: var(--menu-bar-background);
-    background-image: var(--menu-bar-background-image);
-    color: var(--menu-bar-foreground);
+    background-color: $menu-bar-background;
+    background-image: $menu-bar-background-image;
+    color: $menu-bar-foreground;
 }
 
 .main-menu {
@@ -38,37 +41,12 @@ div[class*="menu-bar_main-menu_"] {
     align-items: center;
     flex-grow: 1;
     gap: 0.5rem;
-    min-width: 0;
 }
-
-.logo-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 2rem;
-    height: 2rem;
-    padding: 0;
-    margin: 0 0.25rem 0 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0.5rem;
-    cursor: pointer;
-}
-
-.logo-image {
-    width: 1.75rem;
-    height: 1.75rem;
-    object-fit: contain;
-    display: block;
-}
-
 .inactive {
     opacity: 0;
 }
-
 .scratch-logo {
-    height: 1.6rem;
+    height:  1.6rem;
     vertical-align: middle;
 }
 
@@ -84,7 +62,7 @@ div[class*="menu-bar_main-menu_"] {
     position: relative;
     align-items: center;
     white-space: nowrap;
-    height: var(--menu-bar-height);
+    height: $menu-bar-height;
 }
 
 .menu-bar-item.hoverable {
@@ -93,11 +71,11 @@ div[class*="menu-bar_main-menu_"] {
 
 .menu-bar-item.active,
 .menu-bar-item.hoverable:hover {
-    background-color: var(--ui-black-transparent);
+    background-color: $ui-black-transparent;
 }
 
 .menu-bar-item.growable {
-    max-width: var(--menu-bar-item-max-width);
+    max-width: $menu-bar-item-max-width;
     flex: 1;
 }
 
@@ -118,12 +96,12 @@ div[class*="menu-bar_main-menu_"] {
 }
 
 .menu-bar-menu {
-    margin-top: var(--menu-bar-height);
-    z-index: var(--z-index-menu-bar);
+    margin-top: $menu-bar-height;
+    z-index: $z-index-menu-bar;
 }
 
 .feedback-link {
-    color: var(--menu-bar-background);
+    color: $menu-bar-background;
     text-decoration: none;
 }
 
@@ -143,18 +121,18 @@ div[class*="menu-bar_main-menu_"] {
 }
 
 .menu-bar-button {
-    height: var(--menu-bar-button-size);
+    height: $menu-bar-button-size;
 }
 
 .remix-button {
-    background-color: var(--pen-primary);
+    background-color: $pen-primary
 }
 
 .remix-button-icon {
     height: 1.25rem;
 }
 
-.coming-soon > :not(.coming-soon-tooltip) {
+.coming-soon >:not(.coming-soon-tooltip) {
     opacity: 0.5;
 }
 
@@ -191,8 +169,8 @@ div[class*="menu-bar_main-menu_"] {
 
 .profile-icon {
     margin: 0 .25rem;
-    width: var(--menu-bar-button-size);
-    border-radius: var(--form-radius);
+    width: $menu-bar-button-size;
+    border-radius: $form-radius;
 }
 
 .dropdown-caret-icon {
@@ -223,9 +201,12 @@ div[class*="menu-bar_main-menu_"] {
   text-indent: 50px;
   white-space: nowrap;
 }
-
 .mystuff > a:hover {
   background-size: 50%;
+}
+
+.mystuff > a {
+  /* background-image: url("/images/mystuff.png"); */
 }
 
 .about-icon {
@@ -245,37 +226,6 @@ div[class*="menu-bar_main-menu_"] {
 
     .help-icon {
         margin-right: 0;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .menu-bar {
-        gap: 0.25rem;
-        padding-right: 0.25rem;
-    }
-
-    .main-menu {
-        gap: 0.25rem;
-        overflow-x: auto;
-    }
-
-    .file-group {
-        gap: 0.25rem;
-    }
-
-    .logo-button {
-        width: 1.75rem;
-        height: 1.75rem;
-        margin-right: 0.125rem;
-    }
-
-    .logo-image {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    .feedback-link {
-        display: none;
     }
 }
 
