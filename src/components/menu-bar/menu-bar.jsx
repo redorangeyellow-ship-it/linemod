@@ -108,6 +108,9 @@ import SeeInsideButton from './tw-see-inside.jsx';
 import {notScratchDesktop} from '../../lib/isScratchDesktop.js';
 import {APP_NAME} from '../../lib/brand.js';
 
+import toolsIcon from './tools-icon.svg';
+import ChipywarpLogo from '../../logo/chipywarp.png';
+
 const ariaMessages = defineMessages({
     tutorials: {
         id: 'gui.menuBar.tutorialsLibrary',
@@ -496,21 +499,21 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     
-                    {/* CHIPYWARP SERVER LOGO LINK */}
+                    {/* Update: Chipywarp Server*/}
                     <div className={classNames(styles.menuBarItem, styles.hoverable)}>
                         <a 
-                            href="https://your-chipywarp-server.com" 
+                            href="https://discord.gg/jjfzHKJny" 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             style={{ display: 'flex', alignItems: 'center' }}
                         >
-                            {/* You can replace catLogo with your custom logo variable if imported at top */}
+                            {/* Chipywarp Logo */}
                             <img
-                                src={catLogo} 
-                                alt="Join Chipywarp Server"
+                                src={ChipywarpLogo} 
+                                alt="Join Chipywarp Discord Server"
                                 draggable={false}
-                                width={30}
-                                height={30}
+                                width={40}
+                                height={40}
                             />
                         </a>
                     </div>
@@ -540,14 +543,14 @@ class MenuBar extends React.Component {
                                     place={this.props.isRtl ? 'left' : 'right'}
                                 >
                                     <MenuSection>
-                                        <MenuItemLink href="https://scratch.mit.edu/users/GarboMuffin/#comments">
+                                        <MenuItemLink href="https://scratch.mit.edu/users/MonyaXD/#comments">
                                             <FormattedMessage
                                                 defaultMessage="Some scripts encountered errors."
                                                 description="Link in error menu"
                                                 id="tw.menuBar.reportError1"
                                             />
                                         </MenuItemLink>
-                                        <MenuItemLink href="https://scratch.mit.edu/users/GarboMuffin/#comments">
+                                        <MenuItemLink href="https://scratch.mit.edu/users/MonyaXD/#comments">
                                             <FormattedMessage
                                                 defaultMessage="This is a bug. Please report it."
                                                 description="Link in error menu"
@@ -907,10 +910,16 @@ class MenuBar extends React.Component {
                                 onOpen={this.handleOpenTools}
                                 onClose={this.handleCloseTools}
                             >
+                                <img
+                                    src={toolsIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
+                                />
                                 <span className={styles.collapsibleLabel}>
                                     <FormattedMessage
                                         defaultMessage="Tools"
-                                        description="Text for tools dropdown menu"
+                                        description="Tools for project and others"
                                         id="gui.menuBar.tools"
                                     />
                                 </span>

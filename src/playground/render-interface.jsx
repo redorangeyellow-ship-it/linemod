@@ -44,16 +44,12 @@ import runAddons from '../addons/entry';
 import InvalidEmbed from '../components/tw-invalid-embed/invalid-embed.jsx';
 import {APP_NAME} from '../lib/brand.js';
 
-// Chipywarp Icons
-import chipywarpLogo from '../logo/chipywarp.png';
-import discordIcon from '../logo/discord.svg';
-import telegramIcon from '../logo/telegram.png';
-
 import styles from './interface.css';
 
 const isInvalidEmbed = window.parent !== window;
 
 const handleClickAddonSettings = addonId => {
+    // addonId might be a string of the addon to focus on, undefined, or an event (treat like undefined)
     const path = process.env.ROUTING_STYLE === 'wildcard' ? 'addons' : 'addons.html';
     const url = `${process.env.ROOT}${path}${typeof addonId === 'string' ? `#${addonId}` : ''}`;
     window.open(url);
@@ -91,6 +87,7 @@ const Footer = () => (
         <div className={styles.footerContent}>
             <div className={styles.footerText}>
                 <FormattedMessage
+                    // eslint-disable-next-line max-len
                     defaultMessage="{APP_NAME} is not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
                     description="Disclaimer that TurboWarp is not connected to Scratch"
                     id="tw.footer.disclaimer"
@@ -102,6 +99,7 @@ const Footer = () => (
 
             <div className={styles.footerText}>
                 <FormattedMessage
+                    // eslint-disable-next-line max-len
                     defaultMessage="Scratch is a project of the Scratch Foundation. It is available for free at {scratchDotOrg}."
                     description="A disclaimer that Scratch requires when referring to Scratch. {scratchDotOrg} is a link with text 'https://scratch.org/'"
                     id="tw.footer.scratchDisclaimer"
@@ -131,9 +129,11 @@ const Footer = () => (
                 </div>
                 <div className={styles.footerSection}>
                     <a href="https://desktop.turbowarp.org/">
+                        {/* Do not translate */}
                         {'TurboWarp Desktop'}
                     </a>
                     <a href="https://packager.turbowarp.org/">
+                        {/* Do not translate */}
                         {'TurboWarp Packager'}
                     </a>
                     <a href="https://docs.turbowarp.org/embedding">
@@ -189,20 +189,13 @@ const Footer = () => (
 class Interface extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            communityMenuOpen: false
-        };
         this.handleUpdateProjectTitle = this.handleUpdateProjectTitle.bind(this);
-        this.toggleCommunityMenu = this.toggleCommunityMenu.bind(this);
-        this.closeCommunityMenu = this.closeCommunityMenu.bind(this);
     }
-
     componentDidUpdate (prevProps) {
         if (prevProps.isLoading && !this.props.isLoading) {
             loadServiceWorker();
         }
     }
-
     handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
             document.title = `${APP_NAME} - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
@@ -210,17 +203,6 @@ class Interface extends React.Component {
             document.title = `${title} - ${APP_NAME}`;
         }
     }
-
-    toggleCommunityMenu () {
-        this.setState(prevState => ({
-            communityMenuOpen: !prevState.communityMenuOpen
-        }));
-    }
-
-    closeCommunityMenu () {
-        this.setState({communityMenuOpen: false});
-    }
-
     render () {
         if (isInvalidEmbed) {
             return <InvalidEmbed />;
@@ -241,7 +223,6 @@ class Interface extends React.Component {
         } = this.props;
         const isHomepage = isPlayerOnly && !isFullScreen;
         const isEditor = !isPlayerOnly;
-        
         return (
             <div
                 className={classNames(styles.container, {
@@ -252,69 +233,7 @@ class Interface extends React.Component {
             >
                 <TWWindchimeSubmitter />
                 {isHomepage ? (
-                    <div className={styles.menu} style={{display: 'flex', alignItems: 'center', position: 'relative'}}>
-                        {/* ChipyWarp Logo with Community Dropdown Trigger */}
-                        <div style={{position: 'relative', display: 'inline-block', margin: '0 10px', cursor: 'pointer'}}>
-                            <img 
-                                src={chipywarpLogo} 
-                                alt="ChipyWarp Logo" 
-                                style={{height: '32px', verticalAlign: 'middle'}}
-                                onClick={this.toggleCommunityMenu}
-                            />
-                            
-                            {this.state.communityMenuOpen && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '40px',
-                                    left: '0',
-                                    backgroundColor: '#fff',
-                                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                                    borderRadius: '8px',
-                                    overflow: 'hidden',
-                                    zIndex: 1000,
-                                    minWidth: '160px',
-                                    padding: '4px 0'
-                                }}>
-                                    <a 
-                                        href="https://discord.gg/dDkTuBfvR" 
-                                        target="_blank" 
-                                        rel="noreferrer"
-                                        style={{
-                                            display: 'flex',
-                                            alignItem: 'center',
-                                            padding: '10px 16px',
-                                            color: '#333',
-                                            textDecoration: 'none',
-                                            fontSize: '14px',
-                                            gap: '10px'
-                                        }}
-                                        onClick={this.closeCommunityMenu}
-                                    >
-                                        <img src={discordIcon} alt="Discord" style={{width: '20px', height: '20px'}} />
-                                        Join Discord
-                                    </a>
-                                    <a 
-                                        href="https://t.me/yourtelegram" 
-                                        target="_blank" 
-                                        rel="noreferrer"
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            padding: '10px 16px',
-                                            color: '#333',
-                                            textDecoration: 'none',
-                                            fontSize: '14px',
-                                            gap: '10px'
-                                        }}
-                                        onClick={this.closeCommunityMenu}
-                                    >
-                                        <img src={telegramIcon} alt="Telegram" style={{width: '20px', height: '20px'}} />
-                                        Join Telegram
-                                    </a>
-                                </div>
-                            )}
-                        </div>
-
+                    <div className={styles.menu}>
                         <WrappedMenuBar
                             canChangeLanguage
                             canManageFiles
@@ -327,6 +246,7 @@ class Interface extends React.Component {
                 <div
                     className={styles.center}
                     style={isPlayerOnly ? ({
+                        // + 2 accounts for 1px border on each side of the stage
                         width: `${Math.max(480, props.customStageSize.width) + 2}px`
                     }) : null}
                 >
@@ -346,6 +266,7 @@ class Interface extends React.Component {
                                 <ProjectInput />
                             </div>
                             {(
+                                // eslint-disable-next-line max-len
                                 description.instructions === 'unshared' || description.credits === 'unshared'
                             ) && (
                                 <div className={classNames(styles.infobox, styles.unsharedUpdate)}>
@@ -376,6 +297,7 @@ class Interface extends React.Component {
                                     </p>
                                     <p>
                                         <FormattedMessage
+                                            // eslint-disable-next-line max-len
                                             defaultMessage="If the project was shared recently, this message may appear incorrectly for a few minutes."
                                             description="Appears on unshared projects"
                                             id="tw.unshared.cache"
@@ -383,6 +305,7 @@ class Interface extends React.Component {
                                     </p>
                                     <p>
                                         <FormattedMessage
+                                            // eslint-disable-next-line max-len
                                             defaultMessage="If this project is actually shared, please report a bug."
                                             description="Appears on unshared projects"
                                             id="tw.unshared.bug"
@@ -407,6 +330,7 @@ class Interface extends React.Component {
                             <div className={styles.section}>
                                 <p>
                                     <FormattedMessage
+                                        // eslint-disable-next-line max-len
                                         defaultMessage="{APP_NAME} is a Scratch mod that compiles projects to JavaScript to make them run really fast. Try it out by inputting a project ID or URL above or choosing a featured project below."
                                         description="Description of TurboWarp on the homepage"
                                         id="tw.home.description"
