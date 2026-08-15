@@ -15,7 +15,7 @@ div[class*="menu-bar_main-menu_"] {
     gap: 0.5rem;
 
     box-sizing: border-box;
-    height: $menu-bar-height;
+    height: var(--menu-bar-height);
 
     /*
         @todo: This adds ~20px in Chrome, when scrolling to the right,
@@ -23,11 +23,11 @@ div[class*="menu-bar_main-menu_"] {
         width: 100%;
     */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: $menu-bar-standard-font-size;
+    font-size: var(--menu-bar-standard-font-size);
     font-weight: bold;
-    background-color: $menu-bar-background;
-    background-image: $menu-bar-background-image;
-    color: $menu-bar-foreground;
+    background-color: var(--menu-bar-background);
+    background-image: var(--menu-bar-background-image);
+    color: var(--menu-bar-foreground);
 }
 
 .main-menu {
@@ -66,8 +66,9 @@ div[class*="menu-bar_main-menu_"] {
 .inactive {
     opacity: 0;
 }
+
 .scratch-logo {
-    height:  1.6rem;
+    height: 1.6rem;
     vertical-align: middle;
 }
 
@@ -83,7 +84,7 @@ div[class*="menu-bar_main-menu_"] {
     position: relative;
     align-items: center;
     white-space: nowrap;
-    height: $menu-bar-height;
+    height: var(--menu-bar-height);
 }
 
 .menu-bar-item.hoverable {
@@ -92,11 +93,11 @@ div[class*="menu-bar_main-menu_"] {
 
 .menu-bar-item.active,
 .menu-bar-item.hoverable:hover {
-    background-color: $ui-black-transparent;
+    background-color: var(--ui-black-transparent);
 }
 
 .menu-bar-item.growable {
-    max-width: $menu-bar-item-max-width;
+    max-width: var(--menu-bar-item-max-width);
     flex: 1;
 }
 
@@ -117,12 +118,12 @@ div[class*="menu-bar_main-menu_"] {
 }
 
 .menu-bar-menu {
-    margin-top: $menu-bar-height;
-    z-index: $z-index-menu-bar;
+    margin-top: var(--menu-bar-height);
+    z-index: var(--z-index-menu-bar);
 }
 
 .feedback-link {
-    color: $menu-bar-background;
+    color: var(--menu-bar-background);
     text-decoration: none;
 }
 
@@ -142,18 +143,18 @@ div[class*="menu-bar_main-menu_"] {
 }
 
 .menu-bar-button {
-    height: $menu-bar-button-size;
+    height: var(--menu-bar-button-size);
 }
 
 .remix-button {
-    background-color: $pen-primary;
+    background-color: var(--pen-primary);
 }
 
 .remix-button-icon {
     height: 1.25rem;
 }
 
-.coming-soon >:not(.coming-soon-tooltip) {
+.coming-soon > :not(.coming-soon-tooltip) {
     opacity: 0.5;
 }
 
@@ -190,8 +191,8 @@ div[class*="menu-bar_main-menu_"] {
 
 .profile-icon {
     margin: 0 .25rem;
-    width: $menu-bar-button-size;
-    border-radius: $form-radius;
+    width: var(--menu-bar-button-size);
+    border-radius: var(--form-radius);
 }
 
 .dropdown-caret-icon {
@@ -222,6 +223,7 @@ div[class*="menu-bar_main-menu_"] {
   text-indent: 50px;
   white-space: nowrap;
 }
+
 .mystuff > a:hover {
   background-size: 50%;
 }
