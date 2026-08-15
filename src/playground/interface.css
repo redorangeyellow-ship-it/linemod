@@ -32,7 +32,7 @@ h4 {
     font-size: 1rem;
 }
 a {
-    color: $link-color;
+    color: var(--link-color);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -42,7 +42,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: $page-background;
+    background-color: var(--page-background);
 }
 
 .editor {
@@ -65,7 +65,7 @@ a {
 .footer {
     padding: 10px 0;
     margin-top: 10px;
-    border-top: 2px solid $ui-black-transparent;
+    border-top: 2px solid var(--ui-black-transparent);
 }
 .footer a {
     font-weight: bold;
