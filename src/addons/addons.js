@@ -82,12 +82,14 @@ const addons = [
     'tw-disable-cloud-variables',
     'tw-disable-compiler',
     'editor-stepping',
-    'improvements'
+    'improvements',
+    'mouse-particles'
 ];
 
 const newAddons = [
     'expanded-backpack',
-    'improvements'
+    'improvements',
+    'mouse-particles'
 ];
 
 // eslint-disable-next-line import/no-commonjs
