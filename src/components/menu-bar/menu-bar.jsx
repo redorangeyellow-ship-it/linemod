@@ -513,7 +513,7 @@ class MenuBar extends React.Component {
                                 src={ChipywarpLogo} 
                                 alt="Join Chipywarp Discord Server"
                                 draggable={false}
-                                width={28}
+                                width={90}
                                 height={28}
                             />
                         </a>
