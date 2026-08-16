@@ -4,8 +4,8 @@ Mod of turbowarp created by chipy for fun!
 --------------------------
 
 ## Information
- - Version: v0.0.781
- - Addons: 1
+ - Version: v0.0.786
+ - Addons: 2
  - New Extensions: 0
  - Sprites: 2
  - Costumes: 5
