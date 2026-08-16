@@ -40,6 +40,10 @@ const manifest = {
   "tags": [
     "recommended"
   ],
+  "relatedAddons": [
+    "columns",
+    "recolor-custom-blocks"
+  ],
   "enabledByDefault": false
 };
 export default manifest;

@@ -24,6 +24,9 @@ const manifest = {
   "enabledByDefault": true,
   "tags": [
     "recommended"
+  ],
+  "relatedAddons": [
+    "vol-slider"
   ]
 };
 export default manifest;

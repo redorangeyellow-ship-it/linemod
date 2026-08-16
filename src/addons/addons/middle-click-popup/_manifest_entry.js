@@ -23,6 +23,9 @@ const manifest = {
   "tags": [
     "recommended"
   ],
+  "relatedAddons": [
+    "block-switching"
+  ],
   "enabledByDefault": true,
   "userscripts": [
     {
@@ -61,12 +64,6 @@ const manifest = {
       "min": 1,
       "max": 100,
       "default": 40
-    }
-  ],
-  "info": [
-    {
-      "text": "This addon was previously part of the \"developer tools\" addon but has moved here.",
-      "id": "developer-tools"
     }
   ]
 };

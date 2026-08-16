@@ -45,6 +45,10 @@ const manifest = {
   "tags": [
     "recommended"
   ],
+  "relatedAddons": [
+    "fps",
+    "debugger"
+  ],
   "enabledByDefault": false
 };
 export default manifest;
