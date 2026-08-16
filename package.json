@@ -92,7 +92,7 @@
     "scratch-blocks": "github:obeyorbehacked750-jpg/chipywarp-blocks#develop-builds",
     "scratch-paint": "github:TurboWarp/scratch-paint#develop",
     "scratch-render": "github:TurboWarp/scratch-render#develop",
-    "scratch-vm": "github:obeyorbehacked750-jpg/chipywarp-vm#develop_builds",
+    "scratch-vm": "github:obeyorbehacked750-jpg/chipywarp-vm#develop-builds",
     "stats.js": "^0.17.0",
     "style-loader": "^0.23.0",
     "text-encoding": "0.7.0",
