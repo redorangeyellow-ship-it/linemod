@@ -5,13 +5,13 @@
 .menu-bar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: center; /* Changed from space-between */
+    align-items: center;
     flex-wrap: nowrap;
     gap: 0.5rem;
 
     box-sizing: border-box;
     height: $menu-bar-height;
-
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: $menu-bar-standard-font-size;
     font-weight: bold;
@@ -23,12 +23,14 @@
 .main-menu {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+    justify-content: center; /* Changed from flex-start */
     align-items: center;
-    flex-grow: 1;
+    flex-grow: 0;            /* Changed from flex-grow: 1 to stop stretching */
     gap: 0.5rem;
+    min-width: 0;
 }
+
+
 .inactive {
     opacity: 0;
 }

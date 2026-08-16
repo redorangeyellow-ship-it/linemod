@@ -108,6 +108,7 @@ import SeeInsideButton from './tw-see-inside.jsx';
 import {notScratchDesktop} from '../../lib/isScratchDesktop.js';
 import {APP_NAME} from '../../lib/brand.js';
 
+/** UPDATE: Chipywarp Logo and Other icons */
 import toolsIcon from './tools-icon.svg';
 import ChipywarpLogo from '../../logo/chipywarp.png';
 
@@ -512,8 +513,8 @@ class MenuBar extends React.Component {
                                 src={ChipywarpLogo} 
                                 alt="Join Chipywarp Discord Server"
                                 draggable={false}
-                                width={20}
-                                height={20}
+                                width={28}
+                                height={28}
                             />
                         </a>
                     </div>
