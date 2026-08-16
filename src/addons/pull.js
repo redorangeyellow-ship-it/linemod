@@ -57,7 +57,7 @@ for (const folder of ['addons', 'addons-l10n', 'addons-l10n-settings', 'librarie
     fs.mkdirSync(path, {recursive: true});
 }
 
-const generatedPath = pathUtil.resolve(__dirname, 'src', 'addons', 'generated');gi
+const generatedPath = pathUtil.resolve(__dirname, 'src', 'addons', 'generated');
 rimraf.sync(generatedPath);
 fs.mkdirSync(generatedPath, {recursive: true});
 

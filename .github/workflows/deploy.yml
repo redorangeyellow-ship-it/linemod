@@ -1,4 +1,4 @@
-name: Deploy TurboWarp Mod
+name: Deploy Chipywarp
 
 on:
   push:
@@ -33,6 +33,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+
+      - name: Generate Addon Files
+        run: node src/addons/pull.js
 
       - name: Build Production Files
         # BASE_PATH tells the code it is hosted at /chipywarp-gui/ instead of the root domain
