@@ -21,9 +21,9 @@
 
 const fs = require('fs');
 const childProcess = require('child_process');
-const {addons, newAddons} = require('./addons.js');
 const rimraf = require('rimraf');
 const pathUtil = require('path');
+const {addons, newAddons} = require('./addons.js');
 
 const walk = dir => {
     const children = fs.readdirSync(dir);
@@ -48,7 +48,7 @@ const clone = obj => JSON.parse(JSON.stringify(obj));
 const repoPath = pathUtil.resolve(__dirname, 'ScratchAddons');
 if (!process.argv.includes('-')) {
     rimraf.sync(repoPath);
-    childProcess.execSync(`git clone --depth=1 --branch=tw https://github.com/obeyorbehacked750-jpg/addons ${repoPath}`);
+    childProcess.execSync(`git clone --depth=1 --branch=tw https://github.com/TurboWarp/addons ${repoPath}`);
 }
 
 for (const folder of ['addons', 'addons-l10n', 'addons-l10n-settings', 'libraries']) {
