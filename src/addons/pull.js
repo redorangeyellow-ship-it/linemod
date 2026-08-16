@@ -57,7 +57,7 @@ for (const folder of ['addons', 'addons-l10n', 'addons-l10n-settings', 'librarie
     fs.mkdirSync(path, {recursive: true});
 }
 
-const generatedPath = pathUtil.resolve(__dirname, 'src', 'addons', 'generated');
+const generatedPath = pathUtil.resolve(__dirname, 'generated');
 rimraf.sync(generatedPath);
 fs.mkdirSync(generatedPath, {recursive: true});
 
@@ -446,6 +446,16 @@ const generateRuntimeEntries = () => generateEntries(
     addons,
     id => {
         const manifest = addonIdToManifest[id];
+        
+        // Safety check to ensure manifest exists before reading properties
+        if (!manifest) {
+            return {
+                src: `../addons/${id}/_runtime_entry.js`,
+                name: `addon-entry-${id}`,
+                type: 'lazy-import'
+            };
+        }
+
         return {
             src: `../addons/${id}/_runtime_entry.js`,
             // Include default addons in a single bundle
@@ -465,7 +475,19 @@ const generateManifestEntries = () => generateEntries(
 );
 
 for (const addon of addons) {
-    const oldDirectory = pathUtil.resolve(__dirname, 'ScratchAddons', 'addons', addon);
+    let oldDirectory = pathUtil.resolve(__dirname, 'ScratchAddons', 'addons', addon);
+    
+    // If the addon isn't in the official GitHub repo, look in our custom folder!
+    if (!fs.existsSync(oldDirectory)) {
+        oldDirectory = pathUtil.resolve(__dirname, 'custom-addons', addon);
+    }
+    
+    // Final safety check: if we STILL can't find it, skip it entirely without crashing
+    if (!fs.existsSync(oldDirectory)) {
+        console.warn(`Warning: Addon "${addon}" was not found in upstream ScratchAddons or local custom-addons folder. Skipping...`);
+        continue;
+    }
+
     const newDirectory = pathUtil.resolve(__dirname, 'addons', addon);
     processAddon(addon, oldDirectory, newDirectory);
 }
@@ -499,6 +521,9 @@ for (const id of SKIP_MESSAGES) {
         console.warn(`Warning: Translation ${id} is in SKIP_MESSAGES but does not exist`);
     }
 }
+
+// Ensure generatedPath exists again just in case
+if (!fs.existsSync(generatedPath)) fs.mkdirSync(generatedPath, {recursive: true});
 
 fs.writeFileSync(pathUtil.resolve(generatedPath, 'l10n-entries.js'), generateL10nEntries(languages));
 fs.writeFileSync(pathUtil.resolve(generatedPath, 'l10n-settings-entries.js'), generateL10nSettingsEntries(languages));
