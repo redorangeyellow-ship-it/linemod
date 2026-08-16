@@ -20,7 +20,8 @@ const addons = [
     'clones',
     'mouse-pos',
     'color-picker',
-    'remove-sprite-confirm'    'block-count',
+    'remove-sprite-confirm',
+    'block-count',
     'onion-skinning',
     'paint-snap',
     'default-costume-editor-color',
@@ -81,14 +82,12 @@ const addons = [
     'tw-disable-cloud-variables',
     'tw-disable-compiler',
     'editor-stepping',
-    'improvements',
-    'mouse-particles'
+    'improvements'
 ];
 
 const newAddons = [
     'expanded-backpack',
-    'improvements',
-    'mouse-particles'
+    'improvements'
 ];
 
 // eslint-disable-next-line import/no-commonjs
