@@ -81,6 +81,7 @@ import _tw_disable_cloud_variables from "../addons/tw-disable-cloud-variables/_m
 import _tw_disable_compiler from "../addons/tw-disable-compiler/_manifest_entry.js";
 import _editor_stepping from "../addons/editor-stepping/_manifest_entry.js";
 import _improvements from "../addons/improvements/_manifest_entry.js";
+import _mouse_particles from "../addons/mouse-particles/_manifest_entry.js";
 
 export default {
   "cat-blocks": _cat_blocks,
@@ -165,4 +166,5 @@ export default {
   "tw-disable-compiler": _tw_disable_compiler,
   "editor-stepping": _editor_stepping,
   "improvements": _improvements,
+  "mouse-particles": _mouse_particles,
 };

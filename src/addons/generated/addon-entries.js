@@ -82,4 +82,5 @@ export default {
   "tw-disable-compiler": () => import(/* webpackChunkName: "addon-entry-tw-disable-compiler" */ "../addons/tw-disable-compiler/_runtime_entry.js"),
   "editor-stepping": () => import(/* webpackChunkName: "addon-entry-editor-stepping" */ "../addons/editor-stepping/_runtime_entry.js"),
   "improvements": () => import(/* webpackChunkName: "addon-entry-editor-stepping" */ "../addons/improvements/_runtime_entry.js"),
+  "mouse-particles": () => import(/* webpackChunkName: "addon-entry-mouse-particles" */ "../addons/mouse-particles/_runtime_entry.js"),
 };
