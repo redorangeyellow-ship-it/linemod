@@ -2,7 +2,6 @@ import OpcodeLabels from './opcode-labels.js';
 import {safeStringify} from './tw-safe-stringify.js';
 
 const isUndefined = a => typeof a === 'undefined';
-
 /**
  * Convert monitors from VM format to what the GUI needs to render.
  * - Convert opcode to a label and a category
