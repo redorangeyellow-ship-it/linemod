@@ -999,6 +999,7 @@ const sensing = function (isInitialSetup, isStage) {
                 <shadow id="sensing_fingeroptions" type="sensing_fingeroptions"/>
             </value>
         </block>
+        <block type="sensing_online"/>
         <block type="sensing_username"/>
         <block type="sensing_unix"/>
         ${categorySeparator}
