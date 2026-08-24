@@ -424,6 +424,7 @@ const control = function (isInitialSetup, isStage, targetId, colors) {
         <block id="wait_until" type="control_wait_until"/>
         <block id="repeat_until" type="control_repeat_until"/>
         <block id="while" type="control_while"/>
+        <block id="for_each" type="control_for_each"/>
         ${blockSeparator}
         <block type="control_stop"/>
         ${blockSeparator}
@@ -521,7 +522,6 @@ const sensing = function (isInitialSetup, isStage, targetId, colors) {
         <block id="current" type="sensing_current"/>
         <block type="sensing_dayssince2000"/>
         ${blockSeparator}
-        <block id="online" type="sensing_online"/>
         <block type="sensing_username"/>
         ${categorySeparator}
     </category>
@@ -750,7 +750,6 @@ const myBlocks = function (isInitialSetup, isStage, targetId, colors) {
 const extraTurboWarpBlocks = `
 <block type="argument_reporter_boolean"><field name="VALUE">is compiled?</field></block>
 <block type="argument_reporter_boolean"><field name="VALUE">is TurboWarp?</field></block>
-<block type="argument_reporter_boolean"><field name="VALUE">is CattyMod?</field></block>
 `;
 /* eslint-enable no-unused-vars */
 
