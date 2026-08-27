@@ -1,0 +1,87 @@
+<svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="10" x2="30" y2="90" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <line x1="30" y1="10" x2="65" y2="10" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <path d="M 30 50 
+           L 55 50 
+           A 20 20 0 0 1 55 90 
+           L 30 90" 
+        fill="none" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linejoin="round" 
+        stroke-linecap="round"/>
+</svg> б: <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 55 15 
+           A 12 12 0 0 0 35 25 
+           L 35 60" 
+        fill="none" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <circle cx="50" cy="62" r="18" 
+          fill="none" 
+          stroke="black" 
+          stroke-width="4"/>
+</svg> В: same as uppercase B SVG, в; <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <line x1="35" y1="30" x2="35" y2="80" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <path d="M 35 30 
+           L 52 30 
+           A 13 13 0 0 1 52 56 
+           L 35 56" 
+        fill="none" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linejoin="round" 
+        stroke-linecap="round"/>
+  <path d="M 35 56 
+           L 54 56 
+           A 13 13 0 0 1 54 80 
+           L 35 80" 
+        fill="none" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linejoin="round" 
+        stroke-linecap="round"/>
+</svg> Г: <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="30,90 30,10 70,10" 
+            fill="none" 
+            stroke="black" 
+            stroke-width="4" 
+            stroke-linejoin="round" 
+            stroke-linecap="round"/>
+</svg> г: <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="35,80 35,30 65,30" 
+            fill="none" 
+            stroke="black" 
+            stroke-width="4" 
+            stroke-linejoin="round" 
+            stroke-linecap="round"/>
+</svg> Д: <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="50,15 25,75 75,75 50,15" 
+            fill="none" 
+            stroke="black" 
+            stroke-width="4" 
+            stroke-linejoin="round" 
+            stroke-linecap="round"/>
+  <line x1="18" y1="75" x2="82" y2="75" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <line x1="20" y1="75" x2="20" y2="90" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  <line x1="80" y1="75" x2="80" y2="90" 
+        stroke="black" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+</svg> 
