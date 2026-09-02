@@ -1,7 +1,6 @@
 import JSZip from 'jszip';
 import uid from './uid';
 import { stringify, parse } from './json-circular';
-
 /**
  * String.prototype.indexOf, but it returns NaN not -1 on failure
  * @param {string} str The string to check in
