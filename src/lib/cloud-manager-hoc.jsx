@@ -2,25 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import bindAll from 'lodash.bindall';
-
 import VM from 'scratch-vm';
 import CloudProvider from '../lib/cloud-provider';
-
 import {
     getIsShowingWithId
 } from '../reducers/project-state';
-
 import {
     showAlertWithTimeout
 } from '../reducers/alerts';
 import {openUsernameModal} from '../reducers/modals';
 import {setUsernameInvalid, setCloudHost} from '../reducers/tw';
-
 /*
  * Higher Order Component to manage the connection to the cloud server.
  * @param {React.Component} WrappedComponent component to manage VM events for
  * @returns {React.Component} connected component with vm events bound to redux
  */
+
+
 const cloudManagerHOC = function (WrappedComponent) {
     class CloudManager extends React.Component {
         constructor (props) {
@@ -211,5 +209,4 @@ const cloudManagerHOC = function (WrappedComponent) {
         mergeProps
     )(CloudManager);
 };
-
 export default cloudManagerHOC;
