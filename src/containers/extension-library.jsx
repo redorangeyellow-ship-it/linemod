@@ -44,12 +44,14 @@ const messages = defineMessages({
 
 // Only trust loading extension links from these origins.
 // For user-made libraries.
-const TRUSTED_LOADEXT_ORIGINS = [
+const TRUSTED_LOADEXT_ORIGINS = [ 
     'https://studio.penguinmod.com', // for development
     'https://extensions.penguinmod.com',
     'https://sharkpools-extensions.penguinmod.com',
     'https://sharkpools-extensions.vercel.app',
-    'https://raw.githubusercontent.com/SharkPool-SP/SharkPools-Extensions/main', // Some people cant connect to vercel
+    'https://sharkpool-sp.github.io',
+    'https://raw.githubusercontent.com/SharkPool-SP',
+    'https://cdn.jsdelivr.net/gh/SharkPool-SP/SharkPools-Extensions',
     'https://pen-group.github.io',
     'http://localhost:5173', // for development
     'http://localhost:3000', // for development
